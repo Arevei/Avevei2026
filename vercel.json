@@ -14,7 +14,7 @@
         },
         {
             "src" : "/blog/(.*)",
-            "dest" : "/api/blog-post?slug=$1"
+            "dest" : "/"
         },
         {
             "src" : "/",
@@ -90,6 +90,10 @@
         },
         {
             "src" : "/services/(.*)",
+            "dest" : "/"
+        },
+        {
+            "src" : "/landing",
             "dest" : "/"
         }
     ]
