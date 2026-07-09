@@ -12,7 +12,7 @@ import {
     footerCols
 } from '../lib/mock';
 import '../newapp.css';
-import { motion } from 'framer-motion';
+// import { motion } from 'framer-motion';
 
 const Logo = () => (
     <a href="/" className="flex items-center gap-2">
