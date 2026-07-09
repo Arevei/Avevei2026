@@ -18,7 +18,7 @@
     @apply box-border list-none p-0 m-0 scroll-smooth;
   }
 
-  body {
+  body.old-layout-active {
     font-family: "Poppins", sans-serif;
     font-optical-sizing: auto;
     font-weight: 400;
@@ -26,12 +26,12 @@
     @apply bg-[#050505] text-white min-h-screen;
   }
 
-  h1,
-  h2,
-  h3,
-  h4,
-  h5,
-  h6 {
+  body.old-layout-active h1,
+  body.old-layout-active h2,
+  body.old-layout-active h3,
+  body.old-layout-active h4,
+  body.old-layout-active h5,
+  body.old-layout-active h6 {
     font-family: "Sintony", sans-serif;
     font-weight: 700;
   }
@@ -194,7 +194,7 @@
 
   /* Home */
   .home-container {
-    @apply flex flex-col flex-1 items-center gap-5 overflow-scroll custom-scrollbar pb-20;
+    @apply custom-scrollbar pb-20;
   }
 
   .home-posts {

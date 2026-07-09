@@ -38,6 +38,9 @@ import ProductsPage from "./pages/ProductsPage";
 import NGOProductPage from "./pages/NGOProductPage";
 import JoinCloudProductPage from "./pages/JoinCloudProductPage";
 import ProductWebsiteFramePage from "./pages/ProductWebsiteFramePage";
+import NewLayout from "./pages/NewLayout";
+import LandingHome from "./pages/landing";
+
 const App = () => {
   const [bootLoading, setBootLoading] = useState(true)
 
@@ -117,6 +120,10 @@ const App = () => {
         <Route path="/blog/:paramSlag" element={<BlogPage />}/>
         <Route path="/services" element={<Services/>}/>
         <Route path="/services/:slug" element={<ServiceDetailPage/>}/>
+        </Route>
+
+        <Route element={<NewLayout />}>
+          <Route path="/landing" element={<LandingHome />} />
         </Route>
       
       </Routes>

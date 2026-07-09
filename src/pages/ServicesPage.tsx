@@ -14,6 +14,7 @@ import { serviceListings } from "@/lib/service-listings-data"
 import { SITE_URL } from "@/lib/site"
 import JsonLd from "@/components/shared/JsonLd"
 import { buildBreadcrumbSchema, buildOrganizationSchema, organizationId } from "@/lib/geo-data"
+import Footer from "@/components/Footer/Footer"
 
 const Services = () => {
   // For parallax effect on cards
@@ -38,20 +39,20 @@ const Services = () => {
     schema.id = "ld-services-overview"
     schema.textContent = JSON.stringify({
       "@context": "https://schema.org",
-        "@type": "ItemList",
-        itemListElement: serviceListings.map((service, index) => ({
-          "@type": "ListItem",
-          position: index + 1,
-          item: {
-            "@type": "Service",
-            name: service.ctaLabel,
-            description: service.description,
-            url: `${SITE_URL}/services/${service.slug}`,
-            provider: {
-              "@id": organizationId,
-            },
+      "@type": "ItemList",
+      itemListElement: serviceListings.map((service, index) => ({
+        "@type": "ListItem",
+        position: index + 1,
+        item: {
+          "@type": "Service",
+          name: service.ctaLabel,
+          description: service.description,
+          url: `${SITE_URL}/services/${service.slug}`,
+          provider: {
+            "@id": organizationId,
           },
-        })),
+        },
+      })),
     })
 
     document.head.appendChild(schema)
@@ -250,8 +251,8 @@ const Services = () => {
                               <span className="mt-1 w-2 h-2 rounded-full bg-green-400 inline-block" />
                               {b}
                             </motion.li>
-                            ))}
-                          </ul>
+                          ))}
+                        </ul>
                         <Button
                           className="mt-auto w-full bg-gradient-to-r from-[#00ffd9] to-[#00aeff] text-black font-semibold py-2 rounded-lg shadow-md focus:outline-none focus:ring-2 focus:ring-[#00ffd9] focus:ring-offset-2 transition-all duration-200 hover:scale-105 hover:shadow-[0_0_25px_rgba(0,255,217,0.4)] focus-visible:ring-4 focus-visible:ring-[#00aeff]"
                           aria-label={`Explore ${service.ctaLabel}`}
@@ -359,6 +360,8 @@ const Services = () => {
         .blinking-cursor { animation: blink 1.2s steps(1) infinite; }
         @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
       `}</style>
+
+      <Footer />
     </div>
   )
 }

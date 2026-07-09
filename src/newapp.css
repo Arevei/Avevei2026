@@ -1,0 +1,268 @@
+@import url('https://fonts.googleapis.com/css2?family=Anton&family=Archivo+Black&family=Inter:wght@300;400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body.new-layout-active {
+    margin: 0;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    background: #F3EEE6;
+    color: #111;
+}
+
+code {
+    font-family: source-code-pro, Menlo, Monaco, Consolas, monospace;
+}
+
+@layer base {
+    :root {
+        --background: 36 30% 93%;
+        --foreground: 0 0% 7%;
+        --card: 0 0% 100%;
+        --card-foreground: 0 0% 7%;
+        --popover: 0 0% 100%;
+        --popover-foreground: 0 0% 7%;
+        --primary: 0 0% 9%;
+        --primary-foreground: 0 0% 98%;
+        --secondary: 0 0% 96.1%;
+        --secondary-foreground: 0 0% 9%;
+        --muted: 0 0% 96.1%;
+        --muted-foreground: 0 0% 45.1%;
+        --accent: 0 0% 96.1%;
+        --accent-foreground: 0 0% 9%;
+        --destructive: 0 84.2% 60.2%;
+        --destructive-foreground: 0 0% 98%;
+        --border: 0 0% 89.8%;
+        --input: 0 0% 89.8%;
+        --ring: 0 0% 3.9%;
+        --radius: 0.5rem;
+    }
+}
+
+/* @layer base {
+    * {
+        @apply border-border;
+    }
+
+    body {
+        @apply bg-background text-foreground;
+    }
+} */
+
+::selection {
+    background: #F5F142;
+    color: #111;
+}
+
+
+.App {
+    min-height: 100vh;
+    background: #F3EEE6;
+}
+
+/* Marquee animation for logos */
+@keyframes marquee {
+    0% {
+        transform: translateX(0);
+    }
+
+    100% {
+        transform: translateX(-50%);
+    }
+}
+
+.marquee-track {
+    animation: marquee 40s linear infinite;
+    will-change: transform;
+}
+
+.marquee-track:hover {
+    animation-play-state: paused;
+}
+
+/* Blob float */
+@keyframes float-y {
+
+    0%,
+    100% {
+        transform: translateY(0px) rotate(0deg);
+    }
+
+    50% {
+        transform: translateY(-14px) rotate(2deg);
+    }
+}
+
+.animate-float {
+    animation: float-y 6s ease-in-out infinite;
+}
+
+@keyframes float-y-alt {
+
+    0%,
+    100% {
+        transform: translateY(0px) rotate(0deg);
+    }
+
+    50% {
+        transform: translateY(14px) rotate(-2deg);
+    }
+}
+
+.animate-float-alt {
+    animation: float-y-alt 7s ease-in-out infinite;
+}
+
+/* Blink for status dot */
+@keyframes soft-pulse {
+
+    0%,
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+
+    50% {
+        opacity: .55;
+        transform: scale(1.15);
+    }
+}
+
+.soft-pulse {
+    animation: soft-pulse 2s ease-in-out infinite;
+}
+
+/* Ticker digits */
+@keyframes ticker {
+    0% {
+        transform: translateY(0);
+    }
+
+    100% {
+        transform: translateY(-90%);
+    }
+}
+
+/* Text underline animation on hover */
+.link-hover {
+    position: relative;
+    display: inline-block;
+}
+
+.link-hover::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: -2px;
+    height: 1px;
+    background: currentColor;
+    transform-origin: right center;
+    transform: scaleX(0);
+    transition: transform 0.4s cubic-bezier(0.7, 0, 0.2, 1);
+}
+
+.link-hover:hover::after {
+    transform-origin: left center;
+    transform: scaleX(1);
+}
+
+/* Hover word swap */
+.word-swap {
+    display: inline-flex;
+    flex-direction: column;
+    height: 1em;
+    overflow: hidden;
+    vertical-align: bottom;
+    line-height: 1;
+}
+
+.word-swap>span {
+    transition: transform 0.45s cubic-bezier(0.7, 0, 0.2, 1);
+}
+
+.word-swap:hover>span {
+    transform: translateY(-100%);
+}
+
+/* Slow rotate for a decorative shape */
+@keyframes slow-spin {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.slow-spin {
+    animation: slow-spin 30s linear infinite;
+}
+
+/* Card lift on hover */
+.card-lift {
+    transition: transform 0.5s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.5s ease;
+}
+
+.card-lift:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 24px 40px -20px rgba(0, 0, 0, .18);
+}
+
+/* Custom scrollbar hidden for carousel */
+.no-scrollbar::-webkit-scrollbar {
+    display: none;
+}
+
+.no-scrollbar {
+    scrollbar-width: none;
+}
+
+/* Fonts */
+.font-display {
+    font-family: 'Anton', 'Archivo Black', Impact, sans-serif;
+    font-weight: 400;
+    letter-spacing: -0.01em;
+}
+
+.font-body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+/* Big display heading */
+.display-hero {
+    font-family: 'Anton', 'Archivo Black', Impact, sans-serif;
+    font-weight: 400;
+    letter-spacing: -0.02em;
+    line-height: 0.92;
+    text-transform: uppercase;
+}
+
+/* Ticker/rolling number */
+.rolling {
+    display: inline-block;
+    overflow: hidden;
+    height: 1em;
+    line-height: 1;
+    vertical-align: bottom;
+}
+
+.rolling>div {
+    display: flex;
+    flex-direction: column;
+    animation: roll 2.4s cubic-bezier(0.7, 0, 0.2, 1) forwards;
+}
+
+@keyframes roll {
+    0% {
+        transform: translateY(0);
+    }
+
+    100% {
+        transform: translateY(calc(-1em * var(--target, 0)));
+    }
+}

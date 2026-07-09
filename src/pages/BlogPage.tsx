@@ -133,7 +133,7 @@ const TableOfContents = ({
 
   if (headings.length < 2) return null
 
-  const handleClick = (id: string) => {
+  const handleClick = (e: React.MouseEvent<HTMLAnchorElement>, id: string) => {
 
     const element = document.getElementById(id)
     if (element && contentRef?.current) {
@@ -177,7 +177,7 @@ const TableOfContents = ({
               <li key={heading.id}>
                 <a
                   href={`#${heading.id}`}
-                  onClick={() => handleClick(heading.id)}
+                  onClick={(e) => handleClick(e, heading.id)}
                   className={`flex items-start gap-2.5 text-[13px] leading-snug py-2 px-3 rounded-lg transition-all duration-200 ${isActive
                     ? "bg-[#00ffd9]/10 text-[#00ffd9] font-semibold toc-active-item"
                     : "text-gray-500 hover:text-gray-200 hover:bg-white/5 toc-inactive-item"

@@ -3,6 +3,7 @@ import ReactGA from "react-ga4"
 
 import { FAQMeet } from "@/components/shared/FAQMeet"
 import RevealOnScroll from "@/components/shared/RevealOnScroll"
+import Footer from "@/components/Footer/Footer"
 
 const schedulerUrl =
   "https://calendar.google.com/calendar/appointments/schedules/AcZssZ1Ng-fRtiNtTsbeiq0Z6DTkEvGsKYwGcrTeAM1JpxIAg4QjcYwjYD3zwrPPPsm2veTlk_bMSFtz?gv=true"
@@ -100,6 +101,7 @@ function MeetForm() {
           </RevealOnScroll>
         </div>
       </section>
+      <Footer />
     </main>
   )
 }

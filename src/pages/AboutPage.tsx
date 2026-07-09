@@ -1,12 +1,12 @@
 import { useState } from "react"
 import { Link } from "react-router-dom"
-import { 
-  Building2, 
-  Target, 
-  Eye, 
-  Flame, 
-  ChevronDown, 
-  ArrowRight 
+import {
+  Building2,
+  Target,
+  Eye,
+  Flame,
+  ChevronDown,
+  ArrowRight
 } from "lucide-react"
 
 import Footer from "@/components/Footer/Footer"
@@ -56,16 +56,14 @@ const FAQItem = ({ question, answer, isOpen, onClick }: { question: string; answ
         <span className="font-semibold text-base md:text-lg pr-4 group-hover:translate-x-1 transition-transform duration-300">
           {question}
         </span>
-        <ChevronDown 
-          className={`w-5 h-5 text-gray-400 group-hover:text-[#00E6C4] shrink-0 transition-transform duration-300 ${
-            isOpen ? "rotate-180 text-[#00E6C4]" : ""
-          }`} 
+        <ChevronDown
+          className={`w-5 h-5 text-gray-400 group-hover:text-[#00E6C4] shrink-0 transition-transform duration-300 ${isOpen ? "rotate-180 text-[#00E6C4]" : ""
+            }`}
         />
       </button>
-      <div 
-        className={`overflow-hidden transition-all duration-500 ease-in-out ${
-          isOpen ? "max-h-60 pb-6 opacity-100" : "max-h-0 opacity-0"
-        }`}
+      <div
+        className={`overflow-hidden transition-all duration-500 ease-in-out ${isOpen ? "max-h-60 pb-6 opacity-100" : "max-h-0 opacity-0"
+          }`}
       >
         <p className="text-gray-400 text-sm md:text-base leading-relaxed">
           {answer}
@@ -79,8 +77,9 @@ const AboutPage = () => {
   const [openFaqIndex, setOpenFaqIndex] = useState<number | null>(null)
 
   return (
-    <div className="flex flex-1">
+    <div className="flex flex-1 ">
       <div className="home-container w-full overflow-x-hidden bg-black text-white selection:bg-[#00E6C4]/30 selection:text-[#00E6C4]">
+
         {/* SEO schemas */}
         <JsonLd id="ld-about-organization" data={buildOrganizationSchema()} />
         <JsonLd id="ld-about-local-business" data={buildLocalBusinessSchema()} />
@@ -94,7 +93,7 @@ const AboutPage = () => {
         <JsonLd id="ld-about-faq" data={buildFaqSchema(FAQS_DATA)} />
 
         <main className="max-w-6xl mx-auto px-4 md:px-8 py-16 space-y-24">
-          
+
           {/* Hero Section */}
           <section className="text-center space-y-6 pt-8 max-w-4xl mx-auto relative">
             <div className="absolute top-0 left-1/2 -translate-x-1/2 w-72 h-72 bg-[#00E6C4]/10 rounded-full blur-3xl -z-10" />
@@ -193,7 +192,7 @@ const AboutPage = () => {
                   </div>
                 </div>
                 <div className="pt-8">
-                  <Link 
+                  <Link
                     to="/what-we-do"
                     className="inline-flex items-center gap-2 text-[#00E6C4] font-semibold hover:gap-3 transition-all duration-300 text-sm group"
                   >
@@ -220,7 +219,7 @@ const AboutPage = () => {
                   </div>
                 </div>
                 <div className="pt-8">
-                  <Link 
+                  <Link
                     to="/team"
                     className="inline-flex items-center gap-2 text-[#00ffd9] font-semibold hover:gap-3 transition-all duration-300 text-sm group"
                   >
@@ -255,7 +254,7 @@ const AboutPage = () => {
             </div>
           </section>
         </main>
-        
+
         <div className="mt-16">
           <Footer />
         </div>

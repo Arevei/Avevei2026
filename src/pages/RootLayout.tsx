@@ -1,9 +1,18 @@
+import { useEffect } from 'react'
 import LeftSideBar from '@/components/shared/LeftSideBar'
 import Topbar from '@/components/shared/TopBar'
 
 import { Outlet } from 'react-router-dom' // useLocation - Not in use currently
 
 const RootLayout = () => {
+  useEffect(() => {
+    document.body.classList.add('old-layout-active');
+    document.body.classList.remove('new-layout-active');
+    return () => {
+      document.body.classList.remove('old-layout-active');
+    };
+  }, []);
+
   // const location = useLocation();
   return (
     <div className="flex h-full min-h-0 w-full flex-col overflow-hidden">

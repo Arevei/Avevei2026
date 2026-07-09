@@ -7,6 +7,7 @@ import ThirdWork from "@/components/ComponentsForPages/ForWorksPage/ThirdWork"
 import { Link } from "react-router-dom"
 
 import ReactGA from "react-ga4"
+import Footer from "@/components/Footer/Footer"
 
 export function WorkPage() {
   ReactGA.send({ hitType: "pageview", page: "/works", title: "Portfolio Page" })
@@ -37,16 +38,17 @@ export function WorkPage() {
               <p className="text-2xl font-semibold leading-loose">Want to Know More? </p>
             </div>
             <Link
-            onClick={captureWorkMeet}
-            to="/meet"
-             className="relative p-[2px] rounded-lg transition-all duration-300 bg-[linear-gradient(135deg,#00aeff,#00ffd9)] hover:bg-[linear-gradient(135deg,#00d4ff,#00ffea)] inline-block cursor-pointer"
-          >
-            <span className="block rounded-lg bg-[#0f2c27fe] hover:bg-transparent text-white hover:text-black px-8 py-3 text-center font-semibold tracking-wide transition-all duration-300">
+              onClick={captureWorkMeet}
+              to="/meet"
+              className="relative p-[2px] rounded-lg transition-all duration-300 bg-[linear-gradient(135deg,#00aeff,#00ffd9)] hover:bg-[linear-gradient(135deg,#00d4ff,#00ffea)] inline-block cursor-pointer"
+            >
+              <span className="block rounded-lg bg-[#0f2c27fe] hover:bg-transparent text-white hover:text-black px-8 py-3 text-center font-semibold tracking-wide transition-all duration-300">
                 CONTACT US
               </span>
-          </Link>
+            </Link>
           </div>
         </div>
+        <Footer />
       </div>
     </div>
   )
