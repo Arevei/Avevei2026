@@ -1,0 +1,60 @@
+/* Overrides for Featured Card in Light Theme */
+.blog-theme-light .featured-card-content h2 {
+  color: #ffffff !important;
+  -webkit-text-fill-color: #ffffff !important;
+}
+
+.blog-theme-light .featured-card-content h2:hover {
+  color: #00ffd9 !important;
+  -webkit-text-fill-color: #00ffd9 !important;
+}
+
+.blog-theme-light .featured-card-content p {
+  color: #d1d5db !important; /* Keep excerpt gray */
+}
+
+.blog-theme-light .featured-card-content span.author-name {
+  color: #ffffff !important;
+}
+
+.blog-theme-light .featured-card-content span.category-badge {
+  color: #00ffd9 !important;
+  border-color: rgba(0, 255, 217, 0.4) !important;
+}
+
+.blog-theme-light .featured-card-content .text-gray-400,
+.blog-theme-light .featured-card-content .text-gray-400 span {
+  color: #9ca3af !important;
+}
+
+.blog-theme-light .featured-card-content .text-\[\#00ffd9\]\/70 {
+  color: rgba(0, 255, 217, 0.7) !important;
+}
+
+/* Overrides for Table of Contents in Light Theme */
+.blog-theme-light .toc-container {
+  background-color: rgba(6, 60, 50, 0.03) !important;
+  border-color: rgba(6, 60, 50, 0.08) !important;
+}
+
+.blog-theme-light .toc-active-item {
+  background-color: rgba(6, 60, 50, 0.08) !important;
+  color: #063c32 !important;
+}
+
+.blog-theme-light .toc-active-number {
+  color: #063c32 !important;
+}
+
+.blog-theme-light .toc-inactive-item {
+  color: #556c67 !important;
+}
+
+.blog-theme-light .toc-inactive-item:hover {
+  background-color: rgba(6, 60, 50, 0.04) !important;
+  color: #063c32 !important;
+}
+
+.blog-theme-light .toc-inactive-number {
+  color: #8c9e9a !important;
+}

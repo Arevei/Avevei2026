@@ -1,0 +1,96 @@
+{
+    "routes" : [
+        {
+            "src" : "/sitemap\\.xml",
+            "dest" : "/api/sitemap.xml"
+        },
+        {
+            "src" : "/blog",
+            "dest" : "/api/blog"
+        },
+        {
+            "src" : "/blog/",
+            "dest" : "/api/blog"
+        },
+        {
+            "src" : "/blog/(.*)",
+            "dest" : "/api/blog-post?slug=$1"
+        },
+        {
+            "src" : "/",
+            "dest" : "/"
+        },
+        {
+            "src" : "/sign-in",
+            "dest" : "/"
+        },
+        {
+            "src" : "/sign-up",
+            "dest" : "/"
+        },
+        {
+            "src" : "/prices",
+            "dest" : "/"
+        },
+        {
+            "src" : "/meet",
+            "dest" : "/"
+        },
+        {
+            "src" : "/works",
+            "dest" : "/"
+        },
+        {
+            "src" : "/user/account/:name",
+            "dest" : "/"
+        },
+        {
+            "src" : "/user/updatepassword/:name",
+            "dest" : "/"
+        },
+        {
+            "src" : "/user/deleteaccount/:name",
+            "dest" : "/"
+        },
+        {
+            "src" : "/contact",
+            "dest" : "/"
+        },
+        {
+            "src" : "/privacypolicy",
+            "dest" : "/"
+        },
+        {
+            "src" : "/refundpolicy",
+            "dest" : "/"
+        },
+        {
+            "src" : "/shippingpolicy",
+            "dest" : "/"
+        },
+        {
+            "src" : "/terms",
+            "dest" : "/"
+        },
+        {
+            "src" : "/google/auth/contact",
+            "dest" : "/"
+        },
+        {
+            "src" : "/payment/details",
+            "dest" : "/"
+        },
+        {
+            "src" : "/google/login/wait",
+            "dest" : "/"
+        },
+        {
+            "src" : "/services",
+            "dest" : "/"
+        },
+        {
+            "src" : "/services/(.*)",
+            "dest" : "/"
+        }
+    ]
+}
