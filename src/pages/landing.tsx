@@ -313,79 +313,79 @@ function Autopilot() {
         </section>
     );
 }
-function HowItWorks() {
-    return (
-        <section className="py-32 px-6 bg-white border-y border-border/50">
-            <div className="max-w-7xl mx-auto flex flex-col lg:flex-row gap-16 items-center">
-                <motion.div
-                    initial={{ opacity: 0, x: -30 }}
-                    whileInView={{ opacity: 1, x: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.6 }}
-                    className="flex-1"
-                >
-                    <h2 className="text-4xl md:text-6xl font-display uppercase tracking-tight mb-6">Convert on autopilot.</h2>
-                    <p className="text-xl text-muted-foreground leading-relaxed mb-10">
-                        Stop losing qualified leads to generic landing pages. Ploy automatically identifies who is visiting and shows them the most relevant message.
-                    </p>
-                    <div className="space-y-8">
-                        {[
-                            { num: "01", title: "Connect your site", desc: "Add one line of code to your existing website. Works with Webflow, Framer, Next.js and more." },
-                            { num: "02", title: "Set up audiences", desc: "Define rules based on firmographics, behavior, or CRM data." },
-                            { num: "03", title: "Watch pipeline grow", desc: "Our platform optimizes variations automatically to maximize your conversion rate." }
-                        ].map((step, i) => (
-                            <div key={i} className="flex gap-6">
-                                <div className="w-12 h-12 rounded-full border-2 border-primary flex items-center justify-center font-display text-xl shrink-0">
-                                    {step.num}
-                                </div>
-                                <div>
-                                    <h4 className="text-xl font-bold mb-2">{step.title}</h4>
-                                    <p className="text-muted-foreground">{step.desc}</p>
-                                </div>
-                            </div>
-                        ))}
-                    </div>
-                </motion.div>
-                <motion.div
-                    initial={{ opacity: 0, scale: 0.95 }}
-                    whileInView={{ opacity: 1, scale: 1 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.6 }}
-                    className="flex-1 w-full bg-background rounded-[40px] p-8 md:p-12 relative overflow-hidden"
-                >
-                    <div className="absolute inset-0 bg-gradient-to-tr from-accent/5 to-transparent pointer-events-none" />
-                    <div className="bg-white rounded-2xl shadow-xl border border-border p-6 transform -rotate-2 hover:rotate-0 transition-transform duration-500">
-                        <div className="flex items-center gap-3 mb-6 pb-6 border-b border-border">
-                            <div className="w-10 h-10 rounded-full bg-red-600 flex items-center justify-center text-white font-black text-xs">
-                                N
-                            </div>
-                            <div>
-                                <div className="font-bold text-sm">Visitor detected</div>
-                                <div className="text-xs text-muted-foreground">Enterprise Media Company</div>
-                            </div>
-                        </div>
-                        <div className="space-y-4">
-                            <div className="h-4 bg-gray-100 rounded w-3/4"></div>
-                            <div className="h-4 bg-gray-100 rounded w-1/2"></div>
-                            <div className="h-10 bg-accent/20 rounded-lg w-full mt-6 flex items-center px-4 border border-accent/30">
-                                <span className="text-sm font-semibold text-accent">Applying "Enterprise" template...</span>
-                            </div>
-                        </div>
-                    </div>
+// function HowItWorks() {
+//     return (
+//         <section className="py-32 px-6 bg-white border-y border-border/50">
+//             <div className="max-w-7xl mx-auto flex flex-col lg:flex-row gap-16 items-center">
+//                 <motion.div
+//                     initial={{ opacity: 0, x: -30 }}
+//                     whileInView={{ opacity: 1, x: 0 }}
+//                     viewport={{ once: true }}
+//                     transition={{ duration: 0.6 }}
+//                     className="flex-1"
+//                 >
+//                     <h2 className="text-4xl md:text-6xl font-display uppercase tracking-tight mb-6">Convert on autopilot.</h2>
+//                     <p className="text-xl text-muted-foreground leading-relaxed mb-10">
+//                         Stop losing qualified leads to generic landing pages. Ploy automatically identifies who is visiting and shows them the most relevant message.
+//                     </p>
+//                     <div className="space-y-8">
+//                         {[
+//                             { num: "01", title: "Connect your site", desc: "Add one line of code to your existing website. Works with Webflow, Framer, Next.js and more." },
+//                             { num: "02", title: "Set up audiences", desc: "Define rules based on firmographics, behavior, or CRM data." },
+//                             { num: "03", title: "Watch pipeline grow", desc: "Our platform optimizes variations automatically to maximize your conversion rate." }
+//                         ].map((step, i) => (
+//                             <div key={i} className="flex gap-6">
+//                                 <div className="w-12 h-12 rounded-full border-2 border-primary flex items-center justify-center font-display text-xl shrink-0">
+//                                     {step.num}
+//                                 </div>
+//                                 <div>
+//                                     <h4 className="text-xl font-bold mb-2">{step.title}</h4>
+//                                     <p className="text-muted-foreground">{step.desc}</p>
+//                                 </div>
+//                             </div>
+//                         ))}
+//                     </div>
+//                 </motion.div>
+//                 <motion.div
+//                     initial={{ opacity: 0, scale: 0.95 }}
+//                     whileInView={{ opacity: 1, scale: 1 }}
+//                     viewport={{ once: true }}
+//                     transition={{ duration: 0.6 }}
+//                     className="flex-1 w-full bg-background rounded-[40px] p-8 md:p-12 relative overflow-hidden"
+//                 >
+//                     <div className="absolute inset-0 bg-gradient-to-tr from-accent/5 to-transparent pointer-events-none" />
+//                     <div className="bg-white rounded-2xl shadow-xl border border-border p-6 transform -rotate-2 hover:rotate-0 transition-transform duration-500">
+//                         <div className="flex items-center gap-3 mb-6 pb-6 border-b border-border">
+//                             <div className="w-10 h-10 rounded-full bg-red-600 flex items-center justify-center text-white font-black text-xs">
+//                                 N
+//                             </div>
+//                             <div>
+//                                 <div className="font-bold text-sm">Visitor detected</div>
+//                                 <div className="text-xs text-muted-foreground">Enterprise Media Company</div>
+//                             </div>
+//                         </div>
+//                         <div className="space-y-4">
+//                             <div className="h-4 bg-gray-100 rounded w-3/4"></div>
+//                             <div className="h-4 bg-gray-100 rounded w-1/2"></div>
+//                             <div className="h-10 bg-accent/20 rounded-lg w-full mt-6 flex items-center px-4 border border-accent/30">
+//                                 <span className="text-sm font-semibold text-accent">Applying "Enterprise" template...</span>
+//                             </div>
+//                         </div>
+//                     </div>
 
-                    <div className="bg-primary text-white rounded-2xl shadow-xl p-6 mt-8 transform rotate-3 hover:rotate-0 transition-transform duration-500 relative z-10 translate-x-4 md:translate-x-8">
-                        <div className="text-xs font-bold uppercase tracking-wider text-accent mb-2">Live View</div>
-                        <div className="text-2xl font-display tracking-tight leading-none mb-4">SCALE YOUR GLOBAL MEDIA EMPIRE</div>
-                        <div className="text-sm text-white/70 mb-6">See how our CDN accelerates delivery for millions of concurrent viewers.</div>
-                        <div className="h-10 bg-white text-primary rounded-full flex items-center justify-center font-bold text-sm w-1/2">
-                            Book Enterprise Demo
-                        </div>
-                    </div>
-                </motion.div>
-            </div>
-        </section>
-    );
-}
+//                     <div className="bg-primary text-white rounded-2xl shadow-xl p-6 mt-8 transform rotate-3 hover:rotate-0 transition-transform duration-500 relative z-10 translate-x-4 md:translate-x-8">
+//                         <div className="text-xs font-bold uppercase tracking-wider text-accent mb-2">Live View</div>
+//                         <div className="text-2xl font-display tracking-tight leading-none mb-4">SCALE YOUR GLOBAL MEDIA EMPIRE</div>
+//                         <div className="text-sm text-white/70 mb-6">See how our CDN accelerates delivery for millions of concurrent viewers.</div>
+//                         <div className="h-10 bg-white text-primary rounded-full flex items-center justify-center font-bold text-sm w-1/2">
+//                             Book Enterprise Demo
+//                         </div>
+//                     </div>
+//                 </motion.div>
+//             </div>
+//         </section>
+//     );
+// }
 
 
 function LogosMarquee() {
