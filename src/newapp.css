@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Anton&family=Archivo+Black&family=Inter:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -13,54 +13,9 @@ body.new-layout-active {
     color: #111;
 }
 
-code {
-    font-family: source-code-pro, Menlo, Monaco, Consolas, monospace;
-}
-
-@layer base {
-    :root {
-        --background: 36 30% 93%;
-        --foreground: 0 0% 7%;
-        --card: 0 0% 100%;
-        --card-foreground: 0 0% 7%;
-        --popover: 0 0% 100%;
-        --popover-foreground: 0 0% 7%;
-        --primary: 0 0% 9%;
-        --primary-foreground: 0 0% 98%;
-        --secondary: 0 0% 96.1%;
-        --secondary-foreground: 0 0% 9%;
-        --muted: 0 0% 96.1%;
-        --muted-foreground: 0 0% 45.1%;
-        --accent: 0 0% 96.1%;
-        --accent-foreground: 0 0% 9%;
-        --destructive: 0 84.2% 60.2%;
-        --destructive-foreground: 0 0% 98%;
-        --border: 0 0% 89.8%;
-        --input: 0 0% 89.8%;
-        --ring: 0 0% 3.9%;
-        --radius: 0.5rem;
-    }
-}
-
-/* @layer base {
-    * {
-        @apply border-border;
-    }
-
-    body {
-        @apply bg-background text-foreground;
-    }
-} */
-
 ::selection {
     background: #F5F142;
     color: #111;
-}
-
-
-.App {
-    min-height: 100vh;
-    background: #F3EEE6;
 }
 
 /* Marquee animation for logos */
@@ -133,17 +88,6 @@ code {
 
 .soft-pulse {
     animation: soft-pulse 2s ease-in-out infinite;
-}
-
-/* Ticker digits */
-@keyframes ticker {
-    0% {
-        transform: translateY(0);
-    }
-
-    100% {
-        transform: translateY(-90%);
-    }
 }
 
 /* Text underline animation on hover */
@@ -224,9 +168,9 @@ code {
 
 /* Fonts */
 .font-display {
-    font-family: 'Anton', 'Archivo Black', Impact, sans-serif;
-    font-weight: 400;
-    letter-spacing: -0.01em;
+    font-family: 'Manrope', -apple-system, BlinkMacSystemFont, sans-serif;
+    font-weight: 800;
+    letter-spacing: -0.03em;
 }
 
 .font-body {
@@ -235,34 +179,42 @@ code {
 
 /* Big display heading */
 .display-hero {
-    font-family: 'Anton', 'Archivo Black', Impact, sans-serif;
-    font-weight: 400;
-    letter-spacing: -0.02em;
-    line-height: 0.92;
-    text-transform: uppercase;
+    font-family: 'Manrope', -apple-system, BlinkMacSystemFont, sans-serif;
+    font-weight: 800;
+    letter-spacing: -0.045em;
+    line-height: 0.98;
 }
 
-/* Ticker/rolling number */
-.rolling {
-    display: inline-block;
-    overflow: hidden;
-    height: 1em;
-    line-height: 1;
-    vertical-align: bottom;
-}
+/* Fade-in on scroll utility */
+@keyframes fade-up {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
 
-.rolling>div {
-    display: flex;
-    flex-direction: column;
-    animation: roll 2.4s cubic-bezier(0.7, 0, 0.2, 1) forwards;
-}
-
-@keyframes roll {
-    0% {
+    to {
+        opacity: 1;
         transform: translateY(0);
     }
+}
 
-    100% {
-        transform: translateY(calc(-1em * var(--target, 0)));
+.fade-up {
+    animation: fade-up 0.8s cubic-bezier(0.2, 0.8, 0.2, 1) both;
+}
+
+/* Accordion open animation */
+@keyframes accordion-open {
+    from {
+        max-height: 0;
+        opacity: 0;
     }
+
+    to {
+        max-height: 500px;
+        opacity: 1;
+    }
+}
+
+.accordion-open {
+    animation: accordion-open 0.4s cubic-bezier(0.2, 0.8, 0.2, 1) both;
 }
