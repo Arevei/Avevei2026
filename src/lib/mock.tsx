@@ -25,7 +25,6 @@ export const companyLogos = [
     { name: 'Nisvartha', src: svgLogo('N', '#4F46E5') },
 ];
 
-// Four pillars: Build, Manage, Analyze, Grow
 export const pillars = [
     {
         title: 'Build',
@@ -49,11 +48,10 @@ export const pillars = [
     },
 ];
 
-// Dashboard cards
 export const dashboardCards = [
     {
         tag: 'Seen',
-        tagColor: 'bg-black text-white dark:bg-[#00E6C4] dark:text-[#0D0F0E]',
+        tagColor: 'bg-black text-white',
         heading: '3.4x',
         subheading: 'organic visibility',
         note: 'Auto-optimized meta, structured schema, AI overview coverage across 60+ pages in the last 30 days.',
@@ -63,12 +61,12 @@ export const dashboardCards = [
             { label: 'Rankings', value: '82' },
         ],
         footer: 'Indexing new AEO answers',
-        dotColor: 'bg-pink-300',
-        chartColor: 'stroke-pink-400 fill-pink-100',
+        dotColor: 'bg-[#00E6C4]',
+        chartColor: 'stroke-[#00E6C4] fill-[#00E6C4]/20',
     },
     {
         tag: 'Sales',
-        tagColor: 'bg-[#00E6C4] text-black',
+        tagColor: 'bg-[#C7F27A] text-black',
         heading: '₹42L',
         subheading: 'pipeline generated',
         note: 'Landing pages, lead magnets, and outreach sequences aligned to your ICP. Every touchpoint logged.',
@@ -78,12 +76,12 @@ export const dashboardCards = [
             { label: 'Booked', value: '24' },
         ],
         footer: 'Syncing to your CRM',
-        dotColor: 'bg-lime-300',
-        chartColor: 'stroke-lime-400 fill-lime-100',
+        dotColor: 'bg-[#C7F27A]',
+        chartColor: 'stroke-[#C7F27A] fill-[#C7F27A]/20',
     },
     {
         tag: 'Ahead',
-        tagColor: 'bg-black text-white dark:bg-[#00E6C4] dark:text-[#0D0F0E]',
+        tagColor: 'bg-[#0F1413] text-white',
         heading: '12',
         subheading: 'competitor moves flagged',
         note: 'Pricing shifts, new comparison pages, positioning updates — we spot them and counter them within 48 hours.',
@@ -93,72 +91,114 @@ export const dashboardCards = [
             { label: 'Wins', value: '5' },
         ],
         footer: 'Watching 8 rivals',
-        dotColor: 'bg-yellow-300',
-        chartColor: 'stroke-yellow-400 fill-yellow-100',
+        dotColor: 'bg-white',
+        chartColor: 'stroke-white/60 fill-white/10',
     },
 ];
 
-// Our Process
-export const processSteps = [
-    { time: 'Step 01', tag: 'Audit', title: 'Free Website Audit', body: 'Full teardown of your current site — SEO, UX, conversion, tech debt, and competitor gaps. Delivered in 48 hours.' },
-    { time: 'Step 02', tag: 'Build', title: 'Build or Improve', body: 'On-brand pages built or improved to convert. AI-powered speed, professional human judgment.' },
-    { time: 'Step 03', tag: 'Instrument', title: 'Connect Tracking', body: 'Analytics, heatmaps, session replays, form intent, and attribution wired up on day one.' },
-    { time: 'Step 04', tag: 'Insight', title: 'Recommend', body: 'Weekly brief on what is working, what is leaking, and recommended improvements.' },
-    { time: 'Step 05', tag: 'Action', title: 'Execute', body: 'Copy changes, technical updates, SEO/AEO optimizations, and landing pages shipped for you.' },
-    { time: 'Step 06', tag: 'Reporting', title: 'Report & Grow', body: 'Monthly growth reviews tying every action to real sales pipeline and opportunities.' },
-];
-
-// Blog Posts
-export const blogPosts = [
-    { title: 'How to Increase Sales Through Your Website', author: 'Arevei Team', desc: 'Turn your static landing pages into active pipelines by fixing layout, copywriting, and clear conversion goals.' },
-    { title: 'How AI Managed Websites Work', author: 'Arevei Team', desc: 'The workflow mechanism that keeps a site continuously optimized using advanced models and professional strategy.' },
-    { title: 'Why Founders Need an AI Native Website Manager', author: 'Arevei Team', desc: 'Stop spending hours in your CMS or chasing developers. Here is how a managed model saves founder bandwidth.' },
-    { title: 'SEO vs AEO vs GEO: What Businesses Need to Know', author: 'Arevei Team', desc: 'Understanding Search Engine, Answer Engine, and Generative Engine Optimization for modern buyer visibility.' },
-    { title: 'How Website Lead Tracking Improves Growth', author: 'Arevei Team', desc: 'Connecting analytics, heatmaps, and session data directly to your pipeline opportunities and CRM.' },
-    { title: 'Why Your Website Stopped Growing After Launch', author: 'Arevei Team', desc: 'The post-launch void is where 90% of sites die. How to keep updating, analyzing, and growing your platform.' },
-];
-
-// Product / Service Ecosystem
+// One Platform — Three Engines
 export const engines = [
     {
-        title: 'Arevei Web',
-        tagline: 'Build & manage your website.',
-        color: 'bg-[var(--surface)]',
+        name: 'Arevei Web',
+        headline: 'Build. Ship. Support.',
+        tagline: 'A production-grade site — without a full-time dev team.',
+        badgeRight: null,
         features: [
-            'Website updates & changes',
-            'Performance & speed care',
-            'Technical maintenance',
-            'Infrastructure & support',
-            'Priority support updates',
+            'Design + development sprints (7–21 days)',
+            '99.9% uptime + managed hosting + backups',
+            'Unlimited content and design updates',
+            'Core Web Vitals engineered — LCP under 2.5s',
         ],
+        cta: 'Learn more',
+        ctaAccent: false,
+        highlight: false,
     },
     {
-        title: 'Arevei Grow',
-        tagline: 'Analyze and grow monthly.',
-        color: 'bg-[var(--surface)]',
+        name: 'Arevei Grow',
+        headline: 'SEO. AEO. GEO. CRO.',
+        tagline: 'Rankings, AI citations, and pipeline — compounding monthly.',
+        badgeRight: null,
         features: [
-            'Everything in Arevei Web',
-            'SEO, AEO & GEO strategy',
-            'Analytics & lead tracking',
-            'Conversion improvement',
-            'Strategy & team support',
+            'Keyword + topic clustering (APTK framework)',
+            'Answer Engine Optimization for ChatGPT / Perplexity / Gemini',
+            'Lead tracking + conversion rate optimization',
+            'Monthly growth reports with attribution',
         ],
+        cta: 'Learn more',
+        ctaAccent: false,
+        highlight: true,
     },
     {
-        title: 'Arevei Ads',
-        tagline: 'AI-powered ad management.',
-        color: 'bg-[var(--surface)]',
+        name: 'Arevei Ads',
+        headline: 'Create. Attribute. Scale.',
+        tagline: 'AI-managed acquisition — coming soon.',
+        badgeRight: 'Q1 2026',
         features: [
-            'Ad creative production',
-            'Paid campaign management',
-            'Acquisition tracking',
-            'Full performance loop',
-            'Coming Soon - Join Waitlist',
+            'Meta + Google campaign management',
+            'AI-generated creative variations',
+            'Full-funnel attribution (impression → close)',
+            'Join the waitlist for early access',
         ],
+        cta: 'Join waitlist',
+        ctaAccent: true,
+        highlight: false,
     },
 ];
 
-// Unified Website Management Section
+export const processSteps = [
+    { timestamp: '48 hrs', tag: 'Audit', title: 'Free Website Audit', body: 'Full teardown of your current site — SEO, UX, conversion, tech debt, and competitor gaps. Delivered in 48 hours.' },
+    { timestamp: 'Week 1', tag: 'Build', title: 'Build or Improve', body: 'On-brand pages built or improved to convert. AI-powered speed, professional human judgment.' },
+    { timestamp: 'Day 1', tag: 'Instrument', title: 'Connect Tracking', body: 'Analytics, heatmaps, session replays, form intent, and attribution wired up on day one.' },
+    { timestamp: 'Weekly', tag: 'Insight', title: 'Recommend', body: 'Weekly brief on what is working, what is leaking, and recommended improvements.' },
+    { timestamp: 'Ongoing', tag: 'Action', title: 'Execute', body: 'Copy changes, technical updates, SEO/AEO optimizations, and landing pages shipped for you.' },
+    { timestamp: 'Monthly', tag: 'Reporting', title: 'Report & Grow', body: 'Monthly growth reviews tying every action to real sales pipeline and opportunities.' },
+];
+
+export const blogPosts = [
+    {
+        title: 'How to Increase Sales Through Your Website',
+        author: 'Arevei Team',
+        desc: 'Turn your static landing pages into active pipelines by fixing layout, copywriting, and clear conversion goals.',
+        image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=600&q=80',
+        tag: 'Conversion',
+    },
+    {
+        title: 'How AI Managed Websites Work',
+        author: 'Arevei Team',
+        desc: 'The workflow mechanism that keeps a site continuously optimized using advanced models and professional strategy.',
+        image: 'https://images.unsplash.com/photo-1677442135703-1787eea5ce01?w=600&q=80',
+        tag: 'AI',
+    },
+    {
+        title: 'Why Founders Need an AI Native Website Manager',
+        author: 'Arevei Team',
+        desc: 'Stop spending hours in your CMS or chasing developers. Here is how a managed model saves founder bandwidth.',
+        image: 'https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=600&q=80',
+        tag: 'Founders',
+    },
+    {
+        title: 'SEO vs AEO vs GEO: What Businesses Need to Know',
+        author: 'Arevei Team',
+        desc: 'Understanding Search Engine, Answer Engine, and Generative Engine Optimization for modern buyer visibility.',
+        image: 'https://images.unsplash.com/photo-1432888622747-4eb9a8efeb07?w=600&q=80',
+        tag: 'SEO / AEO',
+    },
+    {
+        title: 'How Website Lead Tracking Improves Growth',
+        author: 'Arevei Team',
+        desc: 'Connecting analytics, heatmaps, and session data directly to your pipeline opportunities and CRM.',
+        image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&q=80',
+        tag: 'Analytics',
+    },
+    {
+        title: 'Why Your Website Stopped Growing After Launch',
+        author: 'Arevei Team',
+        desc: 'The post-launch void is where 90% of sites die. How to keep updating, analyzing, and growing your platform.',
+        image: 'https://images.unsplash.com/photo-1504868584819-f8e8b4b6d7e3?w=600&q=80',
+        tag: 'Growth',
+    },
+];
+
 export const audiences = [
     {
         title: 'Growing Brands',
@@ -171,7 +211,7 @@ export const audiences = [
         ],
         cta: 'See how it works',
         cta2: 'Book a demo',
-        accent: 'bg-[var(--accent)]',
+        accent: 'bg-[#C7F27A]',
     },
     {
         title: 'Founders & Ops',
@@ -184,7 +224,7 @@ export const audiences = [
         ],
         cta: 'Talk to founder',
         cta2: 'See pricing',
-        accent: 'bg-[var(--accent)]',
+        accent: 'bg-[#00E6C4]',
     },
     {
         title: 'Mission-Led Orgs',
@@ -197,40 +237,49 @@ export const audiences = [
         ],
         cta: 'Explore for mission orgs',
         cta2: null,
-        accent: 'bg-[var(--accent)]',
+        accent: 'bg-[#C7F27A]',
     },
 ];
 
-// Why Arevei
 export const whyArevei = [
     { title: 'AI Speed', desc: 'We use AI-powered systems to analyze, recommend, and accelerate execution.' },
     { title: 'Professional Judgment', desc: 'Strategy, quality, development, implementation, and final decisions managed by professionals.' },
     { title: 'Freedom from Bandwidth', desc: 'Website growth and management that runs continuously without depending on your internal team.' },
 ];
 
-// Testimonials / Clientele
+// Comparison: Traditional Agency vs Arevei
+export const comparison = [
+    { label: 'Monthly cost', agency: 'Variable + project fees', arevei: 'Fixed retainer' },
+    { label: 'Response time', agency: 'Days to weeks', arevei: 'Under 4 hours' },
+    { label: 'Website updates', agency: 'Pay-per-change', arevei: 'Unlimited included' },
+    { label: 'Growth strategy', agency: 'Extra retainer required', arevei: 'Built into every plan' },
+    { label: 'AI & automation', agency: 'None or bolted-on', arevei: 'Core to the workflow' },
+    { label: 'SEO / AEO / GEO', agency: 'Separate agency needed', arevei: 'Included in Grow plan' },
+    { label: 'Analytics & tracking', agency: 'Another vendor', arevei: 'Fully integrated' },
+    { label: 'Accountability', agency: 'Project manager overhead', arevei: 'Direct team ownership' },
+];
+
 export const testimonials = [
     {
         name: 'Ayurooms',
         role: 'Wellness Retreats',
         quote: 'How Ayurooms improved its digital growth system with Arevei.',
-        badge: 'bg-[var(--surface)]',
+        badge: 'bg-neutral-100',
     },
     {
         name: 'LLF',
         role: 'Educational Foundation',
         quote: 'How LLF strengthened its website management with Arevei.',
-        badge: 'bg-[var(--surface)]',
+        badge: 'bg-neutral-100',
     },
     {
         name: 'Maharishi',
         role: 'Mission-Led Institution',
         quote: 'How Maharishi built a more strategic website experience with Arevei.',
-        badge: 'bg-[var(--surface)]',
+        badge: 'bg-neutral-100',
     },
 ];
 
-// Pricing
 export const pricingPlans = {
     development: [
         {
@@ -298,7 +347,6 @@ export const pricingPlans = {
     ],
 };
 
-// FAQ Section
 export const faqs = [
     { q: 'What is an AI Native Website Manager?', a: 'An AI Native Website Manager combines AI-powered systems (for speed, copy, analysis, and recommendations) with professional strategy, development, and design to continuously build, manage, analyze, and grow your website.' },
     { q: 'Is Arevei a website development company or an AI company?', a: 'We are both. We use AI systems to accelerate the speed of content generation, audits, and performance checks, while our team of developers, copywriters, and designers review and execute every single change.' },
