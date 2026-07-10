@@ -13,7 +13,7 @@ export default function NewLayout() {
     }, []);
 
     return (
-        <div className="font-body text-black bg-[#F3EEE6] min-h-screen w-full overflow-x-hidden relative flex flex-col">
+        <div className="font-body text-[var(--text)] bg-[var(--bg)] min-h-screen w-full overflow-x-hidden relative flex flex-col transition-colors duration-300">
             <NewAreveiNavbar />
             <main className="flex-grow w-full">
                 <Outlet />

@@ -9,8 +9,142 @@ body.new-layout-active {
     font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    background: #F3EEE6;
-    color: #111;
+
+    /* Base theme color tokens (Light) from arevei-landing.html */
+    --bg: #FFFFFF;
+    --surface: #FAFAF9;
+    --border: #D9D9D4;
+    --text: #0D0F0E;
+    --text-muted: #585F5C;
+    --accent: #00E6C4;
+    --accent-deep: #0F6E56;
+    --glass: rgba(255, 255, 255, 0.6);
+    --glass-strong: rgba(255, 255, 255, 0.82);
+    --glass-border: rgba(13, 15, 14, 0.09);
+    --shadow: rgba(13, 15, 14, 0.10);
+    --on-accent: #04342C;
+
+    background-color: var(--bg);
+    color: var(--text);
+    transition: background-color 0.5s ease, color 0.5s ease, border-color 0.5s ease;
+}
+
+/* Dark theme overrides from arevei-landing.html */
+html.dark body.new-layout-active {
+    --bg: #0A0D0C;
+    --surface: #0F1413;
+    --border: #1E2523;
+    --text: #EDEFEE;
+    --text-muted: #8A928F;
+    --accent: #00E6C4;
+    --accent-deep: #0F6E56;
+    --glass: rgba(15, 20, 19, 0.55);
+    --glass-strong: rgba(15, 20, 19, 0.78);
+    --glass-border: rgba(237, 239, 238, 0.09);
+    --shadow: rgba(0, 0, 0, 0.45);
+    --on-accent: #04342C;
+}
+
+/* Mapping utilities for theme consistency and removing multi-colors */
+.new-layout-active,
+.new-layout-active main {
+    background-color: var(--bg);
+    color: var(--text);
+}
+
+.new-layout-active .bg-white {
+    background-color: var(--bg) !important;
+}
+.new-layout-active .bg-[#F3EEE6] {
+    background-color: var(--bg) !important;
+}
+.new-layout-active .bg-neutral-50 {
+    background-color: var(--surface) !important;
+}
+
+/* Override multi-colored cards/sections to use the theme surface/glass instead */
+.new-layout-active .bg-\[\#DCE7F6\],
+.new-layout-active .bg-\[\#E7F5D9\],
+.new-layout-active .bg-\[\#F8DAEE\],
+.new-layout-active .bg-\[\#F5F142\] {
+    background-color: var(--glass) !important;
+    border: 1px solid var(--glass-border) !important;
+    color: var(--text) !important;
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+}
+
+/* Accent overrides */
+.new-layout-active .bg-\[\#C7F27A\] {
+    background-color: var(--accent) !important;
+    color: var(--on-accent) !important;
+}
+.new-layout-active .text-\[\#C7F27A\] {
+    color: var(--accent) !important;
+}
+
+/* Text color theme mapping */
+.new-layout-active .text-black,
+.new-layout-active [class*="text-black"] {
+    color: var(--text) !important;
+}
+.new-layout-active .text-black\/85,
+.new-layout-active .text-black\/80 {
+    color: var(--text) !important;
+    opacity: 0.85;
+}
+.new-layout-active .text-black\/75,
+.new-layout-active .text-black\/70,
+.new-layout-active .text-black\/60,
+.new-layout-active .text-black\/50,
+.new-layout-active .text-black\/40 {
+    color: var(--text-muted) !important;
+}
+
+/* Ensure background white/black properties are theme-aware */
+.new-layout-active .bg-white {
+    background-color: var(--bg) !important;
+}
+.new-layout-active .bg-white\/85,
+.new-layout-active .bg-white\/90,
+.new-layout-active .bg-white\/65 {
+    background-color: var(--glass) !important;
+}
+
+/* Black backgrounds (buttons, dots, badges) */
+.new-layout-active .bg-black {
+    background-color: var(--text) !important;
+    color: var(--bg) !important;
+}
+.new-layout-active .text-white {
+    color: var(--bg) !important;
+}
+
+/* Dark theme specific background & text adjustments */
+html.dark .new-layout-active .bg-black {
+    background-color: var(--accent) !important;
+    color: var(--on-accent) !important;
+}
+html.dark .new-layout-active .text-white {
+    color: var(--on-accent) !important;
+}
+html.dark .new-layout-active .bg-white\/10 {
+    background-color: var(--glass) !important;
+}
+
+/* Border overrides */
+.new-layout-active .border-black\/5,
+.new-layout-active .border-black\/10,
+.new-layout-active [class*="border-black"] {
+    border-color: var(--glass-border) !important;
+}
+
+/* Dark-mode specific overrides to prevent conflicts */
+html.dark .new-layout-active .bg-neutral-900 {
+    background-color: var(--surface) !important;
+}
+html.dark .new-layout-active .border-neutral-800 {
+    border-color: var(--border) !important;
 }
 
 ::selection {

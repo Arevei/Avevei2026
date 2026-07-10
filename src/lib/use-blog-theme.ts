@@ -21,6 +21,11 @@ export function useBlogTheme() {
 
   useEffect(() => {
     document.documentElement.dataset.blogTheme = theme
+    if (theme === "dark") {
+      document.documentElement.classList.add("dark")
+    } else {
+      document.documentElement.classList.remove("dark")
+    }
     window.localStorage.setItem(BLOG_THEME_STORAGE_KEY, theme)
     window.dispatchEvent(new CustomEvent(BLOG_THEME_CHANGE_EVENT, { detail: theme }))
   }, [theme])

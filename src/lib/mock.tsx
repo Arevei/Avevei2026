@@ -1,4 +1,3 @@
-
 // SVG placeholder logo generator (returns data URI)
 const svgLogo = (letter: string, bg = '#111') =>
     `data:image/svg+xml;utf8,${encodeURIComponent(
@@ -26,7 +25,7 @@ export const companyLogos = [
     { name: 'Nisvartha', src: svgLogo('N', '#4F46E5') },
 ];
 
-// \"What Arevei Does\" — four pillars: Build, Manage, Analyze, Grow
+// Four pillars: Build, Manage, Analyze, Grow
 export const pillars = [
     {
         title: 'Build',
@@ -50,11 +49,11 @@ export const pillars = [
     },
 ];
 
-// Dashboard cards — \"Get Seen. Get Sales. Get Ahead.\"
+// Dashboard cards
 export const dashboardCards = [
     {
         tag: 'Seen',
-        tagColor: 'bg-black text-white',
+        tagColor: 'bg-black text-white dark:bg-[#00E6C4] dark:text-[#0D0F0E]',
         heading: '3.4x',
         subheading: 'organic visibility',
         note: 'Auto-optimized meta, structured schema, AI overview coverage across 60+ pages in the last 30 days.',
@@ -69,7 +68,7 @@ export const dashboardCards = [
     },
     {
         tag: 'Sales',
-        tagColor: 'bg-[#C7F27A] text-black',
+        tagColor: 'bg-[#00E6C4] text-black',
         heading: '₹42L',
         subheading: 'pipeline generated',
         note: 'Landing pages, lead magnets, and outreach sequences aligned to your ICP. Every touchpoint logged.',
@@ -84,7 +83,7 @@ export const dashboardCards = [
     },
     {
         tag: 'Ahead',
-        tagColor: 'bg-black text-white',
+        tagColor: 'bg-black text-white dark:bg-[#00E6C4] dark:text-[#0D0F0E]',
         heading: '12',
         subheading: 'competitor moves flagged',
         note: 'Pricing shifts, new comparison pages, positioning updates — we spot them and counter them within 48 hours.',
@@ -99,65 +98,67 @@ export const dashboardCards = [
     },
 ];
 
-// Our Process — reuses old timeline layout
+// Our Process
 export const processSteps = [
-    { time: 'Step 01', tag: 'Discovery', title: 'Free Website Audit', body: 'Full teardown of your current site — SEO, UX, conversion, tech debt, and competitor gaps. Delivered in 48 hours.' },
-    { time: 'Step 02', tag: 'Build', title: 'Design & Development', body: 'On-brand pages built to convert. AI-drafted first pass, refined by our humans, shipped to your domain.' },
-    { time: 'Step 03', tag: 'Instrument', title: 'Track Everything', body: 'Analytics, heatmaps, session replays, form intent, ad attribution — all wired up on day one.' },
-    { time: 'Step 04', tag: 'Insight', title: 'Recommend', body: 'Weekly briefs on what to change, why, and the expected lift. No dashboards to babysit.' },
-    { time: 'Step 05', tag: 'Action', title: 'Execute', body: 'Copy edits, new pages, technical fixes, campaign launches — we ship the recommendations for you.' },
-    { time: 'Step 06', tag: 'Reporting', title: 'Report & Refine', body: 'Monthly report tying every action to pipeline. Then we do it all over again — smarter.' },
+    { time: 'Step 01', tag: 'Audit', title: 'Free Website Audit', body: 'Full teardown of your current site — SEO, UX, conversion, tech debt, and competitor gaps. Delivered in 48 hours.' },
+    { time: 'Step 02', tag: 'Build', title: 'Build or Improve', body: 'On-brand pages built or improved to convert. AI-powered speed, professional human judgment.' },
+    { time: 'Step 03', tag: 'Instrument', title: 'Connect Tracking', body: 'Analytics, heatmaps, session replays, form intent, and attribution wired up on day one.' },
+    { time: 'Step 04', tag: 'Insight', title: 'Recommend', body: 'Weekly brief on what is working, what is leaking, and recommended improvements.' },
+    { time: 'Step 05', tag: 'Action', title: 'Execute', body: 'Copy changes, technical updates, SEO/AEO optimizations, and landing pages shipped for you.' },
+    { time: 'Step 06', tag: 'Reporting', title: 'Report & Grow', body: 'Monthly growth reviews tying every action to real sales pipeline and opportunities.' },
 ];
 
-// Blog / Insights (reuses PloyBooks scroll pattern)
+// Blog Posts
 export const blogPosts = [
-    { title: 'The Founder’s Guide to AI Website Management', author: 'Arevei Team', desc: 'What changes when your website is managed by AI plus a human team — and why the old CMS/agency model is dying.' },
-    { title: 'AEO in 2026: How to Get Cited by ChatGPT & Perplexity', author: 'Arevei Team', desc: 'Structured content, entity clarity, and quotable formatting — the three-part playbook for AI Overview visibility.' },
-    { title: 'Why Most Websites Stop Growing After Launch', author: 'Arevei Team', desc: 'The post-launch void is where 90% of websites die. Here is what to do in the first 90 days after go-live.' },
-    { title: 'From Google to Gemini: The New SEO Playbook', author: 'Arevei Team', desc: 'Ranking on Google is table stakes. Ranking inside AI answers is where pipeline is being decided in 2026.' },
-    { title: 'Landing Pages That Convert 3x More Leads', author: 'Arevei Team', desc: 'The above-the-fold blueprint we use for every Arevei site — with real conversion data from our clients.' },
-    { title: 'How to Audit a Website in 30 Minutes', author: 'Arevei Team', desc: 'The checklist we run for every free audit — SEO, UX, technical, conversion — with tools you can use today.' },
-    { title: 'The Real Cost of a Cheap Website', author: 'Arevei Team', desc: 'Template sites feel like a bargain until month six. Here is the actual math on what you lose over 24 months.' },
+    { title: 'How to Increase Sales Through Your Website', author: 'Arevei Team', desc: 'Turn your static landing pages into active pipelines by fixing layout, copywriting, and clear conversion goals.' },
+    { title: 'How AI Managed Websites Work', author: 'Arevei Team', desc: 'The workflow mechanism that keeps a site continuously optimized using advanced models and professional strategy.' },
+    { title: 'Why Founders Need an AI Native Website Manager', author: 'Arevei Team', desc: 'Stop spending hours in your CMS or chasing developers. Here is how a managed model saves founder bandwidth.' },
+    { title: 'SEO vs AEO vs GEO: What Businesses Need to Know', author: 'Arevei Team', desc: 'Understanding Search Engine, Answer Engine, and Generative Engine Optimization for modern buyer visibility.' },
+    { title: 'How Website Lead Tracking Improves Growth', author: 'Arevei Team', desc: 'Connecting analytics, heatmaps, and session data directly to your pipeline opportunities and CRM.' },
+    { title: 'Why Your Website Stopped Growing After Launch', author: 'Arevei Team', desc: 'The post-launch void is where 90% of sites die. How to keep updating, analyzing, and growing your platform.' },
 ];
 
-// One platform, three engines
+// Product / Service Ecosystem
 export const engines = [
     {
         title: 'Arevei Web',
-        tagline: 'Build. Optimize. Convert.',
-        color: 'bg-[#DCE7F6]',
+        tagline: 'Build & manage your website.',
+        color: 'bg-[var(--surface)]',
         features: [
-            'AI-native website builder',
-            'SEO, AEO & GEO landing pages',
-            'Ad landing page optimization',
-            'Built-in analytics and heatmaps',
+            'Website updates & changes',
+            'Performance & speed care',
+            'Technical maintenance',
+            'Infrastructure & support',
+            'Priority support updates',
         ],
     },
     {
         title: 'Arevei Grow',
-        tagline: 'Attract. Rank. Reach.',
-        color: 'bg-[#E7F5D9]',
+        tagline: 'Analyze and grow monthly.',
+        color: 'bg-[var(--surface)]',
         features: [
-            'Organic content & AEO strategy',
-            'Automated outreach sequences',
-            'Intent tracking & lead scoring',
-            'CRM & sales pipeline sync',
+            'Everything in Arevei Web',
+            'SEO, AEO & GEO strategy',
+            'Analytics & lead tracking',
+            'Conversion improvement',
+            'Strategy & team support',
         ],
     },
     {
         title: 'Arevei Ads',
-        tagline: 'Advertise. Attribute. Scale.',
-        color: 'bg-[#F8DAEE]',
+        tagline: 'AI-powered ad management.',
+        color: 'bg-[var(--surface)]',
         features: [
-            'Ad creative production at scale',
-            'Meta & Google campaign management',
-            'Full-funnel attribution',
-            'Weekly performance reviews',
+            'Ad creative production',
+            'Paid campaign management',
+            'Acquisition tracking',
+            'Full performance loop',
+            'Coming Soon - Join Waitlist',
         ],
     },
 ];
 
-// Unified Website Management — audience-style cards
+// Unified Website Management Section
 export const audiences = [
     {
         title: 'Growing Brands',
@@ -170,7 +171,7 @@ export const audiences = [
         ],
         cta: 'See how it works',
         cta2: 'Book a demo',
-        accent: 'bg-[#F5F142]',
+        accent: 'bg-[var(--accent)]',
     },
     {
         title: 'Founders & Ops',
@@ -183,7 +184,7 @@ export const audiences = [
         ],
         cta: 'Talk to founder',
         cta2: 'See pricing',
-        accent: 'bg-[#F8BEEB]',
+        accent: 'bg-[var(--accent)]',
     },
     {
         title: 'Mission-Led Orgs',
@@ -196,16 +197,15 @@ export const audiences = [
         ],
         cta: 'Explore for mission orgs',
         cta2: null,
-        accent: 'bg-[#B5F09D]',
+        accent: 'bg-[var(--accent)]',
     },
 ];
 
-// Why Arevei — AI Speed. Professional Judgment.
+// Why Arevei
 export const whyArevei = [
-    { title: 'AI Speed', desc: 'Pages, copy, and campaigns drafted in minutes — not weeks. We use AI where it is fastest.' },
-    { title: 'Professional Judgment', desc: 'Every AI draft is reviewed, refined, and shipped by senior humans. No AI slop hits your site.' },
-    { title: 'One Team, End-to-End', desc: 'Design, dev, SEO, content, ads — under one roof, one retainer, one point of contact.' },
-    { title: 'ROI-First Reporting', desc: 'We report on pipeline, not vanity metrics. If it does not move revenue, we do not celebrate it.' },
+    { title: 'AI Speed', desc: 'We use AI-powered systems to analyze, recommend, and accelerate execution.' },
+    { title: 'Professional Judgment', desc: 'Strategy, quality, development, implementation, and final decisions managed by professionals.' },
+    { title: 'Freedom from Bandwidth', desc: 'Website growth and management that runs continuously without depending on your internal team.' },
 ];
 
 // Testimonials / Clientele
@@ -213,53 +213,53 @@ export const testimonials = [
     {
         name: 'Ayurooms',
         role: 'Wellness Retreats',
-        quote: 'Arevei rebuilt our site in 3 weeks and doubled organic bookings in the first quarter.',
-        badge: 'bg-[#E7F5D9]',
+        quote: 'How Ayurooms improved its digital growth system with Arevei.',
+        badge: 'bg-[var(--surface)]',
     },
     {
         name: 'LLF',
         role: 'Educational Foundation',
-        quote: 'The team runs our website like it is their own. We stopped worrying about updates months ago.',
-        badge: 'bg-[#DCE7F6]',
+        quote: 'How LLF strengthened its website management with Arevei.',
+        badge: 'bg-[var(--surface)]',
     },
     {
         name: 'Maharishi',
         role: 'Mission-Led Institution',
-        quote: 'AI speed did not compromise the craft. The site finally reflects who we are.',
-        badge: 'bg-[#F8DAEE]',
+        quote: 'How Maharishi built a more strategic website experience with Arevei.',
+        badge: 'bg-[var(--surface)]',
     },
 ];
 
-// Pricing — Development tiers + Management tiers
+// Pricing
 export const pricingPlans = {
     development: [
         {
-            name: 'Template Site',
+            name: 'Template-Based Website',
             price: '₹20,000',
             originalPrice: null,
             frequency: 'one-time',
-            desc: 'Fast, on-brand, ready in 7 days.',
-            features: ['Up to 5 pages', 'Template-based design', 'Mobile responsive', 'Basic SEO setup', 'Contact & lead forms'],
-            cta: 'Get Started',
+            desc: 'For businesses that need a clean, professional website launched quickly.',
+            features: ['Startups & portfolios', 'Service business websites', 'Launch in 7 days', 'On-brand template design', 'Standard setup & contact forms'],
+            cta: 'Start with Template Website',
             highlight: false,
         },
         {
-            name: 'Advanced Custom',
+            name: 'Advanced UI & Functional Website',
             price: '₹65,000',
             originalPrice: null,
             frequency: 'one-time',
-            desc: 'Fully custom, conversion-designed.',
-            features: ['Up to 15 custom pages', 'Bespoke design system', 'Advanced SEO/AEO setup', 'Analytics integration', 'CMS training'],
-            cta: 'Book a Call',
+            desc: 'For businesses that need a stronger, more customized website experience.',
+            features: ['Growing businesses & brands', 'Lead-generation setup', 'Bespoke UI design', 'SEO/AEO infrastructure', 'Analytics integrations'],
+            cta: 'Build Advanced Website',
             highlight: true,
         },
         {
-            name: 'Enterprise',
+            name: 'Custom / Enterprise Requirement',
             price: 'Custom',
             originalPrice: null,
             frequency: 'quote',
-            desc: 'For complex sites & platforms.',
-            features: ['Unlimited pages', 'Custom integrations', 'Dedicated project lead', 'Migration & training', 'SLA support'],
+            desc: 'For custom workflows, advanced functionality, or larger systems.',
+            features: ['Custom platforms', 'Advanced integrations', 'Enterprise requirements', 'Complex infrastructure', 'SLA support'],
             cta: 'Talk to Sales',
             highlight: false,
         },
@@ -268,20 +268,20 @@ export const pricingPlans = {
         {
             name: 'Arevei Web',
             price: '₹12,000',
-            originalPrice: '₹18,000',
+            originalPrice: '₹15,000',
             frequency: '/mo',
-            desc: 'We run your website, forever.',
-            features: ['Weekly updates & content', 'Technical SEO monitoring', 'Analytics & reporting', 'Copy edits & new pages', 'Uptime & security'],
-            cta: 'Start Management',
+            desc: 'Build and manage your website with professionals.',
+            features: ['Website updates & edits', 'Performance management', 'Technical maintenance', 'Infrastructure support', 'Priority support', 'Monthly updates'],
+            cta: 'Start with Arevei Web',
             highlight: false,
         },
         {
             name: 'Arevei Grow',
             price: '₹24,000',
-            originalPrice: '₹36,000',
+            originalPrice: '₹30,000',
             frequency: '/mo',
-            desc: 'Everything in Web, plus growth.',
-            features: ['Everything in Arevei Web', 'SEO/AEO/GEO strategy', 'Content production', 'Outreach & link building', 'Monthly growth review'],
+            desc: 'Build, analyze, and grow your website every month.',
+            features: ['Everything in Arevei Web', 'Analytics & lead tracking', 'SEO, AEO & GEO content strategy', 'Conversion & UX improvements', 'Dedicated strategy support'],
             cta: 'Start Growing',
             highlight: true,
         },
@@ -290,29 +290,29 @@ export const pricingPlans = {
             price: 'Waitlist',
             originalPrice: null,
             frequency: '',
-            desc: 'Paid media management. Coming soon.',
-            features: ['Meta & Google ads', 'Creative production', 'Full-funnel attribution', 'Weekly performance review', 'Landing page A/B testing'],
+            desc: 'AI-powered ad and acquisition management.',
+            features: ['Campaign landing pages', 'Ad creative production', 'Attribution & paid strategy', 'Performance feedback loop', 'Paid channels optimization'],
             cta: 'Join Waitlist',
             highlight: false,
         },
     ],
 };
 
-// FAQ
+// FAQ Section
 export const faqs = [
-    { q: 'What exactly is Arevei?', a: 'Arevei is an AI-Native Website Manager. We build, manage, and grow your website end-to-end using AI speed and senior human judgment — under one retainer, with one team.' },
-    { q: 'How is this different from a regular agency?', a: 'Regular agencies build your site and disappear. Arevei stays — updating, optimizing, and growing your website every single month. We are your outsourced website team.' },
-    { q: 'Do I need my own website already?', a: 'No. We build from scratch, migrate from any platform, or take over your existing site. Whichever gets you to results faster.' },
-    { q: 'How fast is a typical build?', a: 'Template sites go live in 7 days. Custom advanced builds ship in 3 to 4 weeks. Enterprise timelines are scoped per project.' },
-    { q: 'What is the Welcome Offer?', a: 'For new clients we discount management retainers by roughly 33% for the first 3 months. See the pricing section for current rates.' },
-    { q: 'Can I cancel management anytime?', a: 'Yes. Management retainers are month-to-month. If we are not delivering, you can leave — the website stays with you.' },
-    { q: 'Do you work with non-profits?', a: 'Yes. Mission-led organizations get a discounted rate on both build and management. Ask us about it during your audit call.' },
-    { q: 'What does \"AI Native\" actually mean?', a: 'Our workflow is built on AI from the ground up — copy drafting, layout generation, SEO research, and content refresh all run through models. Humans do the judging, refining, and shipping.' },
+    { q: 'What is an AI Native Website Manager?', a: 'An AI Native Website Manager combines AI-powered systems (for speed, copy, analysis, and recommendations) with professional strategy, development, and design to continuously build, manage, analyze, and grow your website.' },
+    { q: 'Is Arevei a website development company or an AI company?', a: 'We are both. We use AI systems to accelerate the speed of content generation, audits, and performance checks, while our team of developers, copywriters, and designers review and execute every single change.' },
+    { q: 'Do you only build websites?', a: 'No. While we build modern custom websites, we also manage existing websites, perform updates, manage organic visibility (SEO/AEO/GEO), and run growth campaigns monthly.' },
+    { q: 'What is the difference between Arevei Web and Arevei Grow?', a: 'Arevei Web focuses on core website updates, infrastructure support, and maintenance. Arevei Grow adds analytics, pipeline/lead tracking, SEO/AEO/GEO strategy, and active conversions work to drive pipeline.' },
+    { q: 'Will AI directly manage my website?', a: 'No. AI tools assist our workflow to ensure maximum speed and analysis, but every modification, line of code, and layout change is explicitly verified and deployed by our professional team.' },
+    { q: 'Can Arevei improve my existing website?', a: 'Yes. We can take over, audit, optimize, and manage your existing website to improve its current performance, UX, and search engine/answer engine visibility.' },
+    { q: 'Do you provide reports?', a: 'Yes. You receive monthly updates and clear reports tracking website performance, search visibility, lead signals, and conversion rates.' },
+    { q: 'Is Arevei Ads available?', a: 'Arevei Ads is currently in closed waitlist and will be launched soon. You can join the waitlist in the pricing section.' },
 ];
 
 export const footerCols = [
     { title: 'Products', links: ['Arevei Web', 'Arevei Grow', 'Arevei Ads', 'Pricing'] },
-    { title: 'Services', links: ['Website Audit', 'Custom Build', 'Website Management', 'SEO / AEO / GEO'] },
-    { title: 'Company', links: ['About', 'Clientele', 'Careers', 'Contact'] },
-    { title: 'Resources', links: ['Blog', 'Founder Guides', 'AI Website Management', 'Case Studies'] },
+    { title: 'Services', links: ['Website Design & Development', 'Website Management', 'Website Growth', 'SEO/AEO/GEO', 'Website Analytics', 'Website Lead Tracking'] },
+    { title: 'Company', links: ['About', 'Clientele', 'Case Studies', 'Contact', 'Book a Demo'] },
+    { title: 'Resources', links: ['Blog', 'Founder Guides', 'AI Managed Websites', 'Website Growth', 'Landing Pages'] },
 ];
