@@ -42,7 +42,7 @@ html.dark body.new-layout-active {
     --glass-strong: rgba(15, 20, 19, 0.78);
     --glass-border: rgba(237, 239, 238, 0.09);
     --shadow: rgba(0, 0, 0, 0.45);
-    --on-accent: #04342C;
+    --on-accent: #ffffff;
 }
 
 /* Mapping utilities for theme consistency and removing multi-colors */
@@ -55,9 +55,11 @@ html.dark body.new-layout-active {
 .new-layout-active .bg-white {
     background-color: var(--bg) !important;
 }
-.new-layout-active .bg-[#F3EEE6] {
+
+.new-layout-active {
     background-color: var(--bg) !important;
 }
+
 .new-layout-active .bg-neutral-50 {
     background-color: var(--surface) !important;
 }
@@ -79,6 +81,7 @@ html.dark body.new-layout-active {
     background-color: var(--accent) !important;
     color: var(--on-accent) !important;
 }
+
 .new-layout-active .text-\[\#C7F27A\] {
     color: var(--accent) !important;
 }
@@ -88,11 +91,13 @@ html.dark body.new-layout-active {
 .new-layout-active [class*="text-black"] {
     color: var(--text) !important;
 }
+
 .new-layout-active .text-black\/85,
 .new-layout-active .text-black\/80 {
     color: var(--text) !important;
     opacity: 0.85;
 }
+
 .new-layout-active .text-black\/75,
 .new-layout-active .text-black\/70,
 .new-layout-active .text-black\/60,
@@ -105,6 +110,7 @@ html.dark body.new-layout-active {
 .new-layout-active .bg-white {
     background-color: var(--bg) !important;
 }
+
 .new-layout-active .bg-white\/85,
 .new-layout-active .bg-white\/90,
 .new-layout-active .bg-white\/65 {
@@ -116,6 +122,7 @@ html.dark body.new-layout-active {
     background-color: var(--text) !important;
     color: var(--bg) !important;
 }
+
 .new-layout-active .text-white {
     color: var(--bg) !important;
 }
@@ -125,9 +132,11 @@ html.dark .new-layout-active .bg-black {
     background-color: var(--accent) !important;
     color: var(--on-accent) !important;
 }
+
 html.dark .new-layout-active .text-white {
     color: var(--on-accent) !important;
 }
+
 html.dark .new-layout-active .bg-white\/10 {
     background-color: var(--glass) !important;
 }
@@ -143,6 +152,7 @@ html.dark .new-layout-active .bg-white\/10 {
 html.dark .new-layout-active .bg-neutral-900 {
     background-color: var(--surface) !important;
 }
+
 html.dark .new-layout-active .border-neutral-800 {
     border-color: var(--border) !important;
 }
