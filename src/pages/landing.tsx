@@ -28,6 +28,7 @@ import {
     faqs,
     footerCols,
 } from "@/lib/mock";
+import { Link } from "react-router-dom";
 
 /* ================= Theme Hook ================= */
 function useTheme() {
@@ -76,8 +77,36 @@ function useInView(ref: React.RefObject<HTMLDivElement>, threshold = 0.2) {
     return inView;
 }
 
-/* ================= Blob Cluster (OnePlatform decoration) ================= */
 
+/* ================= Decorative SVG Blobs ================= */
+function BlobDecor({
+    className,
+    color = "currentColor",
+    variant = 0,
+}: {
+    className?: string;
+    color?: string;
+    variant?: number;
+}) {
+    const paths = [
+        // variant 0 — wide organic
+        "M47.1,-67.9C59.3,-61.2,66.7,-46.5,72.3,-31.3C77.8,-16,81.4,-0.2,79.1,14.9C76.9,30,68.9,44.3,57.5,54.3C46.1,64.3,31.4,69.9,15.7,73.4C0,76.9,-16.7,78.3,-31.2,73.6C-45.7,68.9,-57.9,58.2,-65.1,44.9C-72.4,31.7,-74.7,15.8,-74.3,0.2C-74,-15.4,-71.1,-30.8,-63,-43C-54.9,-55.2,-41.6,-64.2,-27.8,-69.7C-14,-75.2,0.2,-77.1,14.7,-75.4C29.2,-73.7,34.9,-74.6,47.1,-67.9Z",
+        // variant 1 — tall spiky
+        "M38.4,-64.1C48.8,-56.9,55.5,-44.6,62.3,-31.8C69.2,-19,76.2,-5.6,76.1,8.1C76,21.8,68.8,35.7,58.8,46.3C48.8,56.9,36,64.1,22.1,69.1C8.2,74.1,-6.7,76.9,-20.5,73.8C-34.4,70.7,-47.3,61.7,-56,49.6C-64.8,37.5,-69.5,22.3,-71.5,6.5C-73.6,-9.4,-73,-25.9,-66,-39.2C-59,-52.6,-45.6,-62.9,-31.8,-68.9C-17.9,-74.9,-3.4,-76.7,9.9,-73.4C23.2,-70.2,28,-71.3,38.4,-64.1Z",
+        // variant 2 — round chunky
+        "M53.7,-79.1C66.7,-70.9,72.6,-53.2,75.9,-36.1C79.2,-19.1,80,-2.7,76.4,12.3C72.8,27.3,64.9,40.9,53.6,51.3C42.3,61.7,27.5,68.9,11.7,72.3C-4.1,75.7,-20.9,75.3,-35.8,69.5C-50.7,63.7,-63.7,52.5,-70.3,38.4C-77,24.3,-77.4,7.3,-74.2,-8.4C-71,-24.1,-64.1,-38.4,-53.5,-48.8C-42.9,-59.3,-28.5,-66,-13.4,-68.9C1.7,-71.8,17.5,-70.9,30.8,-69.5C44.1,-68.1,40.7,-87.3,53.7,-79.1Z",
+    ];
+    return (
+        <svg
+            viewBox="-100 -100 200 200"
+            className={className}
+            xmlns="http://www.w3.org/2000/svg"
+            aria-hidden
+        >
+            <path d={paths[variant % paths.length]} fill={color} />
+        </svg>
+    );
+}
 
 /* ================= Logo ================= */
 const Logo = () => (
@@ -164,52 +193,87 @@ export function NewAreveiNavbar() {
 function Hero() {
     return (
         <section className="relative pt-24 px-4">
-            <div className="relative mx-auto max-w-[1400px] rounded-[28px] overflow-hidden min-h-[86vh] flex items-center justify-center">
+            <div className="relative mx-auto max-w-[1400px] rounded-[28px] overflow-hidden min-h-[88vh] flex items-center justify-center">
+                {/* Day image — light mode */}
                 <div
-                    className="absolute inset-0 bg-cover bg-center scale-105"
-                    style={{
-                        backgroundImage:
-                            "url(https://images.unsplash.com/photo-1522252234503-e356532cafd5?w=1920&q=80)",
-                    }}
+                    className="absolute inset-0 bg-cover bg-center scale-105 transition-opacity duration-500 dark:opacity-0"
+                    style={{ backgroundImage: "url(/assets/images/hero-day.png)" }}
                 />
-                <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-black/55 to-black/80" />
+                {/* Night image — dark mode */}
+                <div
+                    className="absolute inset-0 bg-cover bg-center scale-105 transition-opacity duration-500 opacity-0 dark:opacity-100"
+                    style={{ backgroundImage: "url(/assets/images/hero-night.png)" }}
+                />
+                {/* Gradient overlay for headline legibility */}
+                <div className="absolute inset-0 bg-gradient-to-b from-black/45 via-black/55 to-black/85" />
+                {/* Teal radial bloom behind headline */}
+                <div className="pointer-events-none absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[500px] rounded-full bg-[#00E6C4]/8 blur-3xl" />
+                {/* Lime accent glow bottom */}
+                <div className="pointer-events-none absolute bottom-0 left-1/2 -translate-x-1/2 w-[600px] h-[300px] rounded-full bg-[#C7F27A]/6 blur-3xl" />
 
                 <div className="relative z-10 text-center max-w-[1100px] px-6 py-24">
+                    {/* Badge pill */}
                     <div className="inline-flex items-center gap-2 rounded-full bg-white/10 backdrop-blur border border-white/20 px-4 py-1.5 mb-8">
                         <Sparkles className="h-3.5 w-3.5 text-[#C7F27A]" />
                         <span className="text-[12px] uppercase tracking-[0.18em] text-white/90">
                             AI Native Website Manager
                         </span>
                     </div>
-                    <h1 className="display-hero text-white text-[9vw] md:text-[6vw] lg:text-[80px] leading-[0.98]">
-                        Turn your website into a<br />
-                        <span
-                            className="italic font-normal"
-                            style={{ fontFamily: "'Manrope', sans-serif" }}
-                        >
-                            money-making
-                        </span>{" "}
-                        machine.
+
+                    {/* Headline */}
+                    <h1 className="display-hero text-white text-[9vw] md:text-[6vw] lg:text-[82px] leading-none">
+                        <span className="block">Turn your website into a</span>
+                        {/* Lime highlight block — mt-4 creates deliberate gap above the block */}
+                        <span className="block mt-4">
+                            <span
+                                className="inline bg-[#C7F27A] text-[#0A0D0C] px-3 py-1"
+                                style={{ boxDecorationBreak: "clone", WebkitBoxDecorationBreak: "clone" }}
+                            >
+                                <span className="">money-making</span>
+                                {" "}machine.
+                            </span>
+                        </span>
                     </h1>
-                    <p className="mt-8 text-white/85 text-[15px] md:text-[18px] max-w-[640px] mx-auto leading-relaxed">
-                        Arevei blends AI speed with senior human judgment to
-                        build, manage, and grow your website — end-to-end, under
-                        one retainer.
+
+                    {/* Subline */}
+                    <p className="mt-8 text-white/80 text-[15px] md:text-[18px] max-w-[600px] mx-auto leading-relaxed">
+                        Arevei blends AI speed with senior human judgment to build, manage, and grow your website — end-to-end, under one retainer.
                     </p>
-                    <div className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-3">
-                        <button className="group px-6 py-3 rounded-full bg-white text-black text-[14px] font-medium hover:scale-[1.03] transition-transform">
+
+                    {/* CTAs */}
+                    <div className="mt-9 flex flex-col sm:flex-row items-center justify-center gap-3">
+                        <button className="group px-7 py-3.5 rounded-full bg-[#C7F27A] text-black text-[14px] font-semibold hover:bg-[#b8e662] hover:scale-[1.02] transition-all shadow-[0_0_24px_#C7F27A40]">
                             <span className="inline-flex items-center gap-2">
                                 Get Website Audit
-                                <ArrowUpRight className="h-4 w-4 -mr-1 opacity-70 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+                                <ArrowUpRight className="h-4 w-4 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
                             </span>
                         </button>
-                        <button className="px-6 py-3 rounded-full bg-transparent border border-white/40 text-white text-[14px] font-medium hover:bg-white/10 transition-colors">
+                        <button className="px-7 py-3.5 rounded-full bg-transparent border border-white/30 text-white text-[14px] font-medium hover:bg-white/10 hover:border-white/55 transition-colors">
                             Book a Demo
                         </button>
                     </div>
+
+                    {/* Social proof row */}
+                    <div className="mt-10 flex items-center justify-center gap-4 flex-wrap">
+                        <div className="flex -space-x-2">
+                            {['#00E6C4', '#C7F27A', '#0F6E56', '#8A928F'].map((c, i) => (
+                                <div key={i} className="h-7 w-7 rounded-full border-2 border-black/40 flex items-center justify-center text-[10px] font-bold text-[#0A0D0C]" style={{ backgroundColor: c }}>
+                                    {['A', 'V', 'J', 'M'][i]}
+                                </div>
+                            ))}
+                        </div>
+                        <span className="text-[13px] text-white/55">
+                            <span className="text-white font-semibold">40+</span> founders growing with Arevei
+                        </span>
+                        <span className="hidden sm:block text-white/25">·</span>
+                        <span className="text-[13px] text-white/55">
+                            <span className="text-[#C7F27A] font-semibold">3.4×</span> avg. organic growth in 90 days
+                        </span>
+                    </div>
                 </div>
 
-                <a
+                {/* Watch video card */}
+                {/* <a
                     href="#video"
                     className="group absolute bottom-6 left-6 z-10 hidden md:flex items-center gap-3 bg-white/95 backdrop-blur rounded-2xl px-3 py-2.5 pr-4 max-w-[340px] shadow-lg hover:bg-white transition"
                 >
@@ -217,15 +281,17 @@ function Hero() {
                         <Play className="h-4 w-4 text-black fill-black" />
                     </div>
                     <div className="text-left">
-                        <div className="text-[10px] uppercase tracking-widest text-black/50 font-semibold">
-                            Watch
-                        </div>
-                        <div className="text-[13px] text-black leading-tight">
-                            How Arevei manages your website — 90 seconds.
-                        </div>
+                        <div className="text-[10px] uppercase tracking-widest text-black/50 font-semibold">Watch</div>
+                        <div className="text-[13px] text-black leading-tight">How Arevei manages your website — 90 seconds.</div>
                     </div>
                     <ArrowUpRight className="h-4 w-4 text-black/60 shrink-0 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
-                </a>
+                </a> */}
+
+                {/* Scrolling indicator */}
+                <div className="absolute bottom-8 right-8 z-10 hidden md:flex flex-col items-center gap-2">
+                    <div className="w-px h-10 bg-gradient-to-b from-white/0 to-white/30" />
+                    <span className="text-[10px] uppercase tracking-[0.2em] text-white/35 rotate-90 origin-center mt-2">Scroll</span>
+                </div>
             </div>
         </section>
     );
@@ -241,8 +307,8 @@ function LogosMarquee() {
                 organizations
             </p>
             <div className="relative">
-                <div className="pointer-events-none absolute inset-y-0 left-0 w-24 bg-gradient-to-r from-[#F5F0E8] dark:from-[#0F1117] to-transparent z-10" />
-                <div className="pointer-events-none absolute inset-y-0 right-0 w-24 bg-gradient-to-l from-[#F5F0E8] dark:from-[#0F1117] to-transparent z-10" />
+                <div className="pointer-events-none absolute inset-y-0 left-0 w-24 bg-gradient-to-r from-white dark:from-[#0A0D0C] to-transparent z-10" />
+                <div className="pointer-events-none absolute inset-y-0 right-0 w-24 bg-gradient-to-l from-white dark:from-[#0A0D0C] to-transparent z-10" />
                 <div className="flex items-center gap-16 marquee-track w-max">
                     {list.map((l, i) => (
                         <div
@@ -269,52 +335,76 @@ function LogosMarquee() {
 function ProblemSection() {
     return (
         <section className="relative px-4 pb-20 pt-6">
-            <div className="max-w-[1200px] mx-auto text-center">
-                <div className="text-[12px] uppercase tracking-[0.22em] text-black/50 dark:text-white/40 mb-6">
-                    The reality
-                </div>
-                <h2 className="display-hero text-black dark:text-white text-[10vw] md:text-[72px] leading-[0.98] max-w-[900px] mx-auto">
-                    Your website was built.
-                    <br />
-                    <span className="text-black/35 dark:text-white/35">
-                        Then everyone got busy.
-                    </span>
-                </h2>
-                <p className="mt-8 text-[16px] md:text-[18px] text-black/65 dark:text-white/55 max-w-[720px] mx-auto leading-relaxed">
-                    The launch was exciting. Then came real work — product,
-                    customers, hiring. The site slowly became out-of-date,
-                    un-optimized, and quietly leaking pipeline. Sound familiar?
-                </p>
-                <div className="mt-12 grid grid-cols-1 md:grid-cols-3 gap-4 text-left">
-                    {[
-                        {
-                            k: "Stagnant",
-                            d: "The blog stopped updating six months ago. The pricing page has typos. Nobody has time to fix it.",
-                            c: "border-l-4 border-amber-400",
-                        },
-                        {
-                            k: "Invisible",
-                            d: "You rank for nothing. ChatGPT does not know you exist. AI Overviews cite your competitors.",
-                            c: "border-l-4 border-violet-400",
-                        },
-                        {
-                            k: "Untracked",
-                            d: "You have no idea where visitors drop off, which pages convert, or what your bounce rate is doing.",
-                            c: "border-l-4 border-rose-400",
-                        },
-                    ].map((it) => (
-                        <div
-                            key={it.k}
-                            className={`rounded-[20px] bg-white dark:bg-[#1A1F2E] p-6 card-lift border border-black/5 dark:border-white/8 ${it.c}`}
-                        >
-                            <div className="text-[13px] font-semibold uppercase tracking-widest text-black/45 dark:text-white/45 mb-2">
-                                {it.k}
+            <div className="max-w-[1400px] mx-auto rounded-[28px] relative overflow-hidden
+                bg-[#F7F7F4] border border-black/8
+                dark:bg-[#0A0D0C] dark:border-[#1E2523]
+                px-6 md:px-14 py-16 md:py-20">
+
+                {/* Dark dot grid */}
+                <div className="pointer-events-none absolute inset-0 opacity-0 dark:opacity-[0.30] transition-opacity"
+                    style={{ backgroundImage: "radial-gradient(circle,#1E2523 1.5px,transparent 1.5px)", backgroundSize: "28px 28px" }} />
+                {/* Light dot grid */}
+                <div className="pointer-events-none absolute inset-0 opacity-[0.35] dark:opacity-0 transition-opacity"
+                    style={{ backgroundImage: "radial-gradient(circle,#C5EDE6 1.5px,transparent 1.5px)", backgroundSize: "28px 28px" }} />
+                {/* Teal glow top-left */}
+                <div className="pointer-events-none absolute -top-20 -left-20 w-[400px] h-[400px] rounded-full blur-3xl bg-[#00E6C4]/5 dark:bg-[#00E6C4]/8" />
+                {/* Lime glow bottom-right */}
+                <div className="pointer-events-none absolute -bottom-20 -right-20 w-[400px] h-[400px] rounded-full blur-3xl bg-[#C7F27A]/8 dark:bg-[#C7F27A]/6" />
+                {/* Blob accent left */}
+                <BlobDecor variant={0} className="pointer-events-none absolute -left-24 top-1/2 -translate-y-1/2 w-[340px] h-[340px] opacity-[0.04] dark:opacity-[0.06]" color="#00E6C4" />
+                {/* Blob accent right */}
+                <BlobDecor variant={2} className="pointer-events-none absolute -right-20 top-8 w-[260px] h-[260px] opacity-[0.05] dark:opacity-[0.07]" color="#C7F27A" />
+
+                <div className="relative text-center">
+                    <div className="text-[12px] uppercase tracking-[0.22em] mb-6 text-[#0F6E56] dark:text-[#00E6C4]">
+                        The reality
+                    </div>
+                    <h2 className="display-hero text-black dark:text-[#EDEFEE] text-[10vw] md:text-[64px] leading-[0.98] max-w-[900px] mx-auto">
+                        Your website was built.
+                        <br />
+                        <span className="text-[#0F6E56] dark:text-[#C7F27A]">
+                            Then everyone got busy.
+                        </span>
+                    </h2>
+                    <p className="mt-8 text-[16px] md:text-[18px] text-black/60 dark:text-[#8A928F] max-w-[720px] mx-auto leading-relaxed">
+                        The launch was exciting. Then came real work — product,
+                        customers, hiring. The site slowly became out-of-date,
+                        un-optimized, and quietly leaking pipeline. Sound familiar?
+                    </p>
+                    <div className="mt-12 grid grid-cols-1 md:grid-cols-3 gap-4 text-left">
+                        {[
+                            {
+                                k: "Stagnant",
+                                d: "The blog stopped updating six months ago. The pricing page has typos. Nobody has time to fix it.",
+                                icon: "⏸",
+                            },
+                            {
+                                k: "Invisible",
+                                d: "You rank for nothing. ChatGPT does not know you exist. AI Overviews cite your competitors.",
+                                icon: "👻",
+                            },
+                            {
+                                k: "Untracked",
+                                d: "You have no idea where visitors drop off, which pages convert, or what your bounce rate is doing.",
+                                icon: "📉",
+                            },
+                        ].map((it) => (
+                            <div
+                                key={it.k}
+                                className="rounded-[20px] p-6 card-lift border
+                                    bg-[#FAFAF9] border-black/5
+                                    dark:bg-[#0F1413] dark:border-[#1E2523]"
+                            >
+                                <div className="text-2xl mb-3">{it.icon}</div>
+                                <div className="text-[13px] font-semibold uppercase tracking-widest mb-2 text-black/45 dark:text-[#8A928F]">
+                                    {it.k}
+                                </div>
+                                <div className="text-[15px] leading-relaxed text-black/75 dark:text-[#EDEFEE]/75">
+                                    {it.d}
+                                </div>
                             </div>
-                            <div className="text-[15px] text-black/80 dark:text-white/75 leading-relaxed">
-                                {it.d}
-                            </div>
-                        </div>
-                    ))}
+                        ))}
+                    </div>
                 </div>
             </div>
         </section>
@@ -327,65 +417,86 @@ function WhatArevei() {
     const inView = useInView(ref);
 
     const pillarDark = [
-        "bg-[#151E30]",
-        "bg-[#0D1C14]",
-        "bg-[#2A1028]",
-        "bg-[#1A1800]",
+        "bg-[#0F1413]",
+        "bg-[#0F1413]",
+        "bg-[#0F1413]",
+        "bg-[#0F1413]",
     ];
 
     return (
-        <section ref={ref} className="relative py-24 md:py-32 px-4">
-            <div className="max-w-[1200px] mx-auto">
-                <div className="relative text-center">
-                    <div className="text-[12px] uppercase tracking-[0.22em] text-black/50 dark:text-white/40 mb-6">
-                        What Arevei does
-                    </div>
-                    <h2 className="display-hero text-black dark:text-white text-[10vw] md:text-[72px] leading-[0.98]">
-                        <span>We build, manage,</span>
-                        <br />
-                        <span
-                            className={`inline-block transition-all duration-1000 ${inView ? "opacity-100 translate-y-0" : "opacity-30 translate-y-3"}`}
-                        >
-                            analyze, and grow.
-                        </span>
-                    </h2>
-                    <img
-                        alt=""
-                        src="https://images.unsplash.com/photo-1675437434916-fd6d0b03749d?w=600&q=80"
-                        className="hidden md:block pointer-events-none select-none absolute right-[6%] top-[-10%] w-[180px] h-[180px] object-cover rounded-full mix-blend-multiply dark:mix-blend-luminosity opacity-90 animate-float"
-                    />
-                    <p className="mt-8 text-[16px] md:text-[17px] text-black/60 dark:text-white/50 max-w-[560px] mx-auto">
-                        Four pillars, one retainer, one team. No more agency
-                        ping-pong.
-                    </p>
-                </div>
+        <section ref={ref} className="relative px-4 pb-20">
+            <div className="max-w-[1400px] mx-auto rounded-[28px] relative overflow-hidden
+                bg-[#FAFAF8] border border-black/8
+                dark:bg-[#0A0D0C] dark:border-[#1E2523]
+                px-6 md:px-14 py-16 md:py-20">
 
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-5 mt-16">
-                    {pillars.map((p, i) => (
-                        <div
-                            key={p.title}
-                            className={`rounded-[22px] p-7 md:p-8 min-h-[280px] card-lift ${p.color} dark:${pillarDark[i]}`}
-                            style={{ transitionDelay: `${i * 100}ms` }}
-                        >
-                            <div className="w-12 h-12 rounded-xl bg-black dark:bg-white flex items-center justify-center mb-6 overflow-hidden">
-                                <div className="grid grid-cols-2 gap-[2px] p-2 opacity-90">
-                                    {[...Array(4)].map((_, k) => (
-                                        <div
-                                            key={k}
-                                            className="w-2 h-2 rounded-[2px] bg-[#C7F27A] dark:bg-[#0A0D0C]"
-                                            style={{ opacity: (k + 1) / 4 }}
-                                        />
-                                    ))}
-                                </div>
-                            </div>
-                            <h3 className="font-display text-[26px] tracking-tight text-black dark:text-white mb-3">
-                                {p.title}
-                            </h3>
-                            <p className="text-[15px] leading-relaxed text-black/70 dark:text-white/60">
-                                {p.desc}
-                            </p>
+                {/* Dark dot grid */}
+                <div className="pointer-events-none absolute inset-0 opacity-0 dark:opacity-[0.30] transition-opacity"
+                    style={{ backgroundImage: "radial-gradient(circle,#1E2523 1.5px,transparent 1.5px)", backgroundSize: "28px 28px" }} />
+                {/* Light dot grid */}
+                <div className="pointer-events-none absolute inset-0 opacity-[0.35] dark:opacity-0 transition-opacity"
+                    style={{ backgroundImage: "radial-gradient(circle,#C5EDE6 1.5px,transparent 1.5px)", backgroundSize: "28px 28px" }} />
+                {/* Teal glow top-left */}
+                <div className="pointer-events-none absolute -top-20 -left-20 w-[400px] h-[400px] rounded-full blur-3xl bg-[#00E6C4]/5 dark:bg-[#00E6C4]/8" />
+                {/* Lime glow bottom-right */}
+                <div className="pointer-events-none absolute -bottom-20 -right-20 w-[400px] h-[400px] rounded-full blur-3xl bg-[#C7F27A]/8 dark:bg-[#C7F27A]/6" />
+                {/* Blob top-right */}
+                <BlobDecor variant={1} className="pointer-events-none absolute -right-16 -top-16 w-[300px] h-[300px] opacity-[0.05] dark:opacity-[0.07]" color="#C7F27A" />
+                {/* Blob bottom-left */}
+                <BlobDecor variant={2} className="pointer-events-none absolute -left-16 -bottom-16 w-[280px] h-[280px] opacity-[0.04] dark:opacity-[0.06]" color="#00E6C4" />
+
+                <div className="relative">
+                    <div className="relative text-center">
+                        <div className="text-[12px] uppercase tracking-[0.22em] mb-6 text-[#0F6E56] dark:text-[#00E6C4]">
+                            What Arevei does
                         </div>
-                    ))}
+                        <h2 className="display-hero text-black dark:text-[#EDEFEE] text-[10vw] md:text-[64px] leading-[0.98]">
+                            <span>We build, manage,</span>
+                            <br />
+                            <span
+                                className={`inline-block text-[#0F6E56] dark:text-[#C7F27A] transition-all duration-1000 ${inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-3"}`}
+                            >
+                                analyze, and grow.
+                            </span>
+                        </h2>
+                        <img
+                            alt=""
+                            src="https://images.unsplash.com/photo-1675437434916-fd6d0b03749d?w=600&q=80"
+                            className="hidden md:block pointer-events-none select-none absolute right-[6%] top-[-10%] w-[180px] h-[180px] object-cover rounded-full mix-blend-multiply dark:mix-blend-luminosity opacity-90 animate-float"
+                        />
+                        <p className="mt-8 text-[16px] md:text-[17px] text-black/60 dark:text-[#8A928F] max-w-[560px] mx-auto">
+                            Four pillars, one retainer, one team. No more agency
+                            ping-pong.
+                        </p>
+                    </div>
+
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-5 mt-16">
+                        {pillars.map((p, i) => (
+                            <div
+                                key={p.title}
+                                className={`rounded-[22px] p-7 md:p-8 min-h-[280px] card-lift ${p.color} dark:${pillarDark[i]}`}
+                                style={{ transitionDelay: `${i * 100}ms` }}
+                            >
+                                <div className="w-12 h-12 rounded-xl  flex items-center justify-center mb-6 overflow-hidden">
+                                    <div className="grid grid-cols-2 gap-[2px] p-2 opacity-90">
+                                        {[...Array(4)].map((_, k) => (
+                                            <div
+                                                key={k}
+                                                className="w-2 h-2 rounded-[2px] bg-[#C7F27A] dark:bg-[#0A0D0C]"
+                                                style={{ opacity: (k + 1) / 4 }}
+                                            />
+                                        ))}
+                                    </div>
+                                </div>
+                                <h3 className="font-display text-[26px] tracking-tight text-black dark:text-[#EDEFEE] mb-3">
+                                    {p.title}
+                                </h3>
+                                <p className="text-[15px] leading-relaxed text-black/70 dark:text-[#8A928F]">
+                                    {p.desc}
+                                </p>
+                            </div>
+                        ))}
+                    </div>
                 </div>
             </div>
         </section>
@@ -489,21 +600,20 @@ function SeenSalesAhead() {
         <section className="relative px-4 pt-14 pb-20">
             {/* Light: soft mint-tinted white  ·  Dark: brand-dark Clientele style */}
             <div className="max-w-[1400px] mx-auto rounded-[28px] relative overflow-hidden
-                bg-[#F2FCF9] border border-[#C5EDE6]
+                 bg-[#FAFAF8] border border-black/8
                 dark:bg-[#0A0D0C] dark:border-[#1E2523]">
 
                 {/* ── Dark-mode dot grid ── */}
-                {/* <div className="pointer-events-none absolute inset-0 opacity-0 dark:opacity-[0.32] transition-opacity"
-                    style={{ backgroundImage: "radial-gradient(circle,#1E2523 1.5px,transparent 1.5px)", backgroundSize: "28px 28px" }} /> */}
+                <div className="pointer-events-none absolute inset-0 opacity-0 dark:opacity-[0.32] transition-opacity"
+                    style={{ backgroundImage: "radial-gradient(circle,#1E2523 1.5px,transparent 1.5px)", backgroundSize: "28px 28px" }} />
                 {/* ── Light-mode soft grid lines ── */}
-                {/* <div className="pointer-events-none absolute inset-0 opacity-[0.4] dark:opacity-0 transition-opacity"
-                    style={{ backgroundImage: "linear-gradient(#00E6C4 1px,transparent 1px),linear-gradient(90deg,#00E6C4 1px,transparent 1px)", backgroundSize: "56px 56px" }} /> */}
+
 
                 {/* Glows */}
-                <div className="pointer-events-none absolute -top-20 -left-20 w-[420px] h-[420px] rounded-full blur-3xl
-                    bg-[#00E6C4]/8 dark:bg-[#00E6C4]/10" />
-                <div className="pointer-events-none absolute -bottom-20 -right-20 w-[360px] h-[360px] rounded-full blur-3xl
-                    bg-[#C7F27A]/10 dark:bg-[#C7F27A]/6" />
+                {/* <div className="pointer-events-none absolute -top-20 -left-20 w-[420px] h-[420px] rounded-full blur-3xl
+                    bg-[#00E6C4]/8 dark:bg-[#00E6C4]/10" /> */}
+                {/* <div className="pointer-events-none absolute -bottom-20 -right-20 w-[360px] h-[360px] rounded-full blur-3xl
+                    bg-[#C7F27A]/10 dark:bg-[#C7F27A]/6" /> */}
 
                 <div className="relative p-6 md:p-14">
                     {/* Header */}
@@ -528,7 +638,7 @@ function SeenSalesAhead() {
                                 Arevei Web builds and optimizes. Arevei Grow attracts and ranks. Arevei Ads scales and attributes. Every action informs the next.
                             </p>
                             <div className="mt-6 flex gap-3">
-                                <button className="px-5 py-2.5 rounded-full bg-[#0F6E56] dark:bg-[#C7F27A] text-white dark:text-black text-[13px] font-semibold hover:bg-[#0a5a46] dark:hover:bg-[#b8e662] transition-colors">
+                                <button className="px-5 py-2.5 bg-black rounded-full bg-[#0F6E56] dark:bg-[#C7F27A] text-white dark:text-black text-[13px] font-semibold hover:bg-[#0a5a46] dark:hover:bg-[#b8e662] transition-colors">
                                     See it in action
                                 </button>
                                 <button className="px-5 py-2.5 rounded-full border border-black/18 dark:border-white/25 text-black dark:text-white text-[13px] hover:border-black/35 dark:hover:border-white/50 transition-colors">
@@ -605,7 +715,8 @@ function OnePlatform() {
     return (
         <section className="relative px-4 pb-20 overflow-hidden">
             {/* Light: warm cream · Dark: brand surface */}
-            <div className="max-w-[1400px] mx-auto rounded-[28px] bg-[#F8F3EC] dark:bg-[#0F1413] relative overflow-hidden border border-black/5 dark:border-[#1E2523]">
+            <div className="max-w-[1400px] mx-auto rounded-[28px] relative overflow-hidden border  bg-[#FAFAF8] border-black/8
+                dark:bg-[#0A0D0C] dark:border-[#1E2523]">
 
                 {/* Blob decorations — visible in light, subtle in dark */}
                 <img alt="" src="https://images.unsplash.com/photo-1660136308586-432226190a26?w=800&q=70" className="pointer-events-none select-none absolute -right-16 -top-16 w-[360px] h-[360px] object-cover rounded-full mix-blend-multiply opacity-70 animate-float" />
@@ -616,10 +727,10 @@ function OnePlatform() {
 
                 <div className="px-6 md:px-14 pt-16 md:pt-20 pb-12 text-center relative z-10">
                     <div className="text-[12px] uppercase tracking-[0.22em] text-black/45 dark:text-[#00E6C4] mb-6">
-                        One platform · three engines
+                        Services
                     </div>
                     <h2 className="display-hero text-black dark:text-[#EDEFEE] text-[10vw] md:text-[72px] leading-[0.98]">
-                        One platform<br />three engines.
+                        One Platform<br /><span className="text-[#0F6E56] dark:text-[#C7F27A]">Three Engines.</span>
                     </h2>
                     <p className="mt-5 text-black/55 dark:text-[#8A928F] text-[15px] max-w-[480px] mx-auto">
                         Build, grow, and scale — all under one retainer. No agency ping-pong.
@@ -847,60 +958,77 @@ function OurProcess() {
 function WhyArevei() {
     return (
         <section className="relative px-4 pb-20">
-            <div className="max-w-[1200px] mx-auto">
-                <div className="max-w-3xl mb-12">
-                    <div className="text-[12px] font-mono uppercase tracking-[0.2em] text-[#0F6E56] dark:text-[#34D399] mb-4">
-                        Why Arevei
-                    </div>
-                    <h2 className="display-hero text-black dark:text-white text-[9vw] md:text-[56px] leading-[1.02]">
-                        Not an agency.
-                        <br />
-                        <span className="text-black/35 dark:text-white/35">
-                            Not a SaaS. Both.
-                        </span>
-                    </h2>
-                    <p className="mt-5 text-[15px] md:text-[16px] text-black/60 dark:text-white/50 leading-relaxed max-w-[540px]">
-                        The best of a software subscription (predictable
-                        pricing, always-on) with the best of a service (real
-                        humans, real strategy).
-                    </p>
-                </div>
+            <div className="max-w-[1400px] mx-auto rounded-[28px] relative overflow-hidden
+                bg-[#F2FCF9] border border-[#C5EDE6]
+                dark:bg-[#0A0D0C] dark:border-[#1E2523]
+                px-6 md:px-14 py-16 md:py-20">
 
-                {/* Comparison table */}
-                <div className="rounded-[22px] border border-black/8 dark:border-white/10 bg-white dark:bg-[#1A1F2E] overflow-hidden">
-                    <div className="grid grid-cols-3 border-b border-black/8 dark:border-white/10 bg-black/[0.02] dark:bg-white/[0.03]">
-                        <div className="p-4 md:p-5" />
-                        <div className="p-4 md:p-5 text-center border-l border-black/8 dark:border-white/10">
-                            <span className="text-[12px] md:text-[13px] font-semibold text-black/45 dark:text-white/40 tracking-wide">
-                                Traditional Agency
-                            </span>
+                {/* Dark dot grid */}
+                <div className="pointer-events-none absolute inset-0 opacity-0 dark:opacity-[0.30] transition-opacity"
+                    style={{ backgroundImage: "radial-gradient(circle,#1E2523 1.5px,transparent 1.5px)", backgroundSize: "28px 28px" }} />
+                {/* Light dot grid */}
+                <div className="pointer-events-none absolute inset-0 opacity-[0.35] dark:opacity-0 transition-opacity"
+                    style={{ backgroundImage: "radial-gradient(circle,#C5EDE6 1.5px,transparent 1.5px)", backgroundSize: "28px 28px" }} />
+                {/* Teal glow top-left */}
+                <div className="pointer-events-none absolute -top-20 -left-20 w-[400px] h-[400px] rounded-full blur-3xl bg-[#00E6C4]/6 dark:bg-[#00E6C4]/8" />
+                {/* Lime glow bottom-right */}
+                <div className="pointer-events-none absolute -bottom-20 -right-20 w-[400px] h-[400px] rounded-full blur-3xl bg-[#C7F27A]/8 dark:bg-[#C7F27A]/6" />
+
+                <div className="relative">
+                    <div className="max-w-3xl mb-12">
+                        <div className="text-[12px] font-mono uppercase tracking-[0.2em] mb-4 text-[#0F6E56] dark:text-[#00E6C4]">
+                            Why Arevei
                         </div>
-                        <div className="p-4 md:p-5 text-center border-l border-black/8 dark:border-white/10 bg-[#1A1A2E] dark:bg-[#C7F27A]">
-                            <span className="text-[12px] md:text-[13px] font-semibold text-white dark:text-black tracking-wide">
-                                Arevei
+                        <h2 className="display-hero text-black dark:text-[#EDEFEE] text-[9vw] md:text-[56px] leading-[1.02]">
+                            Not an agency.
+                            <br />
+                            <span className="text-black/30 dark:text-[#EDEFEE]/30">
+                                Not a SaaS. Both.
                             </span>
-                        </div>
+                        </h2>
+                        <p className="mt-5 text-[15px] md:text-[16px] leading-relaxed max-w-[540px] text-black/60 dark:text-[#8A928F]">
+                            The best of a software subscription (predictable
+                            pricing, always-on) with the best of a service (real
+                            humans, real strategy).
+                        </p>
                     </div>
-                    {comparison.map((row, i) => (
-                        <div
-                            key={row.label}
-                            className={`grid grid-cols-3 items-center ${i < comparison.length - 1 ? "border-b border-black/6 dark:border-white/8" : ""}`}
-                        >
-                            <div className="p-4 md:p-5 text-[13px] md:text-[14px] font-medium text-black/80 dark:text-white/75">
-                                {row.label}
+
+                    {/* Comparison table */}
+                    <div className="rounded-[22px] overflow-hidden border border-black/8 dark:border-[#1E2523] bg-white dark:bg-[#0F1413]">
+                        <div className="grid grid-cols-3 border-b border-black/8 dark:border-[#1E2523] bg-black/[0.02] dark:bg-white/[0.02]">
+                            <div className="p-4 md:p-5" />
+                            <div className="p-4 md:p-5 text-center border-l border-black/8 dark:border-[#1E2523]">
+                                <span className="text-[12px] md:text-[13px] font-semibold tracking-wide text-black/45 dark:text-[#8A928F]">
+                                    Traditional Agency
+                                </span>
                             </div>
-                            <div className="p-4 md:p-5 border-l border-black/6 dark:border-white/8 text-[12px] md:text-[13px] text-black/50 dark:text-white/40 text-center flex items-center justify-center gap-1.5">
-                                <X className="h-3.5 w-3.5 text-red-400/70 shrink-0" />
-                                {row.agency}
-                            </div>
-                            <div className="p-4 md:p-5 border-l border-black/6 dark:border-white/8 text-center bg-black/[0.025] dark:bg-[#C7F27A]/[0.06] flex items-center justify-center gap-1.5">
-                                <Check className="h-3.5 w-3.5 text-[#0F6E56] dark:text-[#34D399] shrink-0" />
-                                <span className="text-[12px] md:text-[13px] font-semibold text-black dark:text-white">
-                                    {row.arevei}
+                            <div className="p-4 md:p-5 text-center border-l border-black/8 dark:border-[#1E2523] bg-black dark:bg-[#C7F27A]">
+                                <span className="text-[12px] md:text-[13px] font-semibold tracking-wide text-white dark:text-[#0A0D0C]">
+                                    Arevei
                                 </span>
                             </div>
                         </div>
-                    ))}
+                        {comparison.map((row, i) => (
+                            <div
+                                key={row.label}
+                                className={`grid grid-cols-3 items-center ${i < comparison.length - 1 ? "border-b border-black/6 dark:border-[#1E2523]" : ""}`}
+                            >
+                                <div className="p-4 md:p-5 text-[13px] md:text-[14px] font-medium text-black/80 dark:text-[#EDEFEE]/80">
+                                    {row.label}
+                                </div>
+                                <div className="p-4 md:p-5 border-l border-black/6 dark:border-[#1E2523] text-[12px] md:text-[13px] text-center flex items-center justify-center gap-1.5 text-black/50 dark:text-[#8A928F]">
+                                    <X className="h-3.5 w-3.5 text-red-400/70 shrink-0" />
+                                    {row.agency}
+                                </div>
+                                <div className="p-4 md:p-5 border-l border-black/6 dark:border-[#1E2523] text-center bg-black/[0.025] dark:bg-[#C7F27A]/[0.06] flex items-center justify-center gap-1.5">
+                                    <Check className="h-3.5 w-3.5 text-[#0F6E56] dark:text-[#00E6C4] shrink-0" />
+                                    <span className="text-[12px] md:text-[13px] font-semibold text-black dark:text-[#EDEFEE]">
+                                        {row.arevei}
+                                    </span>
+                                </div>
+                            </div>
+                        ))}
+                    </div>
                 </div>
             </div>
         </section>
@@ -911,59 +1039,82 @@ function WhyArevei() {
 function UnifiedManagement() {
     return (
         <section className="relative px-4 pb-20">
-            <div className="max-w-[1400px] mx-auto">
-                <div className="text-center mb-10">
-                    <div className="text-[12px] uppercase tracking-[0.22em] text-black/50 dark:text-white/40 mb-6">
-                        Unified website management
-                    </div>
-                    <h2 className="display-hero text-black dark:text-white text-[10vw] md:text-[64px] leading-[0.98]">
-                        One team.
-                        <br />
-                        Every kind of business.
-                    </h2>
-                </div>
+            <div className="max-w-[1400px] mx-auto rounded-[28px] relative overflow-hidden
+                bg-white border border-black/8
+                dark:bg-[#0A0D0C] dark:border-[#1E2523]
+                px-6 md:px-14 py-16 md:py-20">
 
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                    {audiences.map((a) => (
-                        <div
-                            key={a.title}
-                            className="group rounded-[22px] bg-white dark:bg-[#1A1F2E] p-7 md:p-8 min-h-[380px] flex flex-col card-lift relative overflow-hidden border border-black/5 dark:border-white/8"
-                        >
-                            <div
-                                className={`absolute -right-10 -top-10 w-40 h-40 rounded-full ${a.accent} opacity-40 dark:opacity-20 group-hover:scale-125 transition-transform duration-700`}
-                            />
-                            <div className="relative">
-                                <h3 className="font-display text-[32px] leading-none tracking-tight text-black dark:text-white">
-                                    {a.title}
-                                </h3>
-                                <p className="text-[15px] text-black/60 dark:text-white/50 mt-2">
-                                    {a.tagline}
-                                </p>
-                                <ul className="mt-6 space-y-2.5">
-                                    {a.features.map((f) => (
-                                        <li
-                                            key={f}
-                                            className="text-[14px] text-black/70 dark:text-white/60 flex gap-2"
-                                        >
-                                            <span className="mt-1.5 h-1.5 w-1.5 rounded-full bg-black dark:bg-white shrink-0" />
-                                            {f}
-                                        </li>
-                                    ))}
-                                </ul>
-                            </div>
-                            <div className="mt-auto pt-6 flex flex-wrap items-center gap-2 relative">
-                                <button className="group/btn px-4 py-2 rounded-full bg-black dark:bg-white text-white dark:text-black text-[13px] font-medium flex items-center gap-1 hover:bg-neutral-800 dark:hover:bg-neutral-200 transition-colors">
-                                    {a.cta}
-                                    <ArrowUpRight className="h-3.5 w-3.5 group-hover/btn:translate-x-0.5 group-hover/btn:-translate-y-0.5 transition-transform" />
-                                </button>
-                                {a.cta2 && (
-                                    <button className="px-4 py-2 rounded-full bg-white dark:bg-white/8 border border-black/10 dark:border-white/15 text-black dark:text-white text-[13px] font-medium hover:bg-black/5 dark:hover:bg-white/15 transition-colors">
-                                        {a.cta2}
-                                    </button>
-                                )}
-                            </div>
+                {/* Dark dot grid */}
+                <div className="pointer-events-none absolute inset-0 opacity-0 dark:opacity-[0.30] transition-opacity"
+                    style={{ backgroundImage: "radial-gradient(circle,#1E2523 1.5px,transparent 1.5px)", backgroundSize: "28px 28px" }} />
+                {/* Light dot grid */}
+                <div className="pointer-events-none absolute inset-0 opacity-[0.35] dark:opacity-0 transition-opacity"
+                    style={{ backgroundImage: "radial-gradient(circle,#C5EDE6 1.5px,transparent 1.5px)", backgroundSize: "28px 28px" }} />
+                {/* Teal glow top-left */}
+                <div className="pointer-events-none absolute -top-20 -left-20 w-[400px] h-[400px] rounded-full blur-3xl bg-[#00E6C4]/5 dark:bg-[#00E6C4]/8" />
+                {/* Lime glow bottom-right */}
+                <div className="pointer-events-none absolute -bottom-20 -right-20 w-[400px] h-[400px] rounded-full blur-3xl bg-[#C7F27A]/8 dark:bg-[#C7F27A]/6" />
+
+                <div className="relative">
+                    <div className="text-center mb-10">
+                        <div className="text-[12px] uppercase tracking-[0.22em] mb-6 text-[#0F6E56] dark:text-[#00E6C4]">
+                            Unified website management
                         </div>
-                    ))}
+                        <h2 className="display-hero text-black dark:text-[#EDEFEE] text-[10vw] md:text-[64px] leading-[0.98]">
+                            One team.
+                            <br />
+                            <span className="text-[#0F6E56] dark:text-[#C7F27A]">Every kind of business.</span>
+                        </h2>
+                    </div>
+
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                        {audiences.map((a) => (
+                            <div
+                                key={a.title}
+                                className="group rounded-[22px] p-7 md:p-8 min-h-[380px] flex flex-col card-lift relative overflow-hidden border
+                                    bg-[#F7F7F4] border-black/6
+                                    dark:bg-[#0F1413] dark:border-[#1E2523]"
+                            >
+                                <div
+                                    className={`absolute -right-10 -top-10 w-40 h-40 rounded-full ${a.accent} opacity-30 dark:opacity-15 group-hover:scale-125 transition-transform duration-700`}
+                                />
+                                <div className="relative">
+                                    <h3 className="font-display text-[32px] leading-none tracking-tight text-black dark:text-[#EDEFEE]">
+                                        {a.title}
+                                    </h3>
+                                    <p className="text-[15px] mt-2 text-black/55 dark:text-[#8A928F]">
+                                        {a.tagline}
+                                    </p>
+                                    <ul className="mt-6 space-y-2.5">
+                                        {a.features.map((f) => (
+                                            <li
+                                                key={f}
+                                                className="text-[14px] flex gap-2 text-black/70 dark:text-[#EDEFEE]/70"
+                                            >
+                                                <span className="mt-1.5 h-1.5 w-1.5 rounded-full shrink-0 bg-[#0F6E56] dark:bg-[#00E6C4]" />
+                                                {f}
+                                            </li>
+                                        ))}
+                                    </ul>
+                                </div>
+                                <div className="mt-auto pt-6 flex flex-wrap items-center gap-2 relative">
+                                    <button className="group/btn px-4 py-2 rounded-full text-[13px] font-medium flex items-center gap-1 transition-colors
+                                        bg-black text-white hover:bg-neutral-800
+                                        dark:bg-[#C7F27A] dark:text-[#0A0D0C] dark:hover:bg-[#b8e662]">
+                                        {a.cta}
+                                        <ArrowUpRight className="h-3.5 w-3.5 group-hover/btn:translate-x-0.5 group-hover/btn:-translate-y-0.5 transition-transform" />
+                                    </button>
+                                    {a.cta2 && (
+                                        <button className="px-4 py-2 rounded-full text-[13px] font-medium transition-colors
+                                            bg-white border border-black/10 text-black hover:bg-black/5
+                                            dark:bg-white/6 dark:border-[#1E2523] dark:text-[#EDEFEE] dark:hover:bg-white/12">
+                                            {a.cta2}
+                                        </button>
+                                    )}
+                                </div>
+                            </div>
+                        ))}
+                    </div>
                 </div>
             </div>
         </section>
@@ -1091,107 +1242,117 @@ function Pricing() {
 
     return (
         <section className="relative px-4 pb-20">
-            <div className="max-w-[1400px] mx-auto">
-                <div className="text-center mb-10">
-                    <div className="text-[12px] uppercase tracking-[0.22em] text-black/50 dark:text-white/40 mb-6">
-                        Pricing
-                    </div>
-                    <h2 className="display-hero text-black dark:text-white text-[10vw] md:text-[64px] leading-[0.98]">
-                        Simple. Transparent.
-                        <br />
-                        Welcome-offer live.
-                    </h2>
-                    <div className="mt-8 inline-flex items-center gap-1 bg-white dark:bg-[#1A1F2E] rounded-full p-1 border border-black/10 dark:border-white/12">
-                        <button
-                            onClick={() => setTab("development")}
-                            className={`px-5 py-2 rounded-full text-[13px] font-medium transition-colors ${tab === "development" ? "bg-black dark:bg-[#C7F27A] text-white dark:text-black" : "text-black/70 dark:text-white/60 hover:text-black dark:hover:text-white"}`}
-                        >
-                            Development
-                        </button>
-                        <button
-                            onClick={() => setTab("management")}
-                            className={`px-5 py-2 rounded-full text-[13px] font-medium transition-colors ${tab === "management" ? "bg-black dark:bg-[#C7F27A] text-white dark:text-black" : "text-black/70 dark:text-white/60 hover:text-black dark:hover:text-white"}`}
-                        >
-                            Management
-                        </button>
-                    </div>
-                </div>
+            <div className="max-w-[1400px] mx-auto rounded-[28px] relative overflow-hidden
+                bg-[#F7F7F4] border border-black/8
+                dark:bg-[#0A0D0C] dark:border-[#1E2523]
+                px-6 md:px-14 py-16 md:py-20">
 
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-10">
-                    {plans.map((p) => (
-                        <div
-                            key={p.name}
-                            className={`rounded-[22px] p-7 md:p-8 flex flex-col card-lift border transition-colors ${p.highlight
-                                ? "bg-[#1A1A2E] dark:bg-[#0F1528] text-white border-[#2A2A45] dark:border-[#1A2040]"
-                                : "bg-white dark:bg-[#1A1F2E] text-black dark:text-white border-black/5 dark:border-white/8"
-                                }`}
-                        >
-                            <div className="flex items-center justify-between mb-3">
-                                <h3 className="font-display text-[22px] tracking-tight">
-                                    {p.name}
-                                </h3>
-                                {p.highlight && (
-                                    <span className="text-[10px] uppercase tracking-widest bg-[#C7F27A] text-black px-2 py-1 rounded-full font-semibold">
-                                        Welcome offer
-                                    </span>
-                                )}
-                            </div>
-                            <p
-                                className={`text-[14px] ${p.highlight ? "text-white/65" : "text-black/60 dark:text-white/55"}`}
-                            >
-                                {p.desc}
-                            </p>
-                            <div className="mt-6 flex items-baseline gap-2">
-                                {p.originalPrice && (
-                                    <span
-                                        className={`text-[15px] line-through ${p.highlight ? "text-white/40" : "text-black/40 dark:text-white/35"}`}
-                                    >
-                                        {p.originalPrice}
-                                    </span>
-                                )}
-                                <span className="font-display text-[38px] leading-none">
-                                    {p.price}
-                                </span>
-                                {p.frequency && (
-                                    <span
-                                        className={`text-[13px] ${p.highlight ? "text-white/55" : "text-black/50 dark:text-white/45"}`}
-                                    >
-                                        {p.frequency}
-                                    </span>
-                                )}
-                            </div>
-                            <ul className="mt-6 space-y-2.5 flex-1">
-                                {p.features.map((f) => (
-                                    <li
-                                        key={f}
-                                        className="flex items-start gap-2 text-[14px]"
-                                    >
-                                        <Check
-                                            className={`h-4 w-4 mt-0.5 shrink-0 ${p.highlight ? "text-[#C7F27A]" : "text-[#0F6E56] dark:text-[#34D399]"}`}
-                                        />
-                                        <span
-                                            className={
-                                                p.highlight
-                                                    ? "text-white/82"
-                                                    : "text-black/80 dark:text-white/70"
-                                            }
-                                        >
-                                            {f}
-                                        </span>
-                                    </li>
-                                ))}
-                            </ul>
+                {/* Dark dot grid */}
+                <div className="pointer-events-none absolute inset-0 opacity-0 dark:opacity-[0.30] transition-opacity"
+                    style={{ backgroundImage: "radial-gradient(circle,#1E2523 1.5px,transparent 1.5px)", backgroundSize: "28px 28px" }} />
+                {/* Light dot grid */}
+                <div className="pointer-events-none absolute inset-0 opacity-[0.35] dark:opacity-0 transition-opacity"
+                    style={{ backgroundImage: "radial-gradient(circle,#C5EDE6 1.5px,transparent 1.5px)", backgroundSize: "28px 28px" }} />
+                {/* Teal glow top-left */}
+                <div className="pointer-events-none absolute -top-20 -left-20 w-[400px] h-[400px] rounded-full blur-3xl bg-[#00E6C4]/5 dark:bg-[#00E6C4]/8" />
+                {/* Lime glow bottom-right */}
+                <div className="pointer-events-none absolute -bottom-20 -right-20 w-[400px] h-[400px] rounded-full blur-3xl bg-[#C7F27A]/8 dark:bg-[#C7F27A]/6" />
+                {/* Blob mid-left */}
+                <BlobDecor variant={0} className="pointer-events-none absolute left-0 top-1/3 w-[320px] h-[320px] opacity-[0.05] dark:opacity-[0.07]" color="#00E6C4" />
+                {/* Blob mid-right */}
+                <BlobDecor variant={1} className="pointer-events-none absolute right-0 bottom-1/4 w-[280px] h-[280px] opacity-[0.04] dark:opacity-[0.06]" color="#C7F27A" />
+
+                <div className="relative">
+                    <div className="text-center mb-10">
+                        <div className="text-[12px] uppercase tracking-[0.22em] mb-6 text-[#0F6E56] dark:text-[#00E6C4]">
+                            Our Plans
+                        </div>
+                        <h2 className="display-hero text-black dark:text-[#EDEFEE] text-[10vw] md:text-[64px] leading-[0.98]">
+                            Simple. Transparent.
+                            <br />
+                            <span className="text-[#0F6E56] dark:text-[#C7F27A]">Welcome-offer live.</span>
+                        </h2>
+                        <div className="mt-8 inline-flex items-center gap-1 rounded-full p-1 border
+                            bg-white border-black/10
+                            dark:bg-[#0F1413] dark:border-[#1E2523]">
                             <button
-                                className={`mt-8 group px-5 py-2.5 rounded-full text-[14px] font-medium flex items-center justify-center gap-1 transition-colors ${p.highlight
-                                    ? "bg-[#C7F27A] text-black hover:bg-[#b8e662]"
-                                    : "bg-black dark:bg-white text-white dark:text-black hover:bg-neutral-800 dark:hover:bg-neutral-200"
+                                onClick={() => setTab("development")}
+                                className={`px-5 py-2 rounded-full text-[13px] font-medium transition-colors ${tab === "development"
+                                    ? "bg-black text-white dark:bg-[#C7F27A] dark:text-[#0A0D0C]"
+                                    : "text-black/70 hover:text-black dark:text-[#8A928F] dark:hover:text-[#EDEFEE]"
                                     }`}
                             >
-                                {p.cta}
-                                <ArrowUpRight className="h-3.5 w-3.5 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+                                Development
+                            </button>
+                            <button
+                                onClick={() => setTab("management")}
+                                className={`px-5 py-2 rounded-full text-[13px] font-medium transition-colors ${tab === "management"
+                                    ? "bg-black text-white dark:bg-[#C7F27A] dark:text-[#0A0D0C]"
+                                    : "text-black/70 hover:text-black dark:text-[#8A928F] dark:hover:text-[#EDEFEE]"
+                                    }`}
+                            >
+                                Management
                             </button>
                         </div>
-                    ))}
+                    </div>
+
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-10">
+                        {plans.map((p) => (
+                            <div
+                                key={p.name}
+                                className={`rounded-[22px] p-7 md:p-8 flex flex-col card-lift border transition-colors ${p.highlight
+                                    ? "bg-[#0A0D17] text-white border-[#1E2538] dark:bg-[#0F1528] dark:border-[#1A2040]"
+                                    : "bg-white text-black border-black/5 dark:bg-[#0F1413] dark:text-[#EDEFEE] dark:border-[#1E2523]"
+                                    }`}
+                            >
+                                <div className="flex items-center justify-between mb-3">
+                                    <h3 className="font-display text-[22px] tracking-tight">
+                                        {p.name}
+                                    </h3>
+                                    {p.highlight && (
+                                        <span className="text-[10px] uppercase tracking-widest bg-[#C7F27A] text-black px-2 py-1 rounded-full font-semibold">
+                                            Welcome offer
+                                        </span>
+                                    )}
+                                </div>
+                                <p className={`text-[14px] ${p.highlight ? "text-white/65" : "text-black/60 dark:text-[#8A928F]"}`}>
+                                    {p.desc}
+                                </p>
+                                {/* <div className="mt-6 flex items-baseline gap-2">
+                                    {p.originalPrice && (
+                                        <span className={`text-[15px] line-through ${p.highlight ? "text-white/40" : "text-black/40 dark:text-[#8A928F]/60"}`}>
+                                            {p.originalPrice}
+                                        </span>
+                                    )}
+                                    <span className="font-display text-[38px] leading-none">
+                                        {p.price}
+                                    </span>
+                                    {p.frequency && (
+                                        <span className={`text-[13px] ${p.highlight ? "text-white/55" : "text-black/50 dark:text-[#8A928F]"}`}>
+                                            {p.frequency}
+                                        </span>
+                                    )}
+                                </div> */}
+                                <ul className="mt-6 space-y-2.5 flex-1">
+                                    {p.features.map((f) => (
+                                        <li key={f} className="flex items-start gap-2 text-[14px]">
+                                            <Check className={`h-4 w-4 mt-0.5 shrink-0 ${p.highlight ? "text-[#C7F27A]" : "text-[#0F6E56] dark:text-[#00E6C4]"}`} />
+                                            <span className={p.highlight ? "text-white/82" : "text-black/80 dark:text-[#EDEFEE]/75"}>
+                                                {f}
+                                            </span>
+                                        </li>
+                                    ))}
+                                </ul>
+                                <button className={`mt-8 group px-5 py-2.5 rounded-full text-[14px] font-medium flex items-center justify-center gap-1 transition-colors ${p.highlight
+                                    ? "bg-[#C7F27A] text-black hover:bg-[#b8e662]"
+                                    : "bg-black text-white hover:bg-neutral-800 dark:bg-[#C7F27A] dark:text-[#0A0D0C] dark:hover:bg-[#b8e662]"
+                                    }`}>
+                                    {p.cta}
+                                    <ArrowUpRight className="h-3.5 w-3.5 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+                                </button>
+                            </div>
+                        ))}
+                    </div>
                 </div>
             </div>
         </section>
@@ -1199,13 +1360,71 @@ function Pricing() {
 }
 
 /* ================= Blog Preview ================= */
+/* ── Blog API types ── */
+interface BlogPost {
+    id: string;
+    slug: string;
+    title: string;
+    excerpt: string;
+    author: string;
+    date: string;
+    readTime: string;
+    category: string;
+    thumbnail: string;
+    thumbnailAlt: string;
+}
+
+function useBlogPosts() {
+    const [posts, setPosts] = useState<BlogPost[]>([]);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(false);
+
+    useEffect(() => {
+        let cancelled = false;
+        setLoading(true);
+        setError(false);
+        // Use local proxy to avoid CORS — API server forwards server-side
+        fetch("https://areveiadmin-blog.vercel.app/api/public/posts")
+            .then((r) => {
+                if (!r.ok) throw new Error("non-2xx");
+                return r.json();
+            })
+            .then((data: { posts?: BlogPost[] } | BlogPost[]) => {
+                if (!cancelled) {
+                    // API wraps in { posts: [...] }
+                    const list = Array.isArray(data)
+                        ? data
+                        : Array.isArray((data as { posts?: BlogPost[] }).posts)
+                            ? (data as { posts: BlogPost[] }).posts
+                            : [];
+                    setPosts(list);
+                    setLoading(false);
+                }
+            })
+            .catch(() => {
+                if (!cancelled) {
+                    setError(true);
+                    setLoading(false);
+                }
+            });
+        return () => { cancelled = true; };
+    }, []);
+
+    return { posts, loading, error };
+}
+
 function BlogPreview() {
     const trackRef = useRef<HTMLDivElement>(null!);
+    const { posts, loading, error } = useBlogPosts();
+
     const scroll = (dir: number) => {
         const el = trackRef.current;
         if (!el) return;
         el.scrollBy({ left: dir * 360, behavior: "smooth" });
     };
+
+    // Skeleton placeholder count while loading
+    const skeletons = [0, 1, 2, 3];
 
     return (
         <section className="relative px-4 pb-20">
@@ -1227,6 +1446,7 @@ function BlogPreview() {
                 <div className="pointer-events-none absolute bottom-0 left-0 w-[320px] h-[280px] rounded-full blur-3xl
                     bg-[#00E6C4]/8 dark:bg-[#00E6C4]/7" />
 
+                {/* Header */}
                 <div className="relative px-6 md:px-14 pt-16 pb-8 grid md:grid-cols-2 gap-6 items-end">
                     <div>
                         <div className="text-[12px] uppercase tracking-[0.22em] mb-6
@@ -1236,8 +1456,7 @@ function BlogPreview() {
                         <h2 className="display-hero text-[10vw] md:text-[56px] leading-[0.98]
                             text-black dark:text-[#EDEFEE]">
                             Founder guides
-                            <span className="inline-block w-10 md:w-14 h-10 md:h-14 mx-3 rounded-full align-middle animate-float
-                                bg-[#C7F27A]" />
+                            <span className="inline-block w-10 md:w-14 h-10 md:h-14 mx-3 rounded-full align-middle animate-float bg-[#C7F27A]" />
                             &amp; AI website playbooks.
                         </h2>
                     </div>
@@ -1246,7 +1465,7 @@ function BlogPreview() {
                             text-black/55 dark:text-[#8A928F]">
                             Everything we have learned running websites for growing brands, distilled into short reads.
                         </p>
-                        <div className="flex gap-2 mt-6">
+                        <div className="flex items-center gap-3 mt-6">
                             <button
                                 onClick={() => scroll(-1)}
                                 className="h-10 w-10 rounded-full flex items-center justify-center transition
@@ -1263,38 +1482,84 @@ function BlogPreview() {
                             >
                                 <ChevronRight className="h-4 w-4" />
                             </button>
+                            {/* Live post count badge */}
+                            {!loading && !error && posts.length > 0 && (
+                                <span className="ml-1 text-[12px] text-black/40 dark:text-[#8A928F]">
+                                    {posts.length} articles
+                                </span>
+                            )}
                         </div>
                     </div>
                 </div>
 
+                {/* Scrollable track */}
                 <div
                     ref={trackRef}
                     className="no-scrollbar overflow-x-auto pb-12 px-6 md:px-14 flex gap-4 snap-x snap-mandatory scroll-smooth"
                 >
-                    {blogPosts.map((b, i) => (
-                        <a
-                            key={i}
-                            href="#"
+                    {/* Loading skeletons */}
+                    {loading && skeletons.map((i) => (
+                        <div key={i} className="snap-start shrink-0 w-[280px] md:w-[320px] rounded-[18px] overflow-hidden
+                            bg-white border border-black/8 dark:bg-[#0F1413] dark:border-[#1E2523] animate-pulse">
+                            <div className="h-[160px] bg-black/6 dark:bg-white/5" />
+                            <div className="p-5 space-y-3">
+                                <div className="h-3 w-1/3 rounded bg-black/8 dark:bg-white/8" />
+                                <div className="h-4 w-full rounded bg-black/8 dark:bg-white/8" />
+                                <div className="h-4 w-4/5 rounded bg-black/6 dark:bg-white/5" />
+                                <div className="h-3 w-2/3 rounded bg-black/5 dark:bg-white/4 mt-4" />
+                            </div>
+                        </div>
+                    ))}
+
+                    {/* Error state */}
+                    {error && (
+                        <div className="snap-start shrink-0 w-[320px] rounded-[18px] p-8 flex flex-col items-center justify-center gap-3
+                            bg-white border border-black/8 dark:bg-[#0F1413] dark:border-[#1E2523]">
+                            <span className="text-[32px]">📡</span>
+                            <p className="text-[13px] text-center text-black/50 dark:text-[#8A928F]">
+                                Couldn't load articles. Check your connection.
+                            </p>
+                        </div>
+                    )}
+
+                    {/* Live posts from API */}
+                    {!loading && !error && posts.map((b) => (
+                        <Link
+                            key={b.id}
+                            to={`/blog/${b.slug}`}
+                            target="_blank"
+                            rel="noopener noreferrer"
                             className="group snap-start shrink-0 w-[280px] md:w-[320px] rounded-[18px] overflow-hidden flex flex-col card-lift transition-colors
                                 bg-white border border-black/8 hover:border-[#0F6E56]/35
                                 dark:bg-[#0F1413] dark:border-[#1E2523] dark:hover:border-[#C7F27A]/35"
                         >
-                            <div className="relative h-[160px] overflow-hidden">
-                                <img
-                                    src={b.image}
-                                    alt={b.title}
-                                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
-                                />
-                                <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent" />
+                            {/* Cover image */}
+                            <div className="relative h-[168px] overflow-hidden bg-black/5 dark:bg-white/5">
+                                {b.thumbnail ? (
+                                    <img
+                                        src={b.thumbnail}
+                                        alt={b.thumbnailAlt || b.title}
+                                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                                        loading="lazy"
+                                    />
+                                ) : (
+                                    /* Fallback gradient when no thumbnail */
+                                    <div className="w-full h-full bg-gradient-to-br from-[#0F6E56]/20 to-[#C7F27A]/20" />
+                                )}
+                                <div className="absolute inset-0 bg-gradient-to-t from-black/55 via-transparent to-transparent" />
+                                {/* Category pill */}
                                 <span className="absolute bottom-3 left-3 text-[10px] font-mono uppercase tracking-widest px-2 py-1 rounded-full
                                     text-[#0A0D0C] bg-[#C7F27A]/90 border border-[#C7F27A]/60
-                                    dark:text-[#C7F27A] dark:bg-black/60 dark:border-[#C7F27A]/30">
-                                    {b.tag}
+                                    dark:text-[#C7F27A] dark:bg-black/60 dark:border-[#C7F27A]/30
+                                    line-clamp-1 max-w-[80%]">
+                                    {b.category}
                                 </span>
                             </div>
+
+                            {/* Content */}
                             <div className="p-5 flex flex-col flex-1">
-                                <div className="flex items-start justify-between gap-2 mb-3">
-                                    <h3 className="font-display text-[16px] leading-[1.2] transition-colors
+                                <div className="flex items-start justify-between gap-2 mb-2">
+                                    <h3 className="font-display text-[15px] leading-[1.25] transition-colors line-clamp-2
                                         text-black group-hover:text-[#0F6E56]
                                         dark:text-[#EDEFEE] dark:group-hover:text-[#C7F27A]">
                                         {b.title}
@@ -1303,23 +1568,29 @@ function BlogPreview() {
                                         text-black/25 group-hover:text-[#0F6E56]
                                         dark:text-white/30 dark:group-hover:text-[#C7F27A]" />
                                 </div>
-                                <p className="text-[12px] leading-snug flex-1
+                                <p className="text-[12px] leading-snug flex-1 line-clamp-2
                                     text-black/50 dark:text-[#8A928F]">
-                                    {b.desc}
+                                    {b.excerpt}
                                 </p>
-                                <div className="flex items-center gap-2 pt-4 mt-4 border-t
+                                {/* Footer row */}
+                                <div className="flex items-center justify-between gap-2 pt-4 mt-4 border-t
                                     border-black/6 dark:border-[#1E2523]">
-                                    <span className="h-5 w-5 rounded-full inline-flex items-center justify-center text-[8px] font-bold
-                                        bg-[#D6F5EF] text-[#0F6E56]
-                                        dark:bg-[#C7F27A]/20 dark:text-[#C7F27A]">
-                                        A
-                                    </span>
-                                    <span className="text-[11px] text-black/45 dark:text-[#8A928F]">
-                                        {b.author}
+                                    <div className="flex items-center gap-2 min-w-0">
+                                        <span className="h-5 w-5 rounded-full inline-flex items-center justify-center text-[8px] font-bold shrink-0
+                                            bg-[#D6F5EF] text-[#0F6E56]
+                                            dark:bg-[#C7F27A]/20 dark:text-[#C7F27A]">
+                                            {b.author?.[0] ?? "A"}
+                                        </span>
+                                        <span className="text-[11px] truncate text-black/45 dark:text-[#8A928F]">
+                                            {b.author}
+                                        </span>
+                                    </div>
+                                    <span className="text-[11px] shrink-0 text-black/35 dark:text-[#8A928F]/70">
+                                        {b.readTime}
                                     </span>
                                 </div>
                             </div>
-                        </a>
+                        </Link>
                     ))}
                 </div>
             </div>
@@ -1332,52 +1603,69 @@ function FAQ() {
     const [open, setOpen] = useState(0);
     return (
         <section className="relative px-4 pb-20">
-            <div className="max-w-[900px] mx-auto">
-                <div className="text-center mb-10">
-                    <div className="text-[12px] uppercase tracking-[0.22em] text-black/50 dark:text-white/40 mb-6">
-                        FAQ
+            <div className="max-w-[1400px] mx-auto rounded-[28px] relative overflow-hidden
+                bg-white border border-black/8
+                dark:bg-[#0A0D0C] dark:border-[#1E2523]
+                px-6 md:px-14 py-16 md:py-20">
+
+                {/* Dark dot grid */}
+                <div className="pointer-events-none absolute inset-0 opacity-0 dark:opacity-[0.30] transition-opacity"
+                    style={{ backgroundImage: "radial-gradient(circle,#1E2523 1.5px,transparent 1.5px)", backgroundSize: "28px 28px" }} />
+                {/* Light dot grid */}
+                <div className="pointer-events-none absolute inset-0 opacity-[0.35] dark:opacity-0 transition-opacity"
+                    style={{ backgroundImage: "radial-gradient(circle,#C5EDE6 1.5px,transparent 1.5px)", backgroundSize: "28px 28px" }} />
+                {/* Teal glow top-left */}
+                <div className="pointer-events-none absolute -top-20 -left-20 w-[400px] h-[400px] rounded-full blur-3xl bg-[#00E6C4]/5 dark:bg-[#00E6C4]/8" />
+                {/* Lime glow bottom-right */}
+                <div className="pointer-events-none absolute -bottom-20 -right-20 w-[400px] h-[400px] rounded-full blur-3xl bg-[#C7F27A]/8 dark:bg-[#C7F27A]/6" />
+
+                <div className="relative max-w-[900px] mx-auto">
+                    <div className="text-center mb-10">
+                        <div className="text-[12px] uppercase tracking-[0.22em] mb-6 text-[#0F6E56] dark:text-[#00E6C4]">
+                            FAQ
+                        </div>
+                        <h2 className="display-hero text-black dark:text-[#EDEFEE] text-[10vw] md:text-[56px] leading-[0.98]">
+                            Questions we hear often.
+                        </h2>
                     </div>
-                    <h2 className="display-hero text-black dark:text-white text-[10vw] md:text-[56px] leading-[0.98]">
-                        Questions we hear often.
-                    </h2>
-                </div>
-                <div className="space-y-3">
-                    {faqs.map((f, i) => {
-                        const isOpen = open === i;
-                        return (
-                            <div
-                                key={i}
-                                className="rounded-2xl bg-white dark:bg-[#1A1F2E] border border-black/5 dark:border-white/8 overflow-hidden card-lift"
-                            >
-                                <button
-                                    onClick={() => setOpen(isOpen ? -1 : i)}
-                                    className="w-full flex items-center justify-between gap-4 px-5 md:px-6 py-4 md:py-5 text-left"
-                                >
-                                    <span className="text-[15px] md:text-[16px] font-semibold text-black dark:text-white">
-                                        {f.q}
-                                    </span>
-                                    <span
-                                        className={`h-8 w-8 rounded-full bg-black/5 dark:bg-white/8 flex items-center justify-center transition-transform duration-300 ${isOpen ? "rotate-180" : ""}`}
-                                    >
-                                        {isOpen ? (
-                                            <Minus className="h-4 w-4 text-black dark:text-white" />
-                                        ) : (
-                                            <Plus className="h-4 w-4 text-black dark:text-white" />
-                                        )}
-                                    </span>
-                                </button>
+                    <div className="space-y-3">
+                        {faqs.map((f, i) => {
+                            const isOpen = open === i;
+                            return (
                                 <div
-                                    className={`grid transition-all duration-400 ease-out ${isOpen ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0"}`}
+                                    key={i}
+                                    className="rounded-2xl overflow-hidden card-lift border
+                                        bg-[#F7F7F4] border-black/5
+                                        dark:bg-[#0F1413] dark:border-[#1E2523]"
                                 >
-                                    <div className="overflow-hidden">
-                                        <p className="px-5 md:px-6 pb-5 text-[14px] md:text-[15px] text-black/70 dark:text-white/55 leading-relaxed">
-                                            {f.a}
-                                        </p>
+                                    <button
+                                        onClick={() => setOpen(isOpen ? -1 : i)}
+                                        className="w-full flex items-center justify-between gap-4 px-5 md:px-6 py-4 md:py-5 text-left"
+                                    >
+                                        <span className="text-[15px] md:text-[16px] font-semibold text-black dark:text-[#EDEFEE]">
+                                            {f.q}
+                                        </span>
+                                        <span className={`h-8 w-8 rounded-full flex items-center justify-center transition-transform duration-300 shrink-0
+                                            bg-black/5 dark:bg-[#1E2523]
+                                            ${isOpen ? "rotate-180" : ""}`}>
+                                            {isOpen ? (
+                                                <Minus className="h-4 w-4 text-black dark:text-[#00E6C4]" />
+                                            ) : (
+                                                <Plus className="h-4 w-4 text-black dark:text-[#00E6C4]" />
+                                            )}
+                                        </span>
+                                    </button>
+                                    <div className={`grid transition-all duration-400 ease-out ${isOpen ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0"}`}>
+                                        <div className="overflow-hidden">
+                                            <p className="px-5 md:px-6 pb-5 text-[14px] md:text-[15px] leading-relaxed text-black/65 dark:text-[#8A928F]">
+                                                {f.a}
+                                            </p>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                        );
-                    })}
+                            );
+                        })}
+                    </div>
                 </div>
             </div>
         </section>
@@ -1386,24 +1674,23 @@ function FAQ() {
 
 /* ================= Final CTA ================= */
 function CTA() {
-    const [url, setUrl] = useState("");
     return (
         <section className="px-4 pb-20">
             <div
                 className="max-w-[1400px] mx-auto rounded-[28px] px-6 md:px-14 py-20 md:py-28 relative overflow-hidden"
-                style={{
-                    background:
-                        "linear-gradient(135deg, #B5F09D 0%, #C7F27A 45%, #E7F5D9 100%)",
-                }}
+            // style={{
+            //     background:
+            //         "linear-gradient(135deg, #B5F09D 0%, #C7F27A 45%, #E7F5D9 100%)",
+            // }}
             >
                 {/* dark mode overlay */}
-                <div
+                {/* <div
                     className="absolute inset-0 opacity-0 dark:opacity-100 transition-opacity duration-300 rounded-[28px]"
                     style={{
                         background:
                             "linear-gradient(135deg, #1A3A0A 0%, #2A5C10 45%, #1E3D0A 100%)",
                     }}
-                />
+                /> */}
 
                 <div className="relative z-10 text-center max-w-[900px] mx-auto">
                     <h2 className="display-hero text-black dark:text-white text-[10vw] md:text-[64px] leading-[0.98]">
@@ -1416,7 +1703,7 @@ function CTA() {
                         hours — no card, no calls.
                     </p>
 
-                    <form
+                    {/* <form
                         onSubmit={(e) => e.preventDefault()}
                         className="mt-8 max-w-[520px] mx-auto flex items-center gap-2 bg-white dark:bg-[#1A1F2E] rounded-full p-1.5 shadow-lg"
                     >
@@ -1430,7 +1717,7 @@ function CTA() {
                             Get Audit
                             <ArrowUpRight className="h-3.5 w-3.5" />
                         </button>
-                    </form>
+                    </form> */}
                     <p className="mt-4 text-[12px] text-black/50 dark:text-white/45">
                         Free · 48 hour turnaround · No commitment
                     </p>
@@ -1530,7 +1817,7 @@ export function Footer() {
 /* ================= Home ================= */
 export default function Home() {
     return (
-        <div className="flex flex-col gap-0 w-full bg-[#F5F0E8] dark:bg-[#0F1117] min-h-screen transition-colors duration-300">
+        <div className="flex flex-col gap-0 w-full bg-white dark:bg-[#0A0D0C] min-h-screen transition-colors duration-300">
             <NewAreveiNavbar />
             <Hero />
             <LogosMarquee />
