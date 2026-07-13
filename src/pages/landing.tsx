@@ -19,7 +19,6 @@ import {
     pillars,
     dashboardCards,
     processSteps,
-    blogPosts,
     engines,
     audiences,
     comparison,
