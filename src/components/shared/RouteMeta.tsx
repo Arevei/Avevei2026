@@ -30,6 +30,11 @@ const routeMeta: Record<string, MetaConfig> = {
         description:
             "Arevei helps modern brands grow with website development, SEO content strategy, branding, performance marketing, automation, and social media management.",
     },
+    "/landing": {
+        title: "Turn your Website into a Money Making Machine - AI Native Website Manager",
+        description:
+            "Arevei builds, manages, analyzes, and grows your website with AI-native workflows and senior human judgment under one retainer.",
+    },
     "/meet": {
         title: "Schedule a Free Meeting | Arevei",
         description:

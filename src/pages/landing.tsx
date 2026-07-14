@@ -1,7 +1,6 @@
 import React, { useEffect, useState, useRef } from "react";
 import {
     ArrowUpRight,
-    ChevronDown,
     ChevronLeft,
     ChevronRight,
     Check,
@@ -12,6 +11,14 @@ import {
     Sparkles,
     Sun,
     Moon,
+    Menu,
+    Hammer,
+    Settings2,
+    BarChart3,
+    TrendingUp,
+    PauseCircle,
+    EyeOff,
+    Activity,
 } from "lucide-react";
 import {
     navItems,
@@ -25,9 +32,11 @@ import {
     testimonials,
     pricingPlans,
     faqs,
-    footerCols,
 } from "@/lib/mock";
 import { Link } from "react-router-dom";
+import { BRANDING, COMPANY, SERVICES, SUPPORT, WEBSITE, WORKS } from "@/components/Footer/Menus";
+import SocialIcons from "@/components/Footer/SocialIcons";
+import { areveiEntity } from "@/lib/geo-data";
 
 /* ================= Theme Hook ================= */
 function useTheme() {
@@ -116,9 +125,21 @@ const Logo = () => (
     </a>
 );
 
+const actionHref = "/meet";
+
+const landingFooterCols = [
+    { title: "Works", links: WORKS },
+    { title: "Website", links: WEBSITE },
+    { title: "Branding", links: BRANDING },
+    { title: "Resources", links: SERVICES },
+    { title: "Company", links: COMPANY },
+    { title: "Support", links: SUPPORT },
+];
+
 /* ================= Navbar ================= */
 export function NewAreveiNavbar() {
     const [scrolled, setScrolled] = useState(false);
+    const [mobileOpen, setMobileOpen] = useState(false);
     const { dark, toggle } = useTheme();
 
     useEffect(() => {
@@ -140,26 +161,10 @@ export function NewAreveiNavbar() {
                 <Logo />
                 <ul className="hidden md:flex items-center gap-1">
                     {navItems.map((it) => (
-                        <li key={it.label} className="relative group">
-                            <button className="flex items-center gap-1 px-3 py-2 text-[14px] text-black/80 dark:text-white/80 hover:text-black dark:hover:text-white transition-colors">
+                        <li key={it.label}>
+                            <a href={it.href || "#"} className="flex items-center gap-1 px-3 py-2 text-[14px] text-black/80 dark:text-white/80 hover:text-black dark:hover:text-white transition-colors">
                                 <span className="link-hover">{it.label}</span>
-                                {it.items && (
-                                    <ChevronDown className="h-3.5 w-3.5 opacity-60 group-hover:rotate-180 transition-transform duration-300" />
-                                )}
-                            </button>
-                            {it.items && (
-                                <div className="absolute left-1/2 -translate-x-1/2 top-full mt-2 min-w-[220px] bg-white dark:bg-[#1A1F2E] rounded-2xl shadow-[0_20px_50px_-20px_rgba(0,0,0,0.25)] border border-black/5 dark:border-white/10 opacity-0 invisible translate-y-2 group-hover:opacity-100 group-hover:visible group-hover:translate-y-0 transition-all duration-300 p-2 z-50">
-                                    {it.items.map((s) => (
-                                        <a
-                                            key={s}
-                                            href="#"
-                                            className="block px-3 py-2 rounded-lg text-[14px] text-black/80 dark:text-white/80 hover:bg-black/5 dark:hover:bg-white/8 hover:text-black dark:hover:text-white transition-colors"
-                                        >
-                                            {s}
-                                        </a>
-                                    ))}
-                                </div>
-                            )}
+                            </a>
                         </li>
                     ))}
                 </ul>
@@ -176,14 +181,47 @@ export function NewAreveiNavbar() {
                             <Moon className="h-4 w-4 text-[#5B21B6]" />
                         )}
                     </button>
-                    <button className="hidden sm:inline-flex px-4 md:px-5 py-2 rounded-full bg-white dark:bg-white/10 hover:bg-black/5 dark:hover:bg-white/15 text-[14px] font-medium transition-colors border border-black/10 dark:border-white/15 text-black dark:text-white">
+                    <a href={actionHref} className="hidden sm:inline-flex px-4 md:px-5 py-2 rounded-full bg-white dark:bg-white/10 hover:bg-black/5 dark:hover:bg-white/15 text-[14px] font-medium transition-colors border border-black/10 dark:border-white/15 text-black dark:text-white">
                         Get Website Audit
-                    </button>
-                    <button className="px-4 md:px-5 py-2 rounded-full bg-black dark:bg-[#C7F27A] text-white dark:text-black text-[14px] font-medium hover:bg-neutral-800 dark:hover:bg-[#b8e662] transition-colors">
+                    </a>
+                    <a href={actionHref} className="hidden sm:inline-flex px-4 md:px-5 py-2 rounded-full bg-black dark:bg-[#C7F27A] text-white dark:text-black text-[14px] font-medium hover:bg-neutral-800 dark:hover:bg-[#b8e662] transition-colors">
                         Book a Demo
+                    </a>
+                    <button
+                        type="button"
+                        onClick={() => setMobileOpen((v) => !v)}
+                        aria-label="Open menu"
+                        className="md:hidden h-9 w-9 rounded-full flex items-center justify-center border border-black/10 dark:border-white/15 bg-white/60 dark:bg-white/8 text-black dark:text-white"
+                    >
+                        {mobileOpen ? <X className="h-4 w-4" /> : <Menu className="h-4 w-4" />}
                     </button>
                 </div>
             </nav>
+            {mobileOpen && (
+                <div className="absolute top-[82px] w-[calc(100%-2rem)] max-w-[1400px] rounded-2xl border border-black/10 dark:border-white/10 bg-white/95 dark:bg-[#0F1413]/95 backdrop-blur-xl p-3 shadow-[0_20px_50px_-20px_rgba(0,0,0,0.35)] md:hidden">
+                    <div className="grid gap-1">
+                        {navItems.map((it) => (
+                            <div key={it.label}>
+                                <a
+                                    href={it.href || "#"}
+                                    onClick={() => setMobileOpen(false)}
+                                    className="flex items-center justify-between rounded-xl px-3 py-3 text-[14px] font-medium text-black dark:text-[#EDEFEE] hover:bg-black/5 dark:hover:bg-white/8"
+                                >
+                                    {it.label}
+                                </a>
+                            </div>
+                        ))}
+                    </div>
+                    <div className="mt-3 grid grid-cols-2 gap-2">
+                        <a href={actionHref} onClick={() => setMobileOpen(false)} className="rounded-full border border-black/10 dark:border-white/15 px-4 py-2.5 text-center text-[13px] font-medium text-black dark:text-white">
+                            Get Audit
+                        </a>
+                        <a href={actionHref} onClick={() => setMobileOpen(false)} className="rounded-full bg-black dark:bg-[#C7F27A] px-4 py-2.5 text-center text-[13px] font-medium text-white dark:text-black">
+                            Book Demo
+                        </a>
+                    </div>
+                </div>
+            )}
         </div>
     );
 }
@@ -192,7 +230,7 @@ export function NewAreveiNavbar() {
 function Hero() {
     return (
         <section className="relative pt-24 px-4">
-            <div className="relative mx-auto max-w-[1400px] rounded-[28px] overflow-hidden min-h-[88vh] flex items-center justify-center">
+            <div className="relative mx-auto max-w-[1400px] rounded-[28px] overflow-hidden min-h-[calc(100svh-7rem)] md:min-h-[88vh] flex items-center justify-center">
                 {/* Day image — light mode */}
                 <div
                     className="absolute inset-0 bg-cover bg-center scale-105 transition-opacity duration-500 dark:opacity-0"
@@ -210,7 +248,7 @@ function Hero() {
                 {/* Lime accent glow bottom */}
                 <div className="pointer-events-none absolute bottom-0 left-1/2 -translate-x-1/2 w-[600px] h-[300px] rounded-full bg-[#C7F27A]/6 blur-3xl" />
 
-                <div className="relative z-10 text-center max-w-[1100px] px-6 py-24">
+                <div className="relative z-10 text-center max-w-[1100px] px-4 sm:px-6 py-16 sm:py-24">
                     {/* Badge pill */}
                     <div className="inline-flex items-center gap-2 rounded-full bg-white/10 backdrop-blur border border-white/20 px-4 py-1.5 mb-8">
                         <Sparkles className="h-3.5 w-3.5 text-[#C7F27A]" />
@@ -220,10 +258,10 @@ function Hero() {
                     </div>
 
                     {/* Headline */}
-                    <h1 className="display-hero text-white text-[9vw] md:text-[6vw] lg:text-[82px] leading-none">
+                    <h1 className="display-hero text-white text-[clamp(2.65rem,13vw,5rem)] md:text-[6vw] lg:text-[82px] leading-[0.96]">
                         <span className="block">Turn your website into a</span>
                         {/* Lime highlight block — mt-4 creates deliberate gap above the block */}
-                        <span className="block mt-4">
+                        <span className="block mt-3 sm:mt-4">
                             <span
                                 className="inline bg-[#C7F27A] text-[#0A0D0C] px-3 py-1"
                                 style={{ boxDecorationBreak: "clone", WebkitBoxDecorationBreak: "clone" }}
@@ -241,15 +279,15 @@ function Hero() {
 
                     {/* CTAs */}
                     <div className="mt-9 flex flex-col sm:flex-row items-center justify-center gap-3">
-                        <button className="group px-7 py-3.5 rounded-full bg-[#C7F27A] text-black text-[14px] font-semibold hover:bg-[#b8e662] hover:scale-[1.02] transition-all shadow-[0_0_24px_#C7F27A40]">
+                        <a href={actionHref} className="group px-7 py-3.5 rounded-full bg-[#C7F27A] text-black text-[14px] font-semibold hover:bg-[#b8e662] hover:scale-[1.02] transition-all shadow-[0_0_24px_#C7F27A40]">
                             <span className="inline-flex items-center gap-2">
                                 Get Website Audit
                                 <ArrowUpRight className="h-4 w-4 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
                             </span>
-                        </button>
-                        <button className="px-7 py-3.5 rounded-full bg-transparent border border-white/30 text-white text-[14px] font-medium hover:bg-white/10 hover:border-white/55 transition-colors">
+                        </a>
+                        <a href={actionHref} className="px-7 py-3.5 rounded-full bg-transparent border border-white/30 text-white text-[14px] font-medium hover:bg-white/10 hover:border-white/55 transition-colors">
                             Book a Demo
-                        </button>
+                        </a>
                     </div>
 
                     {/* Social proof row */}
@@ -300,7 +338,7 @@ function Hero() {
 function LogosMarquee() {
     const list = [...companyLogos, ...companyLogos];
     return (
-        <section className="py-14 overflow-hidden">
+        <section className="py-16 overflow-hidden">
             <p className="text-center text-[13px] uppercase tracking-[0.18em] text-black/50 dark:text-white/40 mb-8">
                 Trusted by growing brands, founders, and mission-led
                 organizations
@@ -308,18 +346,23 @@ function LogosMarquee() {
             <div className="relative">
                 <div className="pointer-events-none absolute inset-y-0 left-0 w-24 bg-gradient-to-r from-white dark:from-[#0A0D0C] to-transparent z-10" />
                 <div className="pointer-events-none absolute inset-y-0 right-0 w-24 bg-gradient-to-l from-white dark:from-[#0A0D0C] to-transparent z-10" />
-                <div className="flex items-center gap-16 marquee-track w-max">
+                <div className="flex items-center gap-8 md:gap-10 marquee-track w-max">
                     {list.map((l, i) => (
                         <div
                             key={i}
-                            className="flex items-center gap-3 opacity-70 hover:opacity-100 transition-opacity duration-500"
+                            className="flex min-w-[220px] items-center  rounded-2xl border border-black/6 dark:border-white/10 bg-white/70 dark:bg-white/6 px-5 py-4 opacity-85 hover:opacity-100 transition-opacity duration-500"
                         >
                             <img
-                                src={l.src}
+                                src={l.src || undefined}
                                 alt={l.name}
-                                className="h-8 w-8 object-contain rounded-md"
+                                className={`h-20 w-24 mr-6 object-contain rounded-md ${l.src ? "" : "hidden"}`}
                             />
-                            <span className="text-[16px] text-black/70 dark:text-white/60 font-medium tracking-tight">
+                            {!l.src && (
+                                <span className="flex h-14 w-14 shrink-0 items-center justify-center rounded-xl bg-[#071312] text-[15px] font-bold text-[#00E6C4] dark:bg-[#00E6C4] dark:text-[#041411]">
+                                    { l.name[0]}
+                                </span>
+                            )}
+                            <span className="text-[17px] text-black dark:text-black font-semibold tracking-tight">
                                 {l.name}
                             </span>
                         </div>
@@ -332,6 +375,24 @@ function LogosMarquee() {
 
 /* ================= Problem Section ================= */
 function ProblemSection() {
+    const problemCards = [
+        {
+            k: "Stagnant",
+            d: "The blog stopped updating six months ago. The pricing page has typos. Nobody has time to fix it.",
+            Icon: PauseCircle,
+        },
+        {
+            k: "Invisible",
+            d: "You rank for nothing. ChatGPT does not know you exist. AI Overviews cite your competitors.",
+            Icon: EyeOff,
+        },
+        {
+            k: "Untracked",
+            d: "You have no idea where visitors drop off, which pages convert, or what your bounce rate is doing.",
+            Icon: Activity,
+        },
+    ];
+
     return (
         <section className="relative px-4 pb-20 pt-6">
             <div className="max-w-[1400px] mx-auto rounded-[28px] relative overflow-hidden
@@ -371,30 +432,16 @@ function ProblemSection() {
                         un-optimized, and quietly leaking pipeline. Sound familiar?
                     </p>
                     <div className="mt-12 grid grid-cols-1 md:grid-cols-3 gap-4 text-left">
-                        {[
-                            {
-                                k: "Stagnant",
-                                d: "The blog stopped updating six months ago. The pricing page has typos. Nobody has time to fix it.",
-                                icon: "⏸",
-                            },
-                            {
-                                k: "Invisible",
-                                d: "You rank for nothing. ChatGPT does not know you exist. AI Overviews cite your competitors.",
-                                icon: "👻",
-                            },
-                            {
-                                k: "Untracked",
-                                d: "You have no idea where visitors drop off, which pages convert, or what your bounce rate is doing.",
-                                icon: "📉",
-                            },
-                        ].map((it) => (
+                        {problemCards.map(({ Icon, ...it }) => (
                             <div
                                 key={it.k}
                                 className="rounded-[20px] p-6 card-lift border
                                     bg-[#FAFAF9] border-black/5
                                     dark:bg-[#0F1413] dark:border-[#1E2523]"
                             >
-                                <div className="text-2xl mb-3">{it.icon}</div>
+                                <div className="mb-4 h-11 w-11 rounded-xl bg-[#D6F5EF] dark:bg-[#1E2523] flex items-center justify-center">
+                                    <Icon className="h-5 w-5 text-[#0F6E56] dark:text-[#00E6C4]" />
+                                </div>
                                 <div className="text-[13px] font-semibold uppercase tracking-widest mb-2 text-black/45 dark:text-[#8A928F]">
                                     {it.k}
                                 </div>
@@ -414,6 +461,7 @@ function ProblemSection() {
 function WhatArevei() {
     const ref = useRef<HTMLDivElement>(null!);
     const inView = useInView(ref);
+    const pillarIcons = [Hammer, Settings2, BarChart3, TrendingUp];
 
     const pillarDark = [
         "bg-[#0F1413]",
@@ -470,22 +518,16 @@ function WhatArevei() {
                     </div>
 
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-5 mt-16">
-                        {pillars.map((p, i) => (
+                        {pillars.map((p, i) => {
+                            const Icon = pillarIcons[i] || Sparkles;
+                            return (
                             <div
                                 key={p.title}
                                 className={`rounded-[22px] p-7 md:p-8 min-h-[280px] card-lift ${p.color} dark:${pillarDark[i]}`}
                                 style={{ transitionDelay: `${i * 100}ms` }}
                             >
-                                <div className="w-12 h-12 rounded-xl  flex items-center justify-center mb-6 overflow-hidden">
-                                    <div className="grid grid-cols-2 gap-[2px] p-2 opacity-90">
-                                        {[...Array(4)].map((_, k) => (
-                                            <div
-                                                key={k}
-                                                className="w-2 h-2 rounded-[2px] bg-[#C7F27A] dark:bg-[#0A0D0C]"
-                                                style={{ opacity: (k + 1) / 4 }}
-                                            />
-                                        ))}
-                                    </div>
+                                <div className="w-12 h-12 rounded-xl flex items-center justify-center mb-6 bg-[#0F6E56]/10 dark:bg-[#00E6C4]/10 border border-[#0F6E56]/15 dark:border-[#00E6C4]/20">
+                                    <Icon className="h-5 w-5 text-[#0F6E56] dark:text-[#00E6C4]" />
                                 </div>
                                 <h3 className="font-display text-[26px] tracking-tight text-black dark:text-[#EDEFEE] mb-3">
                                     {p.title}
@@ -494,7 +536,8 @@ function WhatArevei() {
                                     {p.desc}
                                 </p>
                             </div>
-                        ))}
+                            );
+                        })}
                     </div>
                 </div>
             </div>
@@ -637,12 +680,12 @@ function SeenSalesAhead() {
                                 Arevei Web builds and optimizes. Arevei Grow attracts and ranks. Arevei Ads scales and attributes. Every action informs the next.
                             </p>
                             <div className="mt-6 flex gap-3">
-                                <button className="px-5 py-2.5 bg-black rounded-full bg-[#0F6E56] dark:bg-[#C7F27A] text-white dark:text-black text-[13px] font-semibold hover:bg-[#0a5a46] dark:hover:bg-[#b8e662] transition-colors">
+                                <a href="#services" className="px-5 py-2.5 rounded-full bg-[#0F6E56] dark:bg-[#C7F27A] text-white dark:text-black text-[13px] font-semibold hover:bg-[#0a5a46] dark:hover:bg-[#b8e662] transition-colors">
                                     See it in action
-                                </button>
-                                <button className="px-5 py-2.5 rounded-full border border-black/18 dark:border-white/25 text-black dark:text-white text-[13px] hover:border-black/35 dark:hover:border-white/50 transition-colors">
+                                </a>
+                                <a href={actionHref} className="px-5 py-2.5 rounded-full border border-black/18 dark:border-white/25 text-black dark:text-white text-[13px] hover:border-black/35 dark:hover:border-white/50 transition-colors">
                                     Book a demo
-                                </button>
+                                </a>
                             </div>
                         </div>
                     </div>
@@ -712,7 +755,7 @@ function SeenSalesAhead() {
 /* ================= One Platform, Three Engines ================= */
 function OnePlatform() {
     return (
-        <section className="relative px-4 pb-20 overflow-hidden">
+        <section id="services" className="relative px-4 pb-20 overflow-hidden scroll-mt-28">
             {/* Light: warm cream · Dark: brand surface */}
             <div className="max-w-[1400px] mx-auto rounded-[28px] relative overflow-hidden border  bg-[#FAFAF8] border-black/8
                 dark:bg-[#0A0D0C] dark:border-[#1E2523]">
@@ -777,10 +820,10 @@ function OnePlatform() {
                                 </ul>
 
                                 {/* CTA */}
-                                <button className="mt-8 group/btn inline-flex items-center gap-1.5 text-[13px] font-semibold transition-colors text-[#00E6C4] hover:text-[#0F6E56] dark:hover:text-[#C7F27A]">
+                                <a href={actionHref} className="mt-8 group/btn inline-flex items-center gap-1.5 text-[13px] font-semibold transition-colors text-[#00E6C4] hover:text-[#0F6E56] dark:hover:text-[#C7F27A]">
                                     {e.cta}
                                     <ArrowUpRight className="h-3.5 w-3.5 group-hover/btn:translate-x-0.5 group-hover/btn:-translate-y-0.5 transition-transform" />
-                                </button>
+                                </a>
                             </div>
                         ))}
                     </div>
@@ -1097,18 +1140,18 @@ function UnifiedManagement() {
                                     </ul>
                                 </div>
                                 <div className="mt-auto pt-6 flex flex-wrap items-center gap-2 relative">
-                                    <button className="group/btn px-4 py-2 rounded-full text-[13px] font-medium flex items-center gap-1 transition-colors
+                                    <a href={actionHref} className="group/btn px-4 py-2 rounded-full text-[13px] font-medium flex items-center gap-1 transition-colors
                                         bg-black text-white hover:bg-neutral-800
                                         dark:bg-[#C7F27A] dark:text-[#0A0D0C] dark:hover:bg-[#b8e662]">
                                         {a.cta}
                                         <ArrowUpRight className="h-3.5 w-3.5 group-hover/btn:translate-x-0.5 group-hover/btn:-translate-y-0.5 transition-transform" />
-                                    </button>
+                                    </a>
                                     {a.cta2 && (
-                                        <button className="px-4 py-2 rounded-full text-[13px] font-medium transition-colors
+                                        <a href={a.cta2.toLowerCase().includes("pricing") ? "#pricing" : actionHref} className="px-4 py-2 rounded-full text-[13px] font-medium transition-colors
                                             bg-white border border-black/10 text-black hover:bg-black/5
                                             dark:bg-white/6 dark:border-[#1E2523] dark:text-[#EDEFEE] dark:hover:bg-white/12">
                                             {a.cta2}
-                                        </button>
+                                        </a>
                                     )}
                                 </div>
                             </div>
@@ -1123,7 +1166,7 @@ function UnifiedManagement() {
 /* ================= Testimonials / Clientele ================= */
 function Testimonials() {
     return (
-        <section className="relative px-4 pb-20">
+        <section id="clientele" className="relative px-4 pb-20 scroll-mt-28">
             {/* Light: fresh white with teal tint  ·  Dark: brand-dark Clientele style */}
             <div className="max-w-[1400px] mx-auto rounded-[28px] relative overflow-hidden px-6 md:px-14 py-16 md:py-20
                 bg-white border border-black/8
@@ -1216,12 +1259,12 @@ function Testimonials() {
                                     "{t.quote}"
                                 </p>
 
-                                <button className="mt-6 inline-flex items-center gap-1.5 text-[13px] font-medium transition-colors group/btn
+                                <a href={actionHref} className="mt-6 inline-flex items-center gap-1.5 text-[13px] font-medium transition-colors group/btn
                                     text-[#0F6E56] hover:text-[#00E6C4]
                                     dark:text-[#00E6C4] dark:hover:text-[#C7F27A]">
                                     Watch story
                                     <ArrowUpRight className="h-3.5 w-3.5 group-hover/btn:translate-x-0.5 group-hover/btn:-translate-y-0.5 transition-transform" />
-                                </button>
+                                </a>
                             </div>
                         ))}
                     </div>
@@ -1240,7 +1283,7 @@ function Pricing() {
             : pricingPlans.management;
 
     return (
-        <section className="relative px-4 pb-20">
+        <section id="pricing" className="relative px-4 pb-20 scroll-mt-28">
             <div className="max-w-[1400px] mx-auto rounded-[28px] relative overflow-hidden
                 bg-[#F7F7F4] border border-black/8
                 dark:bg-[#0A0D0C] dark:border-[#1E2523]
@@ -1342,13 +1385,13 @@ function Pricing() {
                                         </li>
                                     ))}
                                 </ul>
-                                <button className={`mt-8 group px-5 py-2.5 rounded-full text-[14px] font-medium flex items-center justify-center gap-1 transition-colors ${p.highlight
+                                <a href={actionHref} className={`mt-8 group px-5 py-2.5 rounded-full text-[14px] font-medium flex items-center justify-center gap-1 transition-colors ${p.highlight
                                     ? "bg-[#C7F27A] text-black hover:bg-[#b8e662]"
                                     : "bg-black text-white hover:bg-neutral-800 dark:bg-[#C7F27A] dark:text-[#0A0D0C] dark:hover:bg-[#b8e662]"
                                     }`}>
                                     {p.cta}
                                     <ArrowUpRight className="h-3.5 w-3.5 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
-                                </button>
+                                </a>
                             </div>
                         ))}
                     </div>
@@ -1733,91 +1776,127 @@ function CTA() {
 export function Footer() {
     return (
         <footer className="px-4 pb-8">
-            {/* Always dark — footer is brand identity */}
-            <div className="max-w-[1400px] mx-auto rounded-[28px] bg-[#1A1A2E] dark:bg-[#0A0D17] text-white px-6 md:px-14 py-16 md:py-20">
-                <div className="grid md:grid-cols-[2fr_repeat(4,1fr)] gap-10">
-                    <div>
-                        <div className="font-display text-[36px] leading-none tracking-tight">
+            <div className="max-w-[1400px] mx-auto rounded-[28px] bg-[#071312] dark:bg-[#071312] text-white px-6 md:px-14 py-14 md:py-20 border border-white/10 overflow-hidden">
+                <div className="grid lg:grid-cols-[1.35fr_2fr] gap-12">
+                    <div className="max-w-[360px]">
+                        <div className="font-display text-[36px] leading-none tracking-tight text-white">
                             Arevei
                         </div>
-                        <p className="text-white/55 text-[14px] mt-4 max-w-[260px]">
-                            The AI-Native Website Manager. Build, manage, and
-                            grow — all under one team.
+                        <p className="text-white/62 text-[14px] mt-4 leading-relaxed">
+                            The AI-Native Website Manager. Build, manage, and grow under one expert team.
                         </p>
-                        <div className="mt-8">
+                        <div className="mt-8 rounded-2xl border border-white/10 bg-white/[0.04] p-5">
                             <div className="text-[13px] uppercase tracking-widest text-white/45 mb-3">
                                 Contact
                             </div>
                             <div className="text-[14px] text-white/80">
-                                hello@arevei.com
+                                {areveiEntity.salesEmail}
                             </div>
-                            <div className="text-[14px] text-white/55 mt-1">
-                                +91 XXXXX XXXXX
+                            <div className="mt-1 text-[14px] text-white/62">
+                                {areveiEntity.phone}
+                            </div>
+                            <a href={actionHref} className="mt-4 inline-flex items-center gap-2 rounded-full bg-[#00E6C4] px-4 py-2 text-[13px] font-semibold text-[#041411] hover:bg-[#12f3d2] transition-colors">
+                                Book a Demo
+                                <ArrowUpRight className="h-3.5 w-3.5" />
+                            </a>
+                        </div>
+                        <div className="mt-5 grid gap-3 text-[12px] leading-relaxed text-white/55">
+                            <div>
+                                <span className="block text-white/82">Registered Address</span>
+                                {areveiEntity.registeredAddress.streetAddress}, {areveiEntity.registeredAddress.addressLocality}, {areveiEntity.registeredAddress.addressRegion}, India
+                            </div>
+                            <div>
+                                <span className="block text-white/82">Operational Address</span>
+                                {areveiEntity.operationalAddress.streetAddress}, {areveiEntity.operationalAddress.addressLocality}, {areveiEntity.operationalAddress.addressRegion} {areveiEntity.operationalAddress.postalCode}
                             </div>
                         </div>
                         <div className="mt-6 flex items-center gap-3">
-                            {["x", "in", "yt"].map((s) => (
-                                <a
-                                    key={s}
-                                    href="#"
-                                    className="h-9 w-9 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center text-[11px] uppercase transition-colors"
-                                >
-                                    {s}
-                                </a>
+                            <SocialIcons />
+                        </div>
+                    </div>
+                    <div className="grid gap-10">
+                        <div className="grid grid-cols-2 md:grid-cols-3 gap-x-8 gap-y-10">
+                            {landingFooterCols.map((c) => (
+                                <div key={c.title}>
+                                    <div className="text-[12px] uppercase tracking-[0.18em] text-[#00E6C4] mb-4">
+                                        {c.title}
+                                    </div>
+                                    <ul className="space-y-2.5">
+                                        {c.links.map((l) => (
+                                            <li key={`${c.title}-${l.name}`}>
+                                                <a
+                                                    href={l.link}
+                                                    className="text-[14px] text-white/72 hover:text-white link-hover"
+                                                >
+                                                    {l.name}
+                                                </a>
+                                            </li>
+                                        ))}
+                                    </ul>
+                                </div>
                             ))}
                         </div>
-                    </div>
-                    {footerCols.map((c) => (
-                        <div key={c.title}>
-                            <div className="text-[13px] uppercase tracking-widest text-white/45 mb-4">
-                                {c.title}
+                        <div className="grid gap-5 rounded-2xl border border-white/10 bg-white/[0.04] p-5 sm:grid-cols-[auto_1fr] sm:items-center">
+                            <div className="flex items-center gap-4">
+                                <img
+                                    src="/assets/icons/Dpiit logo@2x.png"
+                                    alt="DPIIT recognition badge"
+                                    className="h-20 w-20 rounded-full bg-white object-contain"
+                                />
+                                <img
+                                    src="https://www.startupindia.gov.in/content/dam/invest-india/newhomepage/Logo1.png"
+                                    alt="Startup India"
+                                    className="h-12 w-36 object-contain"
+                                />
                             </div>
-                            <ul className="space-y-2">
-                                {c.links.map((l) => (
-                                    <li key={l}>
-                                        <a
-                                            href="#"
-                                            className="text-[14px] text-white/80 hover:text-white link-hover"
-                                        >
-                                            {l}
-                                        </a>
-                                    </li>
-                                ))}
-                            </ul>
+                            <p className="text-[13px] leading-relaxed text-white/60">
+                                Recognized startup building modern brands with strategy, technology, and performance-led execution.
+                            </p>
                         </div>
-                    ))}
+                    </div>
                 </div>
 
-                <div className="font-display text-[16vw] md:text-[220px] leading-none mt-16 opacity-90 tracking-tighter select-none">
-                    Arevei
-                </div>
-                <div className="mt-8 flex flex-col md:flex-row justify-between gap-3 text-[12px] text-white/45">
-                    <div>
-                        © {new Date().getFullYear()} Arevei Inc. All rights
-                        reserved.
+                <div className="relative mt-16 min-h-[170px] md:min-h-[260px] border-t border-white/10 pt-8">
+                    <div className="flex flex-col md:flex-row justify-between gap-3 text-[12px] text-white/45">
+                        <div>
+                            Copyright {new Date().getFullYear()} Shakyawar Mediatech LLP. All rights reserved.
+                        </div>
+                        <div className="flex gap-6">
+                            <a href="/terms" className="hover:text-white">
+                                Terms
+                            </a>
+                            <a href="/privacypolicy" className="hover:text-white">
+                                Privacy
+                            </a>
+                            <a href="/refundpolicy" className="hover:text-white">
+                                Refund
+                            </a>
+                            <a href="/contact" className="hover:text-white">
+                                Contact
+                            </a>
+                        </div>
                     </div>
-                    <div className="flex gap-6">
-                        <a href="#" className="hover:text-white">
-                            Privacy
-                        </a>
-                        <a href="#" className="hover:text-white">
-                            Terms
-                        </a>
-                        <a href="#" className="hover:text-white">
-                            Security
-                        </a>
+                    <div
+                        className="pointer-events-none absolute left-1/2 top-14 -translate-x-1/2 select-none font-display text-[34vw] leading-none tracking-tighter md:text-[220px]"
+                        style={{
+                            background: "linear-gradient(180deg, rgba(255,255,255,0.72), rgba(255,255,255,0.06))",
+                            WebkitBackgroundClip: "text",
+                            backgroundClip: "text",
+                            color: "transparent",
+                        }}
+                    >
+                        Arevei
                     </div>
+                    <div className="pointer-events-none absolute inset-x-0 bottom-0 h-28 bg-gradient-to-t from-[#071312] to-transparent" />
                 </div>
             </div>
         </footer>
     );
 }
-
 /* ================= Home ================= */
 export default function Home() {
     return (
         <div className="flex flex-col gap-0 w-full bg-white dark:bg-[#0A0D0C] min-h-screen transition-colors duration-300">
-            <NewAreveiNavbar />
             <Hero />
             <LogosMarquee />
             <ProblemSection />
@@ -1836,3 +1915,4 @@ export default function Home() {
         </div>
     );
 }
+

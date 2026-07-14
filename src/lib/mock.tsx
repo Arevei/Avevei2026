@@ -1,28 +1,23 @@
-// SVG placeholder logo generator (returns data URI)
-const svgLogo = (letter: string, bg = '#111') =>
-    `data:image/svg+xml;utf8,${encodeURIComponent(
-        `<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='8' fill='${bg}'/><text x='50%' y='55%' font-family='Manrope,sans-serif' font-size='16' font-weight='800' fill='#fff' text-anchor='middle' dominant-baseline='middle'>${letter}</text></svg>`
-    )}`;
-
 export const navItems = [
-    { label: 'Home', items: null, href: '/' },
-    { label: 'Products', items: ['Arevei Web', 'Arevei Grow', 'Arevei Ads'] },
-    { label: 'Pricing', items: null, href: '/pricing' },
-    { label: 'Clientele', items: null, href: '/clientele' },
-    { label: 'Resources', items: ['Blog', 'Founder Guides', 'AI Website Management', 'SEO/AEO/GEO'] },
-    { label: 'About', items: null, href: '/about' },
+    { label: 'Home', href: '/landing' },
+    { label: 'Products', href: '/landing#services' },
+    { label: 'Pricing', href: '/landing#pricing' },
+    { label: 'Clientele', href: '/landing#clientele' },
+    { label: 'Resources', href: '/blog' },
+    { label: 'About', href: '/about' },
 ];
 
 export const companyLogos = [
-    { name: 'Ayurooms', src: svgLogo('A', '#0F766E') },
-    { name: 'LLF', src: svgLogo('L', '#7C3AED') },
-    { name: 'Maharishi', src: svgLogo('M', '#B45309') },
-    { name: 'Joincloud', src: svgLogo('J', '#2563EB') },
-    { name: 'DS Polypack', src: svgLogo('D', '#111') },
-    { name: 'Sgtmake', src: svgLogo('S', '#DB2777') },
-    { name: 'Jenii', src: svgLogo('J', '#059669') },
-    { name: 'Chandak', src: svgLogo('C', '#DC2626') },
-    { name: 'Nisvartha', src: svgLogo('N', '#4F46E5') },
+    // { name: 'EkamTGS', src: null, initials: 'E' },
+    { name: 'Ayurooms', src: '/assets/icons/Ayurooms.png' },
+    { name: 'LLF', src: '/assets/icons/llf-logo.jpg' },
+    { name: 'Maharishi', src: '/assets/icons/Maharishi.png' },
+    { name: 'Joincloud', src: "/assets/icons/joincloud.png"},
+    // { name: 'DS Polypack', src: null, initials: 'DS' },
+    { name: 'SGT Make', src: '/assets/icons/sgtmake.webp' },
+    { name: 'Jenii', src: "/assets/icons/jenii.png" },
+    { name: 'Chandak', src: '/assets/icons/chandakagro.png' },
+    { name: 'Niswarth', src: '/assets/icons/niswarthjan.png' },
 ];
 
 export const pillars = [

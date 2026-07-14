@@ -42,7 +42,7 @@ html.dark body.new-layout-active {
     --glass-strong: rgba(15, 20, 19, 0.78);
     --glass-border: rgba(237, 239, 238, 0.09);
     --shadow: rgba(0, 0, 0, 0.45);
-    --on-accent: #ffffff;
+    --on-accent: #041411;
 }
 
 /* Mapping utilities for theme consistency and removing multi-colors */
@@ -69,7 +69,7 @@ html.dark body.new-layout-active {
 .new-layout-active .bg-\[\#E7F5D9\],
 .new-layout-active .bg-\[\#F8DAEE\],
 .new-layout-active .bg-\[\#F5F142\] {
-    background-color: var(--glass) !important;
+    background-color: var(--surface) !important;
     border: 1px solid var(--glass-border) !important;
     color: var(--text) !important;
     backdrop-filter: blur(14px);
@@ -77,13 +77,38 @@ html.dark body.new-layout-active {
 }
 
 /* Accent overrides */
-.new-layout-active .bg-\[\#C7F27A\] {
+.new-layout-active .bg-\[\#C7F27A\],
+.new-layout-active .bg-\[\#00E6C4\],
+.new-layout-active .dark\:bg-\[\#C7F27A\],
+html.dark .new-layout-active .dark\:bg-\[\#C7F27A\] {
     background-color: var(--accent) !important;
     color: var(--on-accent) !important;
 }
 
-.new-layout-active .text-\[\#C7F27A\] {
+.new-layout-active .text-\[\#C7F27A\],
+.new-layout-active .text-\[\#00E6C4\] {
     color: var(--accent) !important;
+}
+
+.new-layout-active .text-\[\#0F6E56\],
+.new-layout-active .dark\:text-\[\#C7F27A\],
+html.dark .new-layout-active .dark\:text-\[\#C7F27A\],
+.new-layout-active .dark\:text-\[\#00E6C4\],
+html.dark .new-layout-active .dark\:text-\[\#00E6C4\] {
+    color: var(--accent) !important;
+}
+
+.new-layout-active .bg-\[\#F7F7F4\],
+.new-layout-active .bg-\[\#FAFAF8\],
+.new-layout-active .bg-\[\#F2FCF9\],
+.new-layout-active .bg-\[\#F4FBF9\],
+.new-layout-active .bg-\[\#FAFAF9\],
+.new-layout-active .bg-\[\#D6F5EF\] {
+    background-color: var(--surface) !important;
+}
+
+.new-layout-active .border-\[\#C5EDE6\] {
+    border-color: var(--glass-border) !important;
 }
 
 /* Text color theme mapping */
@@ -124,7 +149,7 @@ html.dark body.new-layout-active {
 }
 
 .new-layout-active .text-white {
-    color: var(--bg) !important;
+    color: #ffffff !important;
 }
 
 /* Dark theme specific background & text adjustments */
@@ -134,6 +159,17 @@ html.dark .new-layout-active .bg-black {
 }
 
 html.dark .new-layout-active .text-white {
+    color: #ffffff !important;
+}
+
+html.dark .new-layout-active .dark\:text-black,
+html.dark .new-layout-active .dark\:text-\[\#0A0D0C\],
+.new-layout-active .text-\[\#0A0D0C\] {
+    color: var(--on-accent) !important;
+}
+
+.new-layout-active .bg-\[\#C7F27A\] .text-white,
+.new-layout-active .bg-\[\#00E6C4\] .text-white {
     color: var(--on-accent) !important;
 }
 
