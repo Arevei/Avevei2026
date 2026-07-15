@@ -597,10 +597,10 @@ function VideoSection() {
                         What we do &<br />
                         how we do it.
                     </h2>
-                    <p className="mt-6 text-white/75 text-[15px] md:text-[16px] max-w-[520px] mx-auto">
+                    {/* <p className="mt-6 text-white/75 text-[15px] md:text-[16px] max-w-[520px] mx-auto">
                         A 90-second look at the Arevei workflow — from audit to
                         launch to compounding growth.
-                    </p>
+                    </p> */}
                     {/* <button
                         onClick={() => setOpen(true)}
                         className="group mt-8 inline-flex items-center gap-3 px-6 py-3 rounded-full bg-white text-black text-[14px] font-medium hover:scale-[1.03] transition-transform"
