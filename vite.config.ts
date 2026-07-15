@@ -1,11 +1,69 @@
 import path from "path";
-import { defineConfig } from "vite";
+import { defineConfig, loadEnv, type Plugin } from "vite";
 import react from "@vitejs/plugin-react-swc";
 
 process.env.BROWSERSLIST_IGNORE_OLD_DATA = "true";
 
-export default defineConfig({
-  plugins: [react()],
+const readRequestBody = (req: import("http").IncomingMessage) =>
+  new Promise<string>((resolve, reject) => {
+    const chunks: Buffer[] = [];
+    req.on("data", (chunk) => chunks.push(Buffer.from(chunk)));
+    req.on("end", () => resolve(Buffer.concat(chunks).toString("utf8")));
+    req.on("error", reject);
+  });
+
+const demoBookingApiPlugin = (): Plugin => ({
+  name: "arevei-demo-booking-api",
+  configureServer(server) {
+    server.middlewares.use(async (req, res, next) => {
+      if (!req.url?.startsWith("/api/demo-booking")) {
+        return next();
+      }
+
+      const { default: handler } = await import("./api/demo-booking.js");
+      const rawBody = await readRequestBody(req);
+      const parsedBody = rawBody ? JSON.parse(rawBody) : {};
+
+      const vercelLikeReq = {
+        ...req,
+        method: req.method,
+        body: parsedBody,
+      };
+
+      const vercelLikeRes = {
+        status(code: number) {
+          res.statusCode = code;
+          return this;
+        },
+        setHeader(key: string, value: string) {
+          res.setHeader(key, value);
+          return this;
+        },
+        end(body?: string) {
+          res.end(body);
+        },
+      };
+
+      await handler(vercelLikeReq, vercelLikeRes);
+    });
+  },
+});
+
+export default defineConfig(({ mode }) => {
+  const env = loadEnv(mode, process.cwd(), "");
+  for (const key of [
+    "SMTP_HOST",
+    "SMTP_PORT",
+    "SMTP_USER",
+    "SMTP_PASS",
+    "SMTP_FROM",
+    "DEMO_FORM_ADMIN_EMAIL",
+  ]) {
+    process.env[key] = process.env[key] || env[key];
+  }
+
+  return {
+  plugins: [react(), demoBookingApiPlugin()],
 
   resolve: {
     alias: {
@@ -47,4 +105,4 @@ export default defineConfig({
       },
     },
   },
-});
+}});

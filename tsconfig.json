@@ -19,10 +19,8 @@
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true,
-    "ignoreDeprecations": "5.0",
 
     // ShadCn
-    "baseUrl": ".",
     "paths": {
       "@/*": [
         "./src/*"

@@ -1,23 +1,23 @@
 export const navItems = [
-    { label: 'Home', href: '/landing' },
+    { label: 'Home', href: '/landing#top' },
     { label: 'Products', href: '/landing#services' },
-    { label: 'Pricing', href: '/landing#pricing' },
+    { label: 'Plans', href: '/landing#pricing' },
     { label: 'Clientele', href: '/landing#clientele' },
-    { label: 'Resources', href: '/blog' },
-    { label: 'About', href: '/about' },
+    { label: 'Blogs', href: '/landing#blog' },
+    // { label: 'About', href: '/about' },
 ];
 
-export const companyLogos = [
+export const companyLogos: Array<{ name: string; src: string | null; initials?: string }> = [
     // { name: 'EkamTGS', src: null, initials: 'E' },
     { name: 'Ayurooms', src: '/assets/icons/Ayurooms.png' },
-    { name: 'LLF', src: '/assets/icons/llf-logo.jpg' },
+    { name: 'LLF', src: '/assets/icons/llf-logo.png' },
     { name: 'Maharishi', src: '/assets/icons/Maharishi.png' },
     { name: 'Joincloud', src: "/assets/icons/joincloud.png"},
     // { name: 'DS Polypack', src: null, initials: 'DS' },
     { name: 'SGT Make', src: '/assets/icons/sgtmake.webp' },
     { name: 'Jenii', src: "/assets/icons/jenii.png" },
-    { name: 'Chandak', src: '/assets/icons/chandakagro.png' },
-    { name: 'Niswarth', src: '/assets/icons/niswarthjan.png' },
+    { name: 'Chandak', src: '/assets/icons/chandak-logo.png' },
+    { name: 'Niswarth', src: '/assets/icons/nisvrth-logo.png' },
 ];
 
 export const pillars = [

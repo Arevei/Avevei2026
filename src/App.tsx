@@ -17,7 +17,6 @@ import UpdatePassword from "./pages/UpdatePassword"
 import DeleteAccount from "./pages/DeleteAccount"
 import ContactUs from "./pages/ContactUs"
 import PrivacyPolicy from "./pages/PrivacyPolicy"
-import RefundPolicy from "./pages/RefundPolicy"
 import ShippingPolicy from "./pages/ShippingPolicy"
 import Terms from "./pages/Terms"
 import PhoneNumberForm from "./_authentication/authForms/PhoneNumber";
@@ -40,6 +39,7 @@ import JoinCloudProductPage from "./pages/JoinCloudProductPage";
 import ProductWebsiteFramePage from "./pages/ProductWebsiteFramePage";
 import NewLayout from "./pages/NewLayout";
 import LandingHome from "./pages/landing";
+import RefundPolicy from "./pages/RefundPolicy";
 
 const App = () => {
   const [bootLoading, setBootLoading] = useState(true)

@@ -19,6 +19,7 @@ import {
     PauseCircle,
     EyeOff,
     Activity,
+    Send,
 } from "lucide-react";
 import {
     navItems,
@@ -34,7 +35,6 @@ import {
     faqs,
 } from "@/lib/mock";
 import { Link } from "react-router-dom";
-import { BRANDING, COMPANY, SERVICES, SUPPORT, WEBSITE, WORKS } from "@/components/Footer/Menus";
 import SocialIcons from "@/components/Footer/SocialIcons";
 import { areveiEntity } from "@/lib/geo-data";
 
@@ -119,21 +119,57 @@ function BlobDecor({
 /* ================= Logo ================= */
 const Logo = () => (
     <a href="/" className="flex items-center gap-2">
+        <img
+            src="/assets/images/NewAreveiFavicon.png"
+            alt=""
+            aria-hidden="true"
+            className="h-7 w-7 object-contain"
+        />
         <span className="font-display text-[22px] tracking-tight text-black dark:text-white">
             Arevei
         </span>
     </a>
 );
 
-const actionHref = "/meet";
+const actionHref = "#demo-form";
 
 const landingFooterCols = [
-    { title: "Works", links: WORKS },
-    { title: "Website", links: WEBSITE },
-    { title: "Branding", links: BRANDING },
-    { title: "Resources", links: SERVICES },
-    { title: "Company", links: COMPANY },
-    { title: "Support", links: SUPPORT },
+    {
+        title: "Explore",
+        links: [
+            { name: "Hero", link: "#top" },
+            { name: "Trusted Brands", link: "#trusted" },
+            { name: "The Reality", link: "#reality" },
+            { name: "What Arevei Does", link: "#what-arevei-does" },
+        ],
+    },
+    {
+        title: "Platform",
+        links: [
+            { name: "Video", link: "#video" },
+            { name: "Results Engine", link: "#results" },
+            { name: "Services", link: "#services" },
+            { name: "Process", link: "#process" },
+        ],
+    },
+    {
+        title: "Why Arevei",
+        links: [
+            { name: "Comparison", link: "#why-arevei" },
+            { name: "Use Cases", link: "#use-cases" },
+            { name: "Clientele", link: "#clientele" },
+            { name: "Pricing", link: "#pricing" },
+        ],
+    },
+    {
+        title: "Action",
+        links: [
+            { name: "Book a Demo", link: "#demo-form" },
+            { name: "Blog", link: "#blog" },
+            { name: "FAQ", link: "#faq" },
+            { name: "Final CTA", link: "#final-cta" },
+        ],
+    },
 ];
 
 /* ================= Navbar ================= */
@@ -229,7 +265,7 @@ export function NewAreveiNavbar() {
 /* ================= Hero ================= */
 function Hero() {
     return (
-        <section className="relative pt-24 px-4">
+        <section id="top" className="relative pt-24 px-4">
             <div className="relative mx-auto max-w-[1400px] rounded-[28px] overflow-hidden min-h-[calc(100svh-7rem)] md:min-h-[88vh] flex items-center justify-center">
                 {/* Day image — light mode */}
                 <div
@@ -258,12 +294,12 @@ function Hero() {
                     </div>
 
                     {/* Headline */}
-                    <h1 className="display-hero text-white text-[clamp(2.65rem,13vw,5rem)] md:text-[6vw] lg:text-[82px] leading-[0.96]">
+                    <h1 className="display-hero text-white text-[clamp(2.8rem,11vw,4.4rem)] md:text-[6vw] lg:text-[82px] leading-[1.04] md:leading-[0.98]">
                         <span className="block">Turn your website into a</span>
                         {/* Lime highlight block — mt-4 creates deliberate gap above the block */}
-                        <span className="block mt-3 sm:mt-4">
+                        <span className="block mt-2 sm:mt-4">
                             <span
-                                className="inline bg-[#C7F27A] text-[#0A0D0C] px-3 py-1"
+                                className="inline bg-[#C7F27A] text-[#0A0D0C] px-3 py-1 leading-[1.6] sm:leading-[1.12]"
                                 style={{ boxDecorationBreak: "clone", WebkitBoxDecorationBreak: "clone" }}
                             >
                                 <span className="">money-making</span>
@@ -338,7 +374,7 @@ function Hero() {
 function LogosMarquee() {
     const list = [...companyLogos, ...companyLogos];
     return (
-        <section className="py-16 overflow-hidden">
+        <section id="trusted" className="py-14 overflow-hidden scroll-mt-28">
             <p className="text-center text-[13px] uppercase tracking-[0.18em] text-black/50 dark:text-white/40 mb-8">
                 Trusted by growing brands, founders, and mission-led
                 organizations
@@ -346,23 +382,23 @@ function LogosMarquee() {
             <div className="relative">
                 <div className="pointer-events-none absolute inset-y-0 left-0 w-24 bg-gradient-to-r from-white dark:from-[#0A0D0C] to-transparent z-10" />
                 <div className="pointer-events-none absolute inset-y-0 right-0 w-24 bg-gradient-to-l from-white dark:from-[#0A0D0C] to-transparent z-10" />
-                <div className="flex items-center gap-8 md:gap-10 marquee-track w-max">
+                <div className="flex items-center gap-5 md:gap-6 marquee-track w-max">
                     {list.map((l, i) => (
                         <div
                             key={i}
-                            className="flex min-w-[220px] items-center  rounded-2xl border border-black/6 dark:border-white/10 bg-white/70 dark:bg-white/6 px-5 py-4 opacity-85 hover:opacity-100 transition-opacity duration-500"
+                            className="flex min-w-[180px] items-center gap-3 rounded-xl border border-black/6 dark:border-white/10 bg-white/75 dark:bg-white/6 px-4 py-3 opacity-85 hover:opacity-100 transition-opacity duration-500"
                         >
                             <img
                                 src={l.src || undefined}
                                 alt={l.name}
-                                className={`h-20 w-24 mr-6 object-contain rounded-md ${l.src ? "" : "hidden"}`}
+                                className={`h-11 w-16  object-contain rounded-md ${l.src ? "" : "hidden"}`}
                             />
                             {!l.src && (
-                                <span className="flex h-14 w-14 shrink-0 items-center justify-center rounded-xl bg-[#071312] text-[15px] font-bold text-[#00E6C4] dark:bg-[#00E6C4] dark:text-[#041411]">
-                                    { l.name[0]}
+                                <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-lg bg-[#071312] text-[13px] font-bold text-[#00E6C4] dark:bg-[#00E6C4] dark:text-[#041411]">
+                                    {l.initials || l.name[0]}
                                 </span>
                             )}
-                            <span className="text-[17px] text-black dark:text-black font-semibold tracking-tight">
+                            <span className="text-[15px] text-black/72 dark:text-black font-semibold tracking-tight whitespace-nowrap">
                                 {l.name}
                             </span>
                         </div>
@@ -394,7 +430,7 @@ function ProblemSection() {
     ];
 
     return (
-        <section className="relative px-4 pb-20 pt-6">
+        <section id="reality" className="relative px-4 pb-20 pt-6 scroll-mt-28">
             <div className="max-w-[1400px] mx-auto rounded-[28px] relative overflow-hidden
                 bg-[#F7F7F4] border border-black/8
                 dark:bg-[#0A0D0C] dark:border-[#1E2523]
@@ -471,7 +507,7 @@ function WhatArevei() {
     ];
 
     return (
-        <section ref={ref} className="relative px-4 pb-20">
+        <section id="what-arevei-does" ref={ref} className="relative px-4 pb-20 scroll-mt-28">
             <div className="max-w-[1400px] mx-auto rounded-[28px] relative overflow-hidden
                 bg-[#FAFAF8] border border-black/8
                 dark:bg-[#0A0D0C] dark:border-[#1E2523]
@@ -639,7 +675,7 @@ const SparkChart = ({ colorClass = "stroke-violet-400 fill-violet-100" }) => (
 /* ================= Get Seen. Get Sales. Get Ahead. ================= */
 function SeenSalesAhead() {
     return (
-        <section className="relative px-4 pt-14 pb-20">
+        <section id="results" className="relative px-4 pt-14 pb-20 scroll-mt-28">
             {/* Light: soft mint-tinted white  ·  Dark: brand-dark Clientele style */}
             <div className="max-w-[1400px] mx-auto rounded-[28px] relative overflow-hidden
                  bg-[#FAFAF8] border border-black/8
@@ -858,7 +894,7 @@ function OurProcess() {
     const fillPct = maxActive >= 0 ? ((maxActive + 1) / processSteps.length) * 100 : 0;
 
     return (
-        <section className="relative px-4 pb-20">
+        <section id="process" className="relative px-4 pb-20 scroll-mt-28">
             {/* Light: clean stone-white  ·  Dark: brand-dark Clientele style */}
             <div className="max-w-[1400px] mx-auto rounded-[28px] relative overflow-hidden
                 bg-[#F7F7F4] border border-black/8
@@ -999,7 +1035,7 @@ function OurProcess() {
 /* ================= Why Arevei ================= */
 function WhyArevei() {
     return (
-        <section className="relative px-4 pb-20">
+        <section id="why-arevei" className="relative px-4 pb-20 scroll-mt-28">
             <div className="max-w-[1400px] mx-auto rounded-[28px] relative overflow-hidden
                 bg-[#F2FCF9] border border-[#C5EDE6]
                 dark:bg-[#0A0D0C] dark:border-[#1E2523]
@@ -1080,7 +1116,7 @@ function WhyArevei() {
 /* ================= Unified Website Management ================= */
 function UnifiedManagement() {
     return (
-        <section className="relative px-4 pb-20">
+        <section id="use-cases" className="relative px-4 pb-20 scroll-mt-28">
             <div className="max-w-[1400px] mx-auto rounded-[28px] relative overflow-hidden
                 bg-white border border-black/8
                 dark:bg-[#0A0D0C] dark:border-[#1E2523]
@@ -1401,6 +1437,187 @@ function Pricing() {
     );
 }
 
+/* ================= Demo Booking Form ================= */
+function DemoBookingForm() {
+    const [open, setOpen] = useState(false);
+    const [form, setForm] = useState({
+        name: "",
+        email: "",
+        contactNumber: "",
+    });
+    const [status, setStatus] = useState<"idle" | "submitting" | "success" | "error">("idle");
+    const [message, setMessage] = useState("");
+
+    const updateField = (field: keyof typeof form, value: string) => {
+        setForm((current) => ({ ...current, [field]: value }));
+    };
+
+    useEffect(() => {
+        const onClick = (event: MouseEvent) => {
+            const target = event.target as HTMLElement | null;
+            const link = target?.closest('a[href="#demo-form"]');
+            if (!link) return;
+            event.preventDefault();
+            setOpen(true);
+        };
+
+        const onOpen = () => setOpen(true);
+
+        document.addEventListener("click", onClick);
+        window.addEventListener("arevei-open-demo-modal", onOpen);
+        return () => {
+            document.removeEventListener("click", onClick);
+            window.removeEventListener("arevei-open-demo-modal", onOpen);
+        };
+    }, []);
+
+    useEffect(() => {
+        if (!open) return;
+        const onKeyDown = (event: KeyboardEvent) => {
+            if (event.key === "Escape") setOpen(false);
+        };
+        document.body.style.overflow = "hidden";
+        window.addEventListener("keydown", onKeyDown);
+        return () => {
+            document.body.style.overflow = "";
+            window.removeEventListener("keydown", onKeyDown);
+        };
+    }, [open]);
+
+    const submitForm = async (event: React.FormEvent<HTMLFormElement>) => {
+        event.preventDefault();
+        setStatus("submitting");
+        setMessage("");
+
+        try {
+            const response = await fetch("/api/demo-booking", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({
+                    ...form,
+                    source: "Landing pricing section",
+                    page: window.location.pathname,
+                }),
+            });
+
+            const data = await response.json().catch(() => ({}));
+
+            if (!response.ok) {
+                throw new Error(data?.message || "Unable to submit demo request.");
+            }
+
+            setStatus("success");
+            setMessage("Thanks. We have received your demo request and sent a confirmation email.");
+            setForm({ name: "", email: "", contactNumber: "" });
+        } catch (error) {
+            setStatus("error");
+            setMessage(error instanceof Error ? error.message : "Something went wrong. Please try again.");
+        }
+    };
+
+    if (!open) return null;
+
+    return (
+        <div
+            id="demo-form"
+            className="fixed inset-0 z-[120] flex items-center justify-center overflow-y-auto bg-black/70 p-3 sm:p-4 backdrop-blur-sm"
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="demo-form-title"
+            onClick={() => setOpen(false)}
+        >
+            <div
+                className="my-8 w-full max-w-[980px] rounded-[22px] md:rounded-[28px] relative overflow-hidden border bg-[#F7F7F4] border-black/8 dark:bg-[#0A0D0C] dark:border-[#1E2523] px-4 sm:px-6 md:px-10 py-8 md:py-10"
+                onClick={(event) => event.stopPropagation()}
+            >
+                <button
+                    type="button"
+                    onClick={() => setOpen(false)}
+                    aria-label="Close demo form"
+                    className="absolute right-4 top-4 z-20 h-10 w-10 rounded-full border border-black/10 bg-white/80 text-black hover:bg-white dark:border-white/10 dark:bg-white/10 dark:text-white dark:hover:bg-white/15 flex items-center justify-center"
+                >
+                    <X className="h-4 w-4" />
+                </button>
+                <div
+                    className="pointer-events-none absolute inset-0 opacity-[0.35] dark:opacity-[0.30]"
+                    style={{ backgroundImage: "radial-gradient(circle,#C5EDE6 1.5px,transparent 1.5px)", backgroundSize: "28px 28px" }}
+                />
+                <div className="pointer-events-none absolute -right-20 -top-20 h-80 w-80 rounded-full bg-[#00E6C4]/10 blur-3xl" />
+                <div className="pointer-events-none absolute -left-20 -bottom-20 h-80 w-80 rounded-full bg-[#C7F27A]/10 blur-3xl" />
+
+                <div className="relative grid gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:items-center">
+                    <div>
+                        <div className="text-[12px] uppercase tracking-[0.22em] mb-6 text-[#0F6E56] dark:text-[#00E6C4]">
+                            Book a demo
+                        </div>
+                        <h2 id="demo-form-title" className="display-hero text-black dark:text-[#EDEFEE] text-[40px] md:text-[58px] leading-[0.98]">
+                            Tell us where to reach you.
+                        </h2>
+                        <p className="mt-6 text-[15px] md:text-[17px] leading-relaxed text-black/60 dark:text-[#8A928F] max-w-[520px]">
+                            Share your details and our team will follow up with the right next step. Admin receives your form details, and you receive a confirmation email.
+                        </p>
+                    </div>
+
+                    <form onSubmit={submitForm} className="rounded-[22px] border border-black/8 dark:border-white/10 bg-white/85 dark:bg-[#0F1413]/90 p-5 md:p-7 shadow-[0_24px_60px_-36px_rgba(0,0,0,0.45)]">
+                        <div className="grid gap-4">
+                            <label className="grid gap-2">
+                                <span className="text-[13px] font-semibold text-black/70 dark:text-[#EDEFEE]/75">Name</span>
+                                <input
+                                    required
+                                    value={form.name}
+                                    onChange={(event) => updateField("name", event.target.value)}
+                                    placeholder="Your name"
+                                    className="h-12 rounded-xl border border-black/10 dark:border-white/10 bg-white dark:bg-[#0A0D0C] px-4 text-[14px] text-black dark:text-white outline-none focus:border-[#00E6C4]"
+                                />
+                            </label>
+                            <label className="grid gap-2">
+                                <span className="text-[13px] font-semibold text-black/70 dark:text-[#EDEFEE]/75">Email</span>
+                                <input
+                                    required
+                                    type="email"
+                                    value={form.email}
+                                    onChange={(event) => updateField("email", event.target.value)}
+                                    placeholder="you@company.com"
+                                    className="h-12 rounded-xl border border-black/10 dark:border-white/10 bg-white dark:bg-[#0A0D0C] px-4 text-[14px] text-black dark:text-white outline-none focus:border-[#00E6C4]"
+                                />
+                            </label>
+                            <label className="grid gap-2">
+                                <span className="text-[13px] font-semibold text-black/70 dark:text-[#EDEFEE]/75">Contact Number</span>
+                                <input
+                                    required
+                                    type="tel"
+                                    value={form.contactNumber}
+                                    onChange={(event) => updateField("contactNumber", event.target.value)}
+                                    placeholder="+91 98765 43210"
+                                    className="h-12 rounded-xl border border-black/10 dark:border-white/10 bg-white dark:bg-[#0A0D0C] px-4 text-[14px] text-black dark:text-white outline-none focus:border-[#00E6C4]"
+                                />
+                            </label>
+                        </div>
+
+                        <button
+                            type="submit"
+                            disabled={status === "submitting"}
+                            className="mt-6 inline-flex w-full items-center justify-center gap-2 rounded-full bg-[#00E6C4] px-6 py-3 text-[14px] font-semibold text-[#041411] transition-colors hover:bg-[#12f3d2] disabled:cursor-not-allowed disabled:opacity-70"
+                        >
+                            {status === "submitting" ? "Sending request..." : "Submit Demo Request"}
+                            <Send className="h-4 w-4" />
+                        </button>
+
+                        {message && (
+                            <p className={`mt-4 rounded-xl px-4 py-3 text-[13px] leading-relaxed ${status === "success"
+                                ? "bg-[#00E6C4]/12 text-[#0F6E56] dark:text-[#00E6C4]"
+                                : "bg-red-500/10 text-red-600 dark:text-red-300"
+                                }`}>
+                                {message}
+                            </p>
+                        )}
+                    </form>
+                </div>
+            </div>
+        </div>
+    );
+}
+
 /* ================= Blog Preview ================= */
 /* ── Blog API types ── */
 interface BlogPost {
@@ -1469,7 +1686,7 @@ function BlogPreview() {
     const skeletons = [0, 1, 2, 3];
 
     return (
-        <section className="relative px-4 pb-20">
+        <section id="blog" className="relative px-4 pb-20 scroll-mt-28">
             {/* Light: clean off-white  ·  Dark: brand-dark Clientele style */}
             <div className="max-w-[1400px] mx-auto rounded-[28px] relative overflow-hidden
                 bg-[#F7F7F4] border border-black/8
@@ -1644,7 +1861,7 @@ function BlogPreview() {
 function FAQ() {
     const [open, setOpen] = useState(0);
     return (
-        <section className="relative px-4 pb-20">
+        <section id="faq" className="relative px-4 pb-20 scroll-mt-28">
             <div className="max-w-[1400px] mx-auto rounded-[28px] relative overflow-hidden
                 bg-white border border-black/8
                 dark:bg-[#0A0D0C] dark:border-[#1E2523]
@@ -1717,7 +1934,7 @@ function FAQ() {
 /* ================= Final CTA ================= */
 function CTA() {
     return (
-        <section className="px-4 pb-20">
+        <section id="final-cta" className="px-4 pb-20 scroll-mt-28">
             <div
                 className="max-w-[1400px] mx-auto rounded-[28px] px-6 md:px-14 py-20 md:py-28 relative overflow-hidden"
             // style={{
@@ -1775,12 +1992,20 @@ function CTA() {
 /* ================= Footer ================= */
 export function Footer() {
     return (
-        <footer className="px-4 pb-8">
-            <div className="max-w-[1400px] mx-auto rounded-[28px] bg-[#071312] dark:bg-[#071312] text-white px-6 md:px-14 py-14 md:py-20 border border-white/10 overflow-hidden">
-                <div className="grid lg:grid-cols-[1.35fr_2fr] gap-12">
+        <footer className="px-3 sm:px-4 pb-8">
+            <div className="max-w-[1400px] mx-auto rounded-[24px] md:rounded-[28px] bg-[#071312] dark:bg-[#071312] text-white px-4 sm:px-6 lg:px-14 py-10 sm:py-12 lg:py-20 border border-white/10 overflow-hidden">
+                <div className="grid lg:grid-cols-[1.1fr_2.2fr] gap-9 lg:gap-12">
                     <div className="max-w-[360px]">
-                        <div className="font-display text-[36px] leading-none tracking-tight text-white">
-                            Arevei
+                        <div className="flex items-center gap-3">
+                            <img
+                                src="/assets/images/NewAreveiFavicon.png"
+                                alt=""
+                                aria-hidden="true"
+                                className="h-9 w-9 object-contain"
+                            />
+                            <div className="font-display text-[36px] leading-none tracking-tight text-white">
+                                Arevei
+                            </div>
                         </div>
                         <p className="text-white/62 text-[14px] mt-4 leading-relaxed">
                             The AI-Native Website Manager. Build, manage, and grow under one expert team.
@@ -1814,19 +2039,19 @@ export function Footer() {
                             <SocialIcons />
                         </div>
                     </div>
-                    <div className="grid gap-10">
-                        <div className="grid grid-cols-2 md:grid-cols-3 gap-x-8 gap-y-10">
+                    <div className="grid gap-8">
+                        <div className="grid grid-cols-2 md:grid-cols-4 gap-x-5 sm:gap-x-7 gap-y-8">
                             {landingFooterCols.map((c) => (
                                 <div key={c.title}>
-                                    <div className="text-[12px] uppercase tracking-[0.18em] text-[#00E6C4] mb-4">
+                                    <div className="text-[11px] uppercase tracking-[0.18em] text-[#00E6C4] mb-3">
                                         {c.title}
                                     </div>
-                                    <ul className="space-y-2.5">
+                                    <ul className="space-y-2">
                                         {c.links.map((l) => (
                                             <li key={`${c.title}-${l.name}`}>
                                                 <a
                                                     href={l.link}
-                                                    className="text-[14px] text-white/72 hover:text-white link-hover"
+                                                    className="text-[13px] sm:text-[14px] text-white/72 hover:text-white link-hover"
                                                 >
                                                     {l.name}
                                                 </a>
@@ -1836,32 +2061,32 @@ export function Footer() {
                                 </div>
                             ))}
                         </div>
-                        <div className="grid gap-5 rounded-2xl border border-white/10 bg-white/[0.04] p-5 sm:grid-cols-[auto_1fr] sm:items-center">
-                            <div className="flex items-center gap-4">
+                        <div className="flex flex-col gap-3 rounded-xl border border-white/10 bg-white/[0.035] p-3 sm:p-4 md:grid-cols-[auto_1fr] md:items-center w-fit">
+                            <div className="flex flex-wrap flex-col items-center gap-3">
                                 <img
                                     src="/assets/icons/Dpiit logo@2x.png"
                                     alt="DPIIT recognition badge"
-                                    className="h-20 w-20 rounded-full bg-white object-contain"
+                                    className="h-28 w-28 rounded-full bg-white object-contain"
                                 />
                                 <img
                                     src="https://www.startupindia.gov.in/content/dam/invest-india/newhomepage/Logo1.png"
                                     alt="Startup India"
-                                    className="h-12 w-36 object-contain"
+                                    className="h-9 w-28 object-contain"
                                 />
                             </div>
-                            <p className="text-[13px] leading-relaxed text-white/60">
+                            <p className="text-[12px] text-center leading-relaxed text-white/58 md:max-w-[200px]">
                                 Recognized startup building modern brands with strategy, technology, and performance-led execution.
                             </p>
                         </div>
                     </div>
                 </div>
 
-                <div className="relative mt-16 min-h-[170px] md:min-h-[260px] border-t border-white/10 pt-8">
-                    <div className="flex flex-col md:flex-row justify-between gap-3 text-[12px] text-white/45">
+                <div className="mt-10 md:mt-14 border-t border-white/10 pt-6 md:pt-8">
+                    <div className="relative z-10 flex flex-col md:flex-row justify-between gap-4 text-[12px] text-white/45">
                         <div>
                             Copyright {new Date().getFullYear()} Shakyawar Mediatech LLP. All rights reserved.
                         </div>
-                        <div className="flex gap-6">
+                        {/* <div className="flex flex-wrap gap-x-5 gap-y-2">
                             <a href="/terms" className="hover:text-white">
                                 Terms
                             </a>
@@ -1874,20 +2099,22 @@ export function Footer() {
                             <a href="/contact" className="hover:text-white">
                                 Contact
                             </a>
+                        </div> */}
+                    </div>
+                    <div className="relative mt-8 h-[96px] overflow-hidden sm:h-[130px] md:h-[190px]">
+                        <div
+                            className="pointer-events-none absolute left-1/2 top-0 -translate-x-1/2 select-none font-display text-[20vw] leading-none tracking-tighter sm:text-[24vw] md:text-[190px]"
+                            style={{
+                                background: "linear-gradient(180deg, rgba(255,255,255,0.68), rgba(255,255,255,0.04))",
+                                WebkitBackgroundClip: "text",
+                                backgroundClip: "text",
+                                color: "transparent",
+                            }}
+                        >
+                            Arevei
                         </div>
+                        <div className="pointer-events-none absolute inset-x-0 bottom-0 h-16 " />
                     </div>
-                    <div
-                        className="pointer-events-none absolute left-1/2 top-14 -translate-x-1/2 select-none font-display text-[34vw] leading-none tracking-tighter md:text-[220px]"
-                        style={{
-                            background: "linear-gradient(180deg, rgba(255,255,255,0.72), rgba(255,255,255,0.06))",
-                            WebkitBackgroundClip: "text",
-                            backgroundClip: "text",
-                            color: "transparent",
-                        }}
-                    >
-                        Arevei
-                    </div>
-                    <div className="pointer-events-none absolute inset-x-0 bottom-0 h-28 bg-gradient-to-t from-[#071312] to-transparent" />
                 </div>
             </div>
         </footer>
@@ -1909,6 +2136,7 @@ export default function Home() {
             <UnifiedManagement />
             <Testimonials />
             <Pricing />
+            <DemoBookingForm />
             <BlogPreview />
             <FAQ />
             <CTA />

@@ -173,6 +173,14 @@ html.dark .new-layout-active .dark\:text-\[\#0A0D0C\],
     color: var(--on-accent) !important;
 }
 
+.new-layout-active .bg-\[\#C7F27A\].text-black,
+.new-layout-active .bg-\[\#00E6C4\].text-black,
+.new-layout-active .bg-\[\#C7F27A\].text-\[\#0A0D0C\],
+.new-layout-active .bg-\[\#00E6C4\].text-\[\#0A0D0C\],
+.new-layout-active .bg-\[\#00E6C4\].text-\[\#041411\] {
+    color: var(--on-accent) !important;
+}
+
 html.dark .new-layout-active .bg-white\/10 {
     background-color: var(--glass) !important;
 }
