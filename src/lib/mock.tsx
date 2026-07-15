@@ -1,9 +1,9 @@
 export const navItems = [
-    { label: 'Home', href: '/landing#top' },
-    { label: 'Products', href: '/landing#services' },
-    { label: 'Plans', href: '/landing#pricing' },
-    { label: 'Clientele', href: '/landing#clientele' },
-    { label: 'Blogs', href: '/landing#blog' },
+    { label: 'Home', href: '/#top' },
+    { label: 'Products', href: '/#services' },
+    { label: 'Plans', href: '/#pricing' },
+    { label: 'Clientele', href: '/#clientele' },
+    { label: 'Blogs', href: '/#blog' },
     // { label: 'About', href: '/about' },
 ];
 

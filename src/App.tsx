@@ -94,7 +94,7 @@ const App = () => {
         </Route>
         <Route path="/google/auth/contact" element={<PhoneNumberForm/>}/>
         <Route element={<NewLayout />}>
-        <Route path="/" element={<Home/>}/>
+        <Route path="/landing" element={<Home/>}/>
         <Route path="/prices" element={<PricingPageTwo/>}/>
         <Route path="/meet" element={<MeetForm/>}/>
         <Route path="/works" element={<WorkPage/>}/>
@@ -117,7 +117,7 @@ const App = () => {
         <Route path="/blog/:paramSlag" element={<BlogPage />}/>
         <Route path="/services" element={<Services/>}/>
         <Route path="/services/:slug" element={<ServiceDetailPage/>}/>
-        <Route path="/landing" element={<LandingHome />} />
+        <Route path="/" element={<LandingHome />} />
         </Route>
 
         <Route element={<RootLayout/>}>

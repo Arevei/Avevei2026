@@ -117,7 +117,7 @@ function BlobDecor({
 
 /* ================= Logo ================= */
 const Logo = () => (
-    <a href="/landing" className="flex items-center gap-2">
+    <a href="/" className="flex items-center gap-2">
         <img
             src="/assets/images/NewAreveiFavicon.png"
             alt=""
