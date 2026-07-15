@@ -85,7 +85,7 @@ const App = () => {
         <div className="grid-bg"></div>
         {/* <div className="gradient-overlay"></div> */}
     <RouteMeta />
-    <main className="flex h-screen w-full overflow-hidden">
+    <main className="w-full min-h-screen">
     <Toaster />
       <Routes>
       <Route element={<AuthenticationLayout />}>
@@ -93,14 +93,11 @@ const App = () => {
           <Route path="/sign-up" element={<SignUpForm />} />
         </Route>
         <Route path="/google/auth/contact" element={<PhoneNumberForm/>}/>
-        <Route element={<RootLayout/>}>
+        <Route element={<NewLayout />}>
         <Route path="/" element={<Home/>}/>
         <Route path="/prices" element={<PricingPageTwo/>}/>
         <Route path="/meet" element={<MeetForm/>}/>
         <Route path="/works" element={<WorkPage/>}/>
-        <Route path="/user/account/:name" element={<Account/>}/>
-        <Route path="/user/updatepassword/:name" element={<UpdatePassword/>}/>
-        <Route path="/user/deleteaccount/:name" element={<DeleteAccount/>}/>
         <Route path="/contact" element={<ContactUs/>}/>
         <Route path="/about" element={<AboutPage/>}/>
         <Route path="/what-we-do" element={<WhatWeDoPage/>}/>
@@ -120,10 +117,13 @@ const App = () => {
         <Route path="/blog/:paramSlag" element={<BlogPage />}/>
         <Route path="/services" element={<Services/>}/>
         <Route path="/services/:slug" element={<ServiceDetailPage/>}/>
+        <Route path="/landing" element={<LandingHome />} />
         </Route>
 
-        <Route element={<NewLayout />}>
-          <Route path="/landing" element={<LandingHome />} />
+        <Route element={<RootLayout/>}>
+        <Route path="/user/account/:name" element={<Account/>}/>
+        <Route path="/user/updatepassword/:name" element={<UpdatePassword/>}/>
+        <Route path="/user/deleteaccount/:name" element={<DeleteAccount/>}/>
         </Route>
       
       </Routes>

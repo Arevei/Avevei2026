@@ -10,7 +10,7 @@ const Footer = () => {
     })
   }
   return (
-    <footer className="w-full px-4 pb-12 pt-10 text-white sm:px-6 lg:px-8">
+    <footer className="legacy-site-footer w-full px-4 pb-12 pt-10 text-white sm:px-6 lg:px-8">
       <div className="mx-auto flex w-full max-w-7xl flex-col gap-8 rounded-[32px] border border-teal-800 bg-black/35 p-6 backdrop-blur-md sm:p-8 lg:p-10">
         <div className="grid gap-10 lg:grid-cols-[minmax(0,1fr)_220px] lg:items-start">
           <ItemsContainer />

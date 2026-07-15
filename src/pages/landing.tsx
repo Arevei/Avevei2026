@@ -118,7 +118,7 @@ function BlobDecor({
 
 /* ================= Logo ================= */
 const Logo = () => (
-    <a href="/" className="flex items-center gap-2">
+    <a href="/landing" className="flex items-center gap-2">
         <img
             src="/assets/images/NewAreveiFavicon.png"
             alt=""
@@ -220,7 +220,7 @@ export function NewAreveiNavbar() {
                     <a href={actionHref} className="hidden sm:inline-flex px-4 md:px-5 py-2 rounded-full bg-white dark:bg-white/10 hover:bg-black/5 dark:hover:bg-white/15 text-[14px] font-medium transition-colors border border-black/10 dark:border-white/15 text-black dark:text-white">
                         Get Website Audit
                     </a>
-                    <a href={actionHref} className="hidden sm:inline-flex px-4 md:px-5 py-2 rounded-full bg-black dark:bg-[#C7F27A] text-white dark:text-black text-[14px] font-medium hover:bg-neutral-800 dark:hover:bg-[#b8e662] transition-colors">
+                    <a href={actionHref} className="hidden sm:inline-flex px-4 md:px-5 py-2 rounded-full bg-black dark:bg-[#00E6C4] text-white dark:text-black text-[14px] font-medium hover:bg-neutral-800 dark:hover:bg-[#12f3d2] transition-colors">
                         Book a Demo
                     </a>
                     <button
@@ -252,7 +252,7 @@ export function NewAreveiNavbar() {
                         <a href={actionHref} onClick={() => setMobileOpen(false)} className="rounded-full border border-black/10 dark:border-white/15 px-4 py-2.5 text-center text-[13px] font-medium text-black dark:text-white">
                             Get Audit
                         </a>
-                        <a href={actionHref} onClick={() => setMobileOpen(false)} className="rounded-full bg-black dark:bg-[#C7F27A] px-4 py-2.5 text-center text-[13px] font-medium text-white dark:text-black">
+                        <a href={actionHref} onClick={() => setMobileOpen(false)} className="rounded-full bg-black dark:bg-[#00E6C4] px-4 py-2.5 text-center text-[13px] font-medium text-white dark:text-black">
                             Book Demo
                         </a>
                     </div>
@@ -287,7 +287,7 @@ function Hero() {
                 <div className="relative z-10 text-center max-w-[1100px] px-4 sm:px-6 py-16 sm:py-24">
                     {/* Badge pill */}
                     <div className="inline-flex items-center gap-2 rounded-full bg-white/10 backdrop-blur border border-white/20 px-4 py-1.5 mb-8">
-                        <Sparkles className="h-3.5 w-3.5 text-[#C7F27A]" />
+                        <Sparkles className="h-3.5 w-3.5 text-[#C7F27A] dark:text-[#00E6C4]" />
                         <span className="text-[12px] uppercase tracking-[0.18em] text-white/90">
                             AI Native Website Manager
                         </span>
@@ -299,7 +299,7 @@ function Hero() {
                         {/* Lime highlight block — mt-4 creates deliberate gap above the block */}
                         <span className="block mt-2 sm:mt-4">
                             <span
-                                className="inline bg-[#C7F27A] text-[#0A0D0C] px-3 py-1 leading-[1.6] sm:leading-[1.12]"
+                                className="inline bg-[#00E6C4] text-[#0A0D0C] px-3 py-1 leading-[1.6] sm:leading-[1.12]"
                                 style={{ boxDecorationBreak: "clone", WebkitBoxDecorationBreak: "clone" }}
                             >
                                 <span className="">money-making</span>
@@ -315,7 +315,7 @@ function Hero() {
 
                     {/* CTAs */}
                     <div className="mt-9 flex flex-col sm:flex-row items-center justify-center gap-3">
-                        <a href={actionHref} className="group px-7 py-3.5 rounded-full bg-[#C7F27A] text-black text-[14px] font-semibold hover:bg-[#b8e662] hover:scale-[1.02] transition-all shadow-[0_0_24px_#C7F27A40]">
+                        <a href={actionHref} className="group px-7 py-3.5 rounded-full bg-[#00E6C4] text-black text-[14px] font-semibold dark:hover:bg-[#12f3d2] hover:scale-[1.02] transition-all shadow-[0_0_24px_#C7F27A40] dark:shadow-[0_0_24px_#00E6C440]">
                             <span className="inline-flex items-center gap-2">
                                 Get Website Audit
                                 <ArrowUpRight className="h-4 w-4 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
@@ -340,7 +340,7 @@ function Hero() {
                         </span>
                         <span className="hidden sm:block text-white/25">·</span>
                         <span className="text-[13px] text-white/55">
-                            <span className="text-[#C7F27A] font-semibold">3.4×</span> avg. organic growth in 90 days
+                            <span className="text-[#C7F27A] dark:text-[#00E6C4] font-semibold">3.4×</span> avg. organic growth in 90 days
                         </span>
                     </div>
                 </div>
@@ -445,11 +445,11 @@ function ProblemSection() {
                 {/* Teal glow top-left */}
                 <div className="pointer-events-none absolute -top-20 -left-20 w-[400px] h-[400px] rounded-full blur-3xl bg-[#00E6C4]/5 dark:bg-[#00E6C4]/8" />
                 {/* Lime glow bottom-right */}
-                <div className="pointer-events-none absolute -bottom-20 -right-20 w-[400px] h-[400px] rounded-full blur-3xl bg-[#C7F27A]/8 dark:bg-[#C7F27A]/6" />
+                <div className="pointer-events-none absolute -bottom-20 -right-20 w-[400px] h-[400px] rounded-full blur-3xl bg-[#C7F27A]/8 dark:bg-[#00E6C4]/6" />
                 {/* Blob accent left */}
                 <BlobDecor variant={0} className="pointer-events-none absolute -left-24 top-1/2 -translate-y-1/2 w-[340px] h-[340px] opacity-[0.04] dark:opacity-[0.06]" color="#00E6C4" />
                 {/* Blob accent right */}
-                <BlobDecor variant={2} className="pointer-events-none absolute -right-20 top-8 w-[260px] h-[260px] opacity-[0.05] dark:opacity-[0.07]" color="#C7F27A" />
+                <BlobDecor variant={2} className="pointer-events-none absolute -right-20 top-8 w-[260px] h-[260px] opacity-[0.05] dark:opacity-[0.07]" color="#00E6C4" />
 
                 <div className="relative text-center">
                     <div className="text-[12px] uppercase tracking-[0.22em] mb-6 text-[#0F6E56] dark:text-[#00E6C4]">
@@ -458,7 +458,7 @@ function ProblemSection() {
                     <h2 className="display-hero text-black dark:text-[#EDEFEE] text-[10vw] md:text-[64px] leading-[0.98] max-w-[900px] mx-auto">
                         Your website was built.
                         <br />
-                        <span className="text-[#0F6E56] dark:text-[#C7F27A]">
+                        <span className="text-[#0F6E56] dark:text-[#00E6C4]">
                             Then everyone got busy.
                         </span>
                     </h2>
@@ -499,11 +499,11 @@ function WhatArevei() {
     const inView = useInView(ref);
     const pillarIcons = [Hammer, Settings2, BarChart3, TrendingUp];
 
-    const pillarDark = [
-        "bg-[#0F1413]",
-        "bg-[#0F1413]",
-        "bg-[#0F1413]",
-        "bg-[#0F1413]",
+    const pillarCardClasses = [
+        "bg-[#DCE7F6] dark:bg-[#0F1413]",
+        "bg-[#E7F5D9] dark:bg-[#0F1413]",
+        "bg-[#F8DAEE] dark:bg-[#0F1413]",
+        "bg-[#F5F142] dark:bg-[#0F1413]",
     ];
 
     return (
@@ -522,9 +522,9 @@ function WhatArevei() {
                 {/* Teal glow top-left */}
                 <div className="pointer-events-none absolute -top-20 -left-20 w-[400px] h-[400px] rounded-full blur-3xl bg-[#00E6C4]/5 dark:bg-[#00E6C4]/8" />
                 {/* Lime glow bottom-right */}
-                <div className="pointer-events-none absolute -bottom-20 -right-20 w-[400px] h-[400px] rounded-full blur-3xl bg-[#C7F27A]/8 dark:bg-[#C7F27A]/6" />
+                <div className="pointer-events-none absolute -bottom-20 -right-20 w-[400px] h-[400px] rounded-full blur-3xl bg-[#C7F27A]/8 dark:bg-[#00E6C4]/6" />
                 {/* Blob top-right */}
-                <BlobDecor variant={1} className="pointer-events-none absolute -right-16 -top-16 w-[300px] h-[300px] opacity-[0.05] dark:opacity-[0.07]" color="#C7F27A" />
+                <BlobDecor variant={1} className="pointer-events-none absolute -right-16 -top-16 w-[300px] h-[300px] opacity-[0.05] dark:opacity-[0.07]" color="#00E6C4" />
                 {/* Blob bottom-left */}
                 <BlobDecor variant={2} className="pointer-events-none absolute -left-16 -bottom-16 w-[280px] h-[280px] opacity-[0.04] dark:opacity-[0.06]" color="#00E6C4" />
 
@@ -537,7 +537,7 @@ function WhatArevei() {
                             <span>We build, manage,</span>
                             <br />
                             <span
-                                className={`inline-block text-[#0F6E56] dark:text-[#C7F27A] transition-all duration-1000 ${inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-3"}`}
+                                className={`inline-block text-[#0F6E56] dark:text-[#00E6C4] transition-all duration-1000 ${inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-3"}`}
                             >
                                 analyze, and grow.
                             </span>
@@ -559,7 +559,7 @@ function WhatArevei() {
                             return (
                             <div
                                 key={p.title}
-                                className={`rounded-[22px] p-7 md:p-8 min-h-[280px] card-lift ${p.color} dark:${pillarDark[i]}`}
+                                className={`rounded-[22px] p-7 md:p-8 min-h-[280px] card-lift ${pillarCardClasses[i]}`}
                                 style={{ transitionDelay: `${i * 100}ms` }}
                             >
                                 <div className="w-12 h-12 rounded-xl flex items-center justify-center mb-6 bg-[#0F6E56]/10 dark:bg-[#00E6C4]/10 border border-[#0F6E56]/15 dark:border-[#00E6C4]/20">
@@ -691,7 +691,7 @@ function SeenSalesAhead() {
                 {/* <div className="pointer-events-none absolute -top-20 -left-20 w-[420px] h-[420px] rounded-full blur-3xl
                     bg-[#00E6C4]/8 dark:bg-[#00E6C4]/10" /> */}
                 {/* <div className="pointer-events-none absolute -bottom-20 -right-20 w-[360px] h-[360px] rounded-full blur-3xl
-                    bg-[#C7F27A]/10 dark:bg-[#C7F27A]/6" /> */}
+                    bg-[#C7F27A]/10 dark:bg-[#00E6C4]/6" /> */}
 
                 <div className="relative p-6 md:p-14">
                     {/* Header */}
@@ -705,9 +705,9 @@ function SeenSalesAhead() {
                                 <span className="inline-flex items-center gap-3">
                                     <span className="inline-block w-16 h-12 md:w-20 md:h-14 rounded-full
                                         bg-gradient-to-br from-[#00E6C4] to-[#C7F27A]
-                                        dark:from-[#00E6C4]/60 dark:to-[#C7F27A]
+                                        dark:from-[#00E6C4]/60 dark:to-[#00E6C4]
                                         shadow-inner animate-float" />
-                                    <span className="text-[#0F6E56] dark:text-[#C7F27A]">Get Ahead.</span>
+                                    <span className="text-[#0F6E56] dark:text-[#00E6C4]">Get Ahead.</span>
                                 </span>
                             </h2>
                         </div>
@@ -716,7 +716,7 @@ function SeenSalesAhead() {
                                 Arevei Web builds and optimizes. Arevei Grow attracts and ranks. Arevei Ads scales and attributes. Every action informs the next.
                             </p>
                             <div className="mt-6 flex gap-3">
-                                <a href="#services" className="px-5 py-2.5 rounded-full bg-[#0F6E56] dark:bg-[#C7F27A] text-white dark:text-black text-[13px] font-semibold hover:bg-[#0a5a46] dark:hover:bg-[#b8e662] transition-colors">
+                                <a href="#services" className="px-5 py-2.5 rounded-full bg-[#0F6E56] dark:bg-[#00E6C4] text-white dark:text-black text-[13px] font-semibold hover:bg-[#0a5a46] dark:hover:bg-[#12f3d2] transition-colors">
                                     See it in action
                                 </a>
                                 <a href={actionHref} className="px-5 py-2.5 rounded-full border border-black/18 dark:border-white/25 text-black dark:text-white text-[13px] hover:border-black/35 dark:hover:border-white/50 transition-colors">
@@ -808,7 +808,7 @@ function OnePlatform() {
                         Services
                     </div>
                     <h2 className="display-hero text-black dark:text-[#EDEFEE] text-[10vw] md:text-[72px] leading-[0.98]">
-                        One Platform<br /><span className="text-[#0F6E56] dark:text-[#C7F27A]">Three Engines.</span>
+                        One Platform<br /><span className="text-[#0F6E56] dark:text-[#00E6C4]">Three Engines.</span>
                     </h2>
                     <p className="mt-5 text-black/55 dark:text-[#8A928F] text-[15px] max-w-[480px] mx-auto">
                         Build, grow, and scale — all under one retainer. No agency ping-pong.
@@ -856,7 +856,7 @@ function OnePlatform() {
                                 </ul>
 
                                 {/* CTA */}
-                                <a href={actionHref} className="mt-8 group/btn inline-flex items-center gap-1.5 text-[13px] font-semibold transition-colors text-[#00E6C4] hover:text-[#0F6E56] dark:hover:text-[#C7F27A]">
+                                <a href={actionHref} className="mt-8 group/btn inline-flex items-center gap-1.5 text-[13px] font-semibold transition-colors text-[#00E6C4] hover:text-[#0F6E56] dark:hover:text-[#00E6C4]">
                                     {e.cta}
                                     <ArrowUpRight className="h-3.5 w-3.5 group-hover/btn:translate-x-0.5 group-hover/btn:-translate-y-0.5 transition-transform" />
                                 </a>
@@ -911,7 +911,7 @@ function OurProcess() {
                 <div className="pointer-events-none absolute top-0 left-1/2 -translate-x-1/2 w-[700px] h-[260px] rounded-full blur-3xl
                     bg-[#00E6C4]/5 dark:bg-[#00E6C4]/7" />
                 <div className="pointer-events-none absolute bottom-0 right-0 w-[400px] h-[300px] rounded-full blur-3xl
-                    bg-[#C7F27A]/8 dark:bg-[#C7F27A]/5" />
+                    bg-[#C7F27A]/8 dark:bg-[#00E6C4]/5" />
 
                 <div className="relative px-6 md:px-14 pt-16 md:pt-20 pb-12 text-center">
                     <div className="text-[12px] uppercase tracking-[0.22em] mb-6
@@ -921,7 +921,7 @@ function OurProcess() {
                     <h2 className="display-hero text-[10vw] md:text-[64px] leading-[0.98]
                         text-black dark:text-[#EDEFEE]">
                         Audit. Build. Track.<br />
-                        <span className="text-[#0F6E56] dark:text-[#C7F27A]">Recommend.</span> Execute. Report.
+                        <span className="text-[#0F6E56] dark:text-[#00E6C4]">Recommend.</span> Execute. Report.
                     </h2>
                 </div>
 
@@ -960,7 +960,7 @@ function OurProcess() {
                                         </div>
                                         <div className="pb-4">
                                             <div className="flex items-center gap-2 mb-1">
-                                                <span className="text-[10px] font-mono uppercase tracking-widest text-[#0F6E56] dark:text-[#C7F27A]">
+                                                <span className="text-[10px] font-mono uppercase tracking-widest text-[#0F6E56] dark:text-[#00E6C4]">
                                                     {step.tag}
                                                 </span>
                                                 <span className="text-[10px] text-black/35 dark:text-[#8A928F]">
@@ -979,7 +979,7 @@ function OurProcess() {
                                     <div className="hidden md:grid grid-cols-[1fr_40px_1fr] gap-4 items-center">
                                         {isLeft ? (
                                             <div className="text-right pr-8">
-                                                <div className="text-[10px] font-mono uppercase tracking-widest mb-1 text-[#0F6E56] dark:text-[#C7F27A]">
+                                                <div className="text-[10px] font-mono uppercase tracking-widest mb-1 text-[#0F6E56] dark:text-[#00E6C4]">
                                                     {step.tag}
                                                 </div>
                                                 <h3 className="font-display text-[24px] md:text-[28px] tracking-tight leading-tight text-black dark:text-[#EDEFEE]">
@@ -1004,7 +1004,7 @@ function OurProcess() {
                                         </div>
                                         {!isLeft ? (
                                             <div className="pl-8">
-                                                <div className="text-[10px] font-mono uppercase tracking-widest mb-1 text-[#0F6E56] dark:text-[#C7F27A]">
+                                                <div className="text-[10px] font-mono uppercase tracking-widest mb-1 text-[#0F6E56] dark:text-[#00E6C4]">
                                                     {step.tag}
                                                 </div>
                                                 <h3 className="font-display text-[24px] md:text-[28px] tracking-tight leading-tight text-black dark:text-[#EDEFEE]">
@@ -1050,7 +1050,7 @@ function WhyArevei() {
                 {/* Teal glow top-left */}
                 <div className="pointer-events-none absolute -top-20 -left-20 w-[400px] h-[400px] rounded-full blur-3xl bg-[#00E6C4]/6 dark:bg-[#00E6C4]/8" />
                 {/* Lime glow bottom-right */}
-                <div className="pointer-events-none absolute -bottom-20 -right-20 w-[400px] h-[400px] rounded-full blur-3xl bg-[#C7F27A]/8 dark:bg-[#C7F27A]/6" />
+                <div className="pointer-events-none absolute -bottom-20 -right-20 w-[400px] h-[400px] rounded-full blur-3xl bg-[#C7F27A]/8 dark:bg-[#00E6C4]/6" />
 
                 <div className="relative">
                     <div className="max-w-3xl mb-12">
@@ -1080,7 +1080,7 @@ function WhyArevei() {
                                     Traditional Agency
                                 </span>
                             </div>
-                            <div className="p-4 md:p-5 text-center border-l border-black/8 dark:border-[#1E2523] bg-black dark:bg-[#C7F27A]">
+                            <div className="p-4 md:p-5 text-center border-l border-black/8 dark:border-[#1E2523] bg-black dark:bg-[#00E6C4]">
                                 <span className="text-[12px] md:text-[13px] font-semibold tracking-wide text-white dark:text-[#0A0D0C]">
                                     Arevei
                                 </span>
@@ -1098,7 +1098,7 @@ function WhyArevei() {
                                     <X className="h-3.5 w-3.5 text-red-400/70 shrink-0" />
                                     {row.agency}
                                 </div>
-                                <div className="p-4 md:p-5 border-l border-black/6 dark:border-[#1E2523] text-center bg-black/[0.025] dark:bg-[#C7F27A]/[0.06] flex items-center justify-center gap-1.5">
+                                <div className="p-4 md:p-5 border-l border-black/6 dark:border-[#1E2523] text-center bg-black/[0.025] dark:bg-[#00E6C4]/[0.06] flex items-center justify-center gap-1.5">
                                     <Check className="h-3.5 w-3.5 text-[#0F6E56] dark:text-[#00E6C4] shrink-0" />
                                     <span className="text-[12px] md:text-[13px] font-semibold text-black dark:text-[#EDEFEE]">
                                         {row.arevei}
@@ -1131,7 +1131,7 @@ function UnifiedManagement() {
                 {/* Teal glow top-left */}
                 <div className="pointer-events-none absolute -top-20 -left-20 w-[400px] h-[400px] rounded-full blur-3xl bg-[#00E6C4]/5 dark:bg-[#00E6C4]/8" />
                 {/* Lime glow bottom-right */}
-                <div className="pointer-events-none absolute -bottom-20 -right-20 w-[400px] h-[400px] rounded-full blur-3xl bg-[#C7F27A]/8 dark:bg-[#C7F27A]/6" />
+                <div className="pointer-events-none absolute -bottom-20 -right-20 w-[400px] h-[400px] rounded-full blur-3xl bg-[#C7F27A]/8 dark:bg-[#00E6C4]/6" />
 
                 <div className="relative">
                     <div className="text-center mb-10">
@@ -1141,7 +1141,7 @@ function UnifiedManagement() {
                         <h2 className="display-hero text-black dark:text-[#EDEFEE] text-[10vw] md:text-[64px] leading-[0.98]">
                             One team.
                             <br />
-                            <span className="text-[#0F6E56] dark:text-[#C7F27A]">Every kind of business.</span>
+                            <span className="text-[#0F6E56] dark:text-[#00E6C4]">Every kind of business.</span>
                         </h2>
                     </div>
 
@@ -1178,13 +1178,13 @@ function UnifiedManagement() {
                                 <div className="mt-auto pt-6 flex flex-wrap items-center gap-2 relative">
                                     <a href={actionHref} className="group/btn px-4 py-2 rounded-full text-[13px] font-medium flex items-center gap-1 transition-colors
                                         bg-black text-white hover:bg-neutral-800
-                                        dark:bg-[#C7F27A] dark:text-[#0A0D0C] dark:hover:bg-[#b8e662]">
+                                        dark:bg-[#00E6C4] dark:text-[#0A0D0C] dark:hover:bg-[#12f3d2]">
                                         {a.cta}
                                         <ArrowUpRight className="h-3.5 w-3.5 group-hover/btn:translate-x-0.5 group-hover/btn:-translate-y-0.5 transition-transform" />
                                     </a>
                                     {a.cta2 && (
                                         <a href={a.cta2.toLowerCase().includes("pricing") ? "#pricing" : actionHref} className="px-4 py-2 rounded-full text-[13px] font-medium transition-colors
-                                            bg-white border border-black/10 text-black hover:bg-black/5
+                                             border border-black/10 text-black hover:bg-black/5
                                             dark:bg-white/6 dark:border-[#1E2523] dark:text-[#EDEFEE] dark:hover:bg-white/12">
                                             {a.cta2}
                                         </a>
@@ -1220,7 +1220,7 @@ function Testimonials() {
                     bg-[#00E6C4]/6 dark:bg-[#00E6C4]/8" />
                 {/* Lime glow bottom-right */}
                 <div className="pointer-events-none absolute -bottom-20 -right-20 w-[400px] h-[400px] rounded-full blur-3xl
-                    bg-[#C7F27A]/8 dark:bg-[#C7F27A]/6" />
+                    bg-[#C7F27A]/8 dark:bg-[#00E6C4]/6" />
 
                 <div className="relative">
                     {/* Header */}
@@ -1233,7 +1233,7 @@ function Testimonials() {
                             <h2 className="display-hero text-[10vw] md:text-[64px] leading-[0.98]
                                 text-black dark:text-[#EDEFEE]">
                                 Loved by growing<br />
-                                <span className="text-[#0F6E56] dark:text-[#C7F27A]">brands</span> & founders.
+                                <span className="text-[#0F6E56] dark:text-[#00E6C4]">brands</span> & founders.
                             </h2>
                         </div>
                         <div className="md:pb-2 md:max-w-[280px]">
@@ -1286,21 +1286,21 @@ function Testimonials() {
                                             {t.role}
                                         </div>
                                     </div>
-                                    <div className={`ml-auto w-2 h-2 rounded-full soft-pulse ${i === 0 ? 'bg-[#00E6C4]' : i === 1 ? 'bg-[#C7F27A]' : 'bg-[#0F6E56]'
+                                    <div className={`ml-auto w-2 h-2 rounded-full soft-pulse ${i === 0 ? 'bg-[#00E6C4]' : i === 1 ? 'bg-[#00E6C4]' : 'bg-[#0F6E56]'
                                         }`} />
                                 </div>
 
                                 <p className="text-[14px] md:text-[15px] leading-relaxed relative flex-1
-                                    text-black/70 dark:text-[#EDEFEE]/78">
+                                    text-black/70 dark:text-[#EDEFEE]/80">
                                     "{t.quote}"
                                 </p>
 
-                                <a href={actionHref} className="mt-6 inline-flex items-center gap-1.5 text-[13px] font-medium transition-colors group/btn
+                                {/* <a href={actionHref} className="mt-6 inline-flex items-center gap-1.5 text-[13px] font-medium transition-colors group/btn
                                     text-[#0F6E56] hover:text-[#00E6C4]
-                                    dark:text-[#00E6C4] dark:hover:text-[#C7F27A]">
+                                    dark:text-[#00E6C4] dark:hover:text-[#12f3d2]">
                                     Watch story
                                     <ArrowUpRight className="h-3.5 w-3.5 group-hover/btn:translate-x-0.5 group-hover/btn:-translate-y-0.5 transition-transform" />
-                                </a>
+                                </a> */}
                             </div>
                         ))}
                     </div>
@@ -1334,11 +1334,11 @@ function Pricing() {
                 {/* Teal glow top-left */}
                 <div className="pointer-events-none absolute -top-20 -left-20 w-[400px] h-[400px] rounded-full blur-3xl bg-[#00E6C4]/5 dark:bg-[#00E6C4]/8" />
                 {/* Lime glow bottom-right */}
-                <div className="pointer-events-none absolute -bottom-20 -right-20 w-[400px] h-[400px] rounded-full blur-3xl bg-[#C7F27A]/8 dark:bg-[#C7F27A]/6" />
+                <div className="pointer-events-none absolute -bottom-20 -right-20 w-[400px] h-[400px] rounded-full blur-3xl bg-[#C7F27A]/8 dark:bg-[#00E6C4]/6" />
                 {/* Blob mid-left */}
                 <BlobDecor variant={0} className="pointer-events-none absolute left-0 top-1/3 w-[320px] h-[320px] opacity-[0.05] dark:opacity-[0.07]" color="#00E6C4" />
                 {/* Blob mid-right */}
-                <BlobDecor variant={1} className="pointer-events-none absolute right-0 bottom-1/4 w-[280px] h-[280px] opacity-[0.04] dark:opacity-[0.06]" color="#C7F27A" />
+                <BlobDecor variant={1} className="pointer-events-none absolute right-0 bottom-1/4 w-[280px] h-[280px] opacity-[0.04] dark:opacity-[0.06]" color="#00E6C4" />
 
                 <div className="relative">
                     <div className="text-center mb-10">
@@ -1348,7 +1348,7 @@ function Pricing() {
                         <h2 className="display-hero text-black dark:text-[#EDEFEE] text-[10vw] md:text-[64px] leading-[0.98]">
                             Simple. Transparent.
                             <br />
-                            <span className="text-[#0F6E56] dark:text-[#C7F27A]">Welcome-offer live.</span>
+                            <span className="text-[#0F6E56] dark:text-[#00E6C4]">Welcome-offer live.</span>
                         </h2>
                         <div className="mt-8 inline-flex items-center gap-1 rounded-full p-1 border
                             bg-white border-black/10
@@ -1356,7 +1356,7 @@ function Pricing() {
                             <button
                                 onClick={() => setTab("development")}
                                 className={`px-5 py-2 rounded-full text-[13px] font-medium transition-colors ${tab === "development"
-                                    ? "bg-black text-white dark:bg-[#C7F27A] dark:text-[#0A0D0C]"
+                                    ? "bg-black text-white dark:bg-[#00E6C4] dark:text-[#0A0D0C]"
                                     : "text-black/70 hover:text-black dark:text-[#8A928F] dark:hover:text-[#EDEFEE]"
                                     }`}
                             >
@@ -1365,7 +1365,7 @@ function Pricing() {
                             <button
                                 onClick={() => setTab("management")}
                                 className={`px-5 py-2 rounded-full text-[13px] font-medium transition-colors ${tab === "management"
-                                    ? "bg-black text-white dark:bg-[#C7F27A] dark:text-[#0A0D0C]"
+                                    ? "bg-black text-white dark:bg-[#00E6C4] dark:text-[#0A0D0C]"
                                     : "text-black/70 hover:text-black dark:text-[#8A928F] dark:hover:text-[#EDEFEE]"
                                     }`}
                             >
@@ -1388,7 +1388,7 @@ function Pricing() {
                                         {p.name}
                                     </h3>
                                     {p.highlight && (
-                                        <span className="text-[10px] uppercase tracking-widest bg-[#C7F27A] text-black px-2 py-1 rounded-full font-semibold">
+                                        <span className="text-[10px] uppercase tracking-widest  bg-[#00E6C4] text-black px-2 py-1 rounded-full font-semibold">
                                             Welcome offer
                                         </span>
                                     )}
@@ -1422,8 +1422,8 @@ function Pricing() {
                                     ))}
                                 </ul>
                                 <a href={actionHref} className={`mt-8 group px-5 py-2.5 rounded-full text-[14px] font-medium flex items-center justify-center gap-1 transition-colors ${p.highlight
-                                    ? "bg-[#C7F27A] text-black hover:bg-[#b8e662]"
-                                    : "bg-black text-white hover:bg-neutral-800 dark:bg-[#C7F27A] dark:text-[#0A0D0C] dark:hover:bg-[#b8e662]"
+                                    ? " dark:bg-[#00E6C4] text-black  bg-[#12f3d2]"
+                                    : "bg-black text-white hover:bg-neutral-800 dark:bg-[#00E6C4] dark:text-[#0A0D0C] dark:hover:bg-[#12f3d2]"
                                     }`}>
                                     {p.cta}
                                     <ArrowUpRight className="h-3.5 w-3.5 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
@@ -1701,7 +1701,7 @@ function BlogPreview() {
 
                 {/* Glows */}
                 <div className="pointer-events-none absolute -top-20 -right-20 w-[380px] h-[380px] rounded-full blur-3xl
-                    bg-[#C7F27A]/10 dark:bg-[#C7F27A]/6" />
+                    bg-[#C7F27A]/10 dark:bg-[#00E6C4]/6" />
                 <div className="pointer-events-none absolute bottom-0 left-0 w-[320px] h-[280px] rounded-full blur-3xl
                     bg-[#00E6C4]/8 dark:bg-[#00E6C4]/7" />
 
@@ -1737,7 +1737,7 @@ function BlogPreview() {
                                 onClick={() => scroll(1)}
                                 className="h-10 w-10 rounded-full flex items-center justify-center transition
                                     bg-[#0F6E56] hover:bg-[#0a5a46] text-white
-                                    dark:bg-[#C7F27A] dark:hover:bg-[#b8e662] dark:text-black"
+                                    dark:bg-[#00E6C4] dark:hover:bg-[#12f3d2] dark:text-black"
                             >
                                 <ChevronRight className="h-4 w-4" />
                             </button>
@@ -1790,7 +1790,7 @@ function BlogPreview() {
                             rel="noopener noreferrer"
                             className="group snap-start shrink-0 w-[280px] md:w-[320px] rounded-[18px] overflow-hidden flex flex-col card-lift transition-colors
                                 bg-white border border-black/8 hover:border-[#0F6E56]/35
-                                dark:bg-[#0F1413] dark:border-[#1E2523] dark:hover:border-[#C7F27A]/35"
+                                dark:bg-[#0F1413] dark:border-[#1E2523] dark:hover:border-[#00E6C4]/35"
                         >
                             {/* Cover image */}
                             <div className="relative h-[168px] overflow-hidden bg-black/5 dark:bg-white/5">
@@ -1808,8 +1808,8 @@ function BlogPreview() {
                                 <div className="absolute inset-0 bg-gradient-to-t from-black/55 via-transparent to-transparent" />
                                 {/* Category pill */}
                                 <span className="absolute bottom-3 left-3 text-[10px] font-mono uppercase tracking-widest px-2 py-1 rounded-full
-                                    text-[#0A0D0C] bg-[#C7F27A]/90 border border-[#C7F27A]/60
-                                    dark:text-[#C7F27A] dark:bg-black/60 dark:border-[#C7F27A]/30
+                                    text-[#0A0D0C] bg-[#00E6C4]/90 border border-[#C7F27A]/60
+                                    dark:text-[#00E6C4] dark:bg-black/60 dark:border-[#00E6C4]/30
                                     line-clamp-1 max-w-[80%]">
                                     {b.category}
                                 </span>
@@ -1820,12 +1820,12 @@ function BlogPreview() {
                                 <div className="flex items-start justify-between gap-2 mb-2">
                                     <h3 className="font-display text-[15px] leading-[1.25] transition-colors line-clamp-2
                                         text-black group-hover:text-[#0F6E56]
-                                        dark:text-[#EDEFEE] dark:group-hover:text-[#C7F27A]">
+                                        dark:text-[#EDEFEE] dark:group-hover:text-[#00E6C4]">
                                         {b.title}
                                     </h3>
                                     <ArrowUpRight className="h-4 w-4 shrink-0 mt-0.5 transition-colors
                                         text-black/25 group-hover:text-[#0F6E56]
-                                        dark:text-white/30 dark:group-hover:text-[#C7F27A]" />
+                                        dark:text-white/30 dark:group-hover:text-[#00E6C4]" />
                                 </div>
                                 <p className="text-[12px] leading-snug flex-1 line-clamp-2
                                     text-black/50 dark:text-[#8A928F]">
@@ -1837,7 +1837,7 @@ function BlogPreview() {
                                     <div className="flex items-center gap-2 min-w-0">
                                         <span className="h-5 w-5 rounded-full inline-flex items-center justify-center text-[8px] font-bold shrink-0
                                             bg-[#D6F5EF] text-[#0F6E56]
-                                            dark:bg-[#C7F27A]/20 dark:text-[#C7F27A]">
+                                            dark:bg-[#00E6C4]/20 dark:text-[#00E6C4]">
                                             {b.author?.[0] ?? "A"}
                                         </span>
                                         <span className="text-[11px] truncate text-black/45 dark:text-[#8A928F]">
@@ -1876,7 +1876,7 @@ function FAQ() {
                 {/* Teal glow top-left */}
                 <div className="pointer-events-none absolute -top-20 -left-20 w-[400px] h-[400px] rounded-full blur-3xl bg-[#00E6C4]/5 dark:bg-[#00E6C4]/8" />
                 {/* Lime glow bottom-right */}
-                <div className="pointer-events-none absolute -bottom-20 -right-20 w-[400px] h-[400px] rounded-full blur-3xl bg-[#C7F27A]/8 dark:bg-[#C7F27A]/6" />
+                <div className="pointer-events-none absolute -bottom-20 -right-20 w-[400px] h-[400px] rounded-full blur-3xl bg-[#C7F27A]/8 dark:bg-[#00E6C4]/6" />
 
                 <div className="relative max-w-[900px] mx-auto">
                     <div className="text-center mb-10">
@@ -1972,7 +1972,7 @@ function CTA() {
                             placeholder="yoursite.com"
                             className="flex-1 bg-transparent px-4 py-2.5 text-[15px] outline-none text-black dark:text-white placeholder:text-black/40 dark:placeholder:text-white/30"
                         />
-                        <button className="px-5 py-2.5 rounded-full bg-black dark:bg-[#C7F27A] text-white dark:text-black text-[14px] font-medium flex items-center gap-1 hover:bg-neutral-800 dark:hover:bg-[#b8e662] transition-colors">
+                        <button className="px-5 py-2.5 rounded-full bg-black dark:bg-[#00E6C4] text-white dark:text-black text-[14px] font-medium flex items-center gap-1 hover:bg-neutral-800 dark:hover:bg-[#12f3d2] transition-colors">
                             Get Audit
                             <ArrowUpRight className="h-3.5 w-3.5" />
                         </button>
@@ -2143,4 +2143,5 @@ export default function Home() {
         </div>
     );
 }
+
 

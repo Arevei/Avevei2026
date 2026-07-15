@@ -2,8 +2,8 @@ import { useEffect, useState } from "react"
 
 export type BlogTheme = "dark" | "light"
 
-const BLOG_THEME_STORAGE_KEY = "arevei-blog-theme"
-const BLOG_THEME_CHANGE_EVENT = "arevei-blog-theme-change"
+const BLOG_THEME_STORAGE_KEY = "arevei-theme"
+const BLOG_THEME_CHANGE_EVENT = "arevei-theme-change"
 
 function getInitialBlogTheme(): BlogTheme {
   if (typeof window === "undefined") return "light"
@@ -13,7 +13,7 @@ function getInitialBlogTheme(): BlogTheme {
     return storedTheme
   }
 
-  return "light"
+  return window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light"
 }
 
 export function useBlogTheme() {
@@ -32,14 +32,17 @@ export function useBlogTheme() {
 
   useEffect(() => {
     const syncTheme = () => {
-      setTheme(getInitialBlogTheme())
+      setTheme(document.documentElement.classList.contains("dark") ? "dark" : getInitialBlogTheme())
     }
 
     const syncCustomTheme = (event: Event) => {
       const nextTheme = (event as CustomEvent<BlogTheme>).detail
       if (nextTheme === "light" || nextTheme === "dark") {
         setTheme(nextTheme)
+        return
       }
+
+      setTheme(document.documentElement.classList.contains("dark") ? "dark" : "light")
     }
 
     window.addEventListener("storage", syncTheme)

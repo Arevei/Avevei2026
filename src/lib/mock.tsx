@@ -204,8 +204,7 @@ export const audiences = [
             'Landing pages that keep converting',
             'Analytics that tell you the truth',
         ],
-        cta: 'See how it works',
-        cta2: 'Book a demo',
+        cta: 'Book a demo',
         accent: 'bg-[#C7F27A]',
     },
     {

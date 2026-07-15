@@ -1,6 +1,6 @@
 "use client"
 
-import { useEffect, useMemo, useRef, useState, type RefObject } from "react"
+import { useEffect, useMemo, useRef, useState } from "react"
 import { useParams, Link } from "react-router-dom"
 import { ArrowLeft } from "lucide-react"
 
@@ -9,7 +9,6 @@ import { SITE_URL } from "@/lib/site"
 import type { BlogPost, BlogPostCard } from "@/lib/blog-types"
 import { generateBreadcrumbSchema, prepareBlogHtml } from "@/lib/blog-utils"
 import { useBlogTheme } from "@/lib/use-blog-theme"
-import Footer from "@/components/Footer/Footer"
 
 type HeadingItem = {
   id: string
@@ -29,27 +28,25 @@ const setMetaTag = (selector: string, attr: "name" | "property", key: string, co
   tag.setAttribute("content", content)
 }
 
-const ReadingProgress = ({ containerRef }: { containerRef: RefObject<HTMLDivElement> }) => {
+const ReadingProgress = () => {
   const [progress, setProgress] = useState(0)
 
   useEffect(() => {
-    const container = containerRef.current
-    if (!container) return
-
     const update = () => {
-      const total = container.scrollHeight - container.clientHeight
-      setProgress(total > 0 ? (container.scrollTop / total) * 100 : 0)
+      const doc = document.documentElement
+      const total = doc.scrollHeight - window.innerHeight
+      setProgress(total > 0 ? (window.scrollY / total) * 100 : 0)
     }
 
     update()
-    container.addEventListener("scroll", update, { passive: true })
+    window.addEventListener("scroll", update, { passive: true })
     window.addEventListener("resize", update)
 
     return () => {
-      container.removeEventListener("scroll", update)
+      window.removeEventListener("scroll", update)
       window.removeEventListener("resize", update)
     }
-  }, [containerRef])
+  }, [])
 
   return (
     <div className="fixed top-0 left-0 w-full h-[3px] z-[100] bg-white/5">
@@ -69,26 +66,24 @@ const Breadcrumb = ({
     aria-label="breadcrumb"
     className="flex items-center flex-wrap gap-1.5 text-xs text-gray-600 mb-6"
   >
-    <Link to="/" className="hover:text-[#00ffd9] transition-colors">
+    <Link to="/" className="hover:text-[#00E6C4] transition-colors">
       Home
     </Link>
     <span>/</span>
-    <Link to="/blog" className="hover:text-[#00ffd9] transition-colors">
+    <Link to="/blog" className="hover:text-[#00E6C4] transition-colors">
       Blog
     </Link>
     <span>/</span>
-    <span className="text-[#00ffd9]/80">{category}</span>
+    <span className="text-[#00E6C4]/80">{category}</span>
     <span>/</span>
     <span className="text-gray-500 truncate max-w-[200px]">{title}</span>
   </nav>
 )
 
 const TableOfContents = ({
-  headings,
-  contentRef
+  headings
 }: {
   headings: HeadingItem[];
-  contentRef?: React.RefObject<HTMLDivElement>;
 }) => {
   const [activeId, setActiveId] = useState("")
   const listRef = useRef<HTMLOListElement>(null)
@@ -116,42 +111,21 @@ const TableOfContents = ({
     return () => observer.disconnect()
   }, [headings])
 
-  // Scroll active item into view only if off-screen (nearest) to prevent fluctuations
-  useEffect(() => {
-    if (!activeId || headings.length === 0) return
-
-    const activeLink = listRef.current?.querySelector<HTMLAnchorElement>(
-      `a[href="#${CSS.escape(activeId)}"]`
-    )
-
-    activeLink?.scrollIntoView({
-      block: "nearest",
-      inline: "nearest",
-      behavior: "smooth",
-    })
-  }, [activeId, headings])
-
   if (headings.length < 2) return null
 
   const handleClick = (id: string) => {
 
     const element = document.getElementById(id)
-    if (element && contentRef?.current) {
-      const container = contentRef.current
-      const containerRect = container.getBoundingClientRect()
-      const elementRect = element.getBoundingClientRect()
-      const relativeTop = elementRect.top - containerRect.top
-      const scrollTarget = container.scrollTop + relativeTop - 80 // 80px offset for fixed header
+    if (element) {
+      const scrollTarget = element.getBoundingClientRect().top + window.scrollY - 110
 
-      // Temporarily set isOverToc true to block observer updates during smooth scroll
       isOverToc.current = true
-      container.scrollTo({
+      window.scrollTo({
         top: scrollTarget,
         behavior: "smooth"
       })
       setActiveId(id)
 
-      // Allow observer to resume once smooth scroll completes
       setTimeout(() => {
         isOverToc.current = false
       }, 1500)
@@ -164,9 +138,9 @@ const TableOfContents = ({
       onMouseLeave={() => { isOverToc.current = false }}
       onTouchStart={() => { isOverToc.current = true }}
       onTouchEnd={() => { isOverToc.current = false }}
-      className="bg-black/40 border border-white/[0.07] rounded-2xl p-5 h-auto lg:h-[70vh] overflow-y-auto toc-container"
+      className="bg-white border border-black/8 dark:bg-black/40 dark:border-white/[0.07] rounded-2xl p-5 h-auto lg:h-[70vh] overflow-y-auto toc-container "
     >
-      <p className="text-[11px] font-semibold text-gray-600 uppercase tracking-widest mb-4">
+      <p className="text-[11px] font-semibold text-black/40 dark:text-[#8A928F] uppercase tracking-widest mb-4">
         On This Page
       </p>
       <nav>
@@ -179,12 +153,12 @@ const TableOfContents = ({
                   href={`#${heading.id}`}
                   onClick={() => handleClick(heading.id)}
                   className={`flex items-start gap-2.5 text-[13px] leading-snug py-2 px-3 rounded-lg transition-all duration-200 ${isActive
-                    ? "bg-[#00ffd9]/10 text-[#00ffd9] font-semibold toc-active-item"
+                    ? "bg-[#00E6C4]/10 text-[#00E6C4] font-semibold toc-active-item"
                     : "text-gray-500 hover:text-gray-200 hover:bg-white/5 toc-inactive-item"
                     }`}
                 >
                   <span
-                    className={`shrink-0 font-mono text-[10px] mt-0.5 ${isActive ? "text-[#00ffd9] toc-active-number" : "text-gray-700 toc-inactive-number"
+                    className={`shrink-0 font-mono text-[10px] mt-0.5 ${isActive ? "text-[#00E6C4] toc-active-number" : "text-gray-700 toc-inactive-number"
                       }`}
                   >
                     {String(index + 1).padStart(2, "0")}
@@ -202,14 +176,14 @@ const TableOfContents = ({
 
 const RelatedPostCard = ({ post }: { post: BlogPostCard }) => (
   <Link to={`/blog/${post.slug}`} className="block group">
-    <div className="bg-black/30 border border-white/[0.07] rounded-xl overflow-hidden hover:border-[#00ffd9]/30 hover:-translate-y-0.5 hover:shadow-[0_6px_24px_rgba(0,255,217,0.08)] transition-all duration-300">
+    <div className="bg-white border border-black/8 dark:bg-black/30 dark:border-white/[0.07] rounded-xl overflow-hidden hover:border-[#00E6C4]/30 hover:-translate-y-0.5 hover:shadow-[0_6px_24px_rgba(0,230,196,0.08)] transition-all duration-300">
       <div className="aspect-video relative overflow-hidden">
         <img
           src={post.thumbnail}
           alt={post.thumbnailAlt || post.title}
           className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
         />
-        <span className="absolute top-2 left-2 bg-gradient-to-r from-[#00ffd9] to-[#00aeff] text-black text-[10px] font-bold px-2 py-0.5 rounded-full">
+        <span className="absolute top-2 left-2 bg-[#0F6E56] text-white dark:bg-[#00E6C4] dark:text-black text-[10px] font-bold px-2 py-0.5 rounded-full">
           {post.category}
         </span>
       </div>
@@ -217,7 +191,7 @@ const RelatedPostCard = ({ post }: { post: BlogPostCard }) => (
         <p className="text-xs text-gray-500 mb-1.5">
           {post.date} · {post.readTime}
         </p>
-        <h4 className="text-white font-semibold text-sm leading-snug line-clamp-2 group-hover:text-[#00ffd9] transition-colors">
+        <h4 className="text-black dark:text-[#EDEFEE] font-semibold text-sm leading-snug line-clamp-2 group-hover:text-[#00E6C4] transition-colors">
           {post.title}
         </h4>
       </div>
@@ -227,8 +201,8 @@ const RelatedPostCard = ({ post }: { post: BlogPostCard }) => (
 
 const BlogPostSkeleton = () => (
   <div className="flex min-h-0 flex-1">
-    <div className="custom-scrollbar w-full overflow-x-hidden overflow-y-auto">
-      <div className="min-h-full text-white">
+    <div className="w-full overflow-x-hidden">
+      <div className="min-h-full text-black dark:text-[#EDEFEE]">
         <div className="h-52 w-full skeleton-shimmer md:h-72 lg:h-80" />
 
         <div className="mx-auto max-w-6xl px-4 pb-20 md:px-8">
@@ -277,7 +251,6 @@ const BlogPostSkeleton = () => (
 
 const BlogPage = () => {
   const { paramSlag } = useParams<string>()
-  const scrollContainerRef = useRef<HTMLDivElement>(null)
   const [post, setPost] = useState<BlogPost | null>(null)
   const [relatedPosts, setRelatedPosts] = useState<BlogPostCard[]>([])
   const [loading, setLoading] = useState(true)
@@ -285,7 +258,7 @@ const BlogPage = () => {
   const { isLightTheme } = useBlogTheme()
 
   useEffect(() => {
-    scrollContainerRef.current?.scrollTo({ top: 0, behavior: "auto" })
+    window.scrollTo({ top: 0, behavior: "auto" })
   }, [paramSlag])
 
   useEffect(() => {
@@ -431,7 +404,7 @@ const BlogPage = () => {
         </p>
         <Link
           to="/blog"
-          className="bg-gradient-to-r from-[#00ffd9] to-[#00aeff] text-black px-6 py-2.5 rounded-full font-semibold text-sm"
+          className="bg-[#0F6E56] text-white dark:bg-[#00E6C4] dark:text-black px-6 py-2.5 rounded-full font-semibold text-sm"
         >
           ← Back to Blog
         </Link>
@@ -443,29 +416,24 @@ const BlogPage = () => {
 
   return (
     <>
-      <ReadingProgress containerRef={scrollContainerRef} />
+      <ReadingProgress />
 
       <div className={`blog-theme ${isLightTheme ? "blog-theme-light" : "blog-theme-dark"} flex min-h-0 flex-1`}>
-        <div
-          ref={scrollContainerRef}
-          className="custom-scrollbar w-full overflow-x-hidden overflow-y-auto"
-        >
-          <div className="min-h-full text-white">
+        <div className="w-full overflow-x-hidden">
+          <div className="min-h-full text-black dark:text-[#EDEFEE]">
             <div className="relative w-full h-52 md:h-72 lg:h-80 overflow-hidden">
               <img
                 src={post.thumbnail}
                 alt={post.thumbnailAlt || post.title}
                 className="w-full h-full object-cover"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-black/20" />
-              <div className="absolute inset-0 bg-gradient-to-r from-black/30 to-transparent" />
             </div>
 
             <div className="max-w-6xl mx-auto px-4 md:px-8 pb-20">
               <div className="pt-8 pb-5">
                 <Link
                   to="/blog"
-                  className="blog-back-button inline-flex items-center gap-3 rounded-2xl border border-[#00ffd9]/25 bg-black/35 px-5 py-3 text-base font-bold text-[#00ffd9] shadow-[0_16px_38px_rgba(0,255,217,0.12)] transition-all hover:-translate-y-0.5 hover:border-[#00ffd9]/60 hover:bg-[#00ffd9]/10"
+                  className="blog-back-button inline-flex items-center gap-3 rounded-2xl border border-[#0F6E56]/20 bg-[#0F6E56] px-5 py-3 text-base font-bold text-white shadow-[0_16px_38px_rgba(15,110,86,0.16)] transition-all hover:-translate-y-0.5 hover:bg-[#0a5a46] dark:border-[#00E6C4]/25 dark:bg-[#00E6C4] dark:text-black dark:shadow-[0_16px_38px_rgba(0,230,196,0.12)] dark:hover:bg-[#12f3d2]"
                 >
                   <ArrowLeft className="h-5 w-5" />
                   Back to Blogs
@@ -476,41 +444,41 @@ const BlogPage = () => {
 
               <header className="mb-10">
                 <div className="flex flex-wrap gap-2 mb-5">
-                  <span className="bg-gradient-to-r from-[#00ffd9] to-[#00aeff] text-black text-xs font-bold px-3 py-1.5 rounded-full">
+                  <span className="bg-[#0F6E56] text-white dark:bg-[#00E6C4] dark:text-black text-xs font-bold px-3 py-1.5 rounded-full">
                     {post.category}
                   </span>
                   {post.tags.slice(0, 3).map((tag) => (
                     <span
                       key={tag}
-                      className="border border-white/10 text-gray-400 text-xs px-3 py-1.5 rounded-full"
+                      className="border border-black/10 text-black/55 dark:border-white/10 dark:text-[#8A928F] text-xs px-3 py-1.5 rounded-full"
                     >
                       {tag}
                     </span>
                   ))}
                 </div>
 
-                <h1 className="blog-post-title text-3xl md:text-4xl lg:text-5xl font-bold leading-tight mb-5 bg-gradient-to-br from-white via-gray-100 to-[#00ffd9] bg-clip-text text-transparent">
+                <h1 className="blog-post-title display-hero text-3xl md:text-4xl lg:text-5xl leading-tight mb-5 text-black dark:text-[#EDEFEE]">
                   {post.title}
                 </h1>
 
-                <p className="text-gray-400 text-lg leading-relaxed mb-7 max-w-3xl">
+                <p className="text-black/60 dark:text-[#8A928F] text-lg leading-relaxed mb-7 max-w-3xl">
                   {post.excerpt}
                 </p>
 
-                <div className="flex items-center justify-between flex-wrap gap-4 py-5 border-t border-b border-white/[0.07]">
+                <div className="flex items-center justify-between flex-wrap gap-4 py-5 border-t border-b border-black/8 dark:border-white/[0.07]">
                   <div className="flex items-center gap-3">
-                    <div className="w-10 h-10 bg-gradient-to-br from-[#00ffd9] to-[#00aeff] rounded-full flex items-center justify-center text-black font-bold text-base shrink-0">
+                    <div className="w-10 h-10 bg-[#0F6E56] dark:bg-[#00E6C4] rounded-full flex items-center justify-center text-white dark:text-black font-bold text-base shrink-0">
                       {post.author.charAt(0)}
                     </div>
                     <div>
-                      <p className="text-white font-semibold text-sm">{post.author}</p>
-                      <p className="text-gray-500 text-xs">{post.authorRole}</p>
+                      <p className="text-black dark:text-[#EDEFEE] font-semibold text-sm">{post.author}</p>
+                      <p className="text-black/45 dark:text-[#8A928F] text-xs">{post.authorRole}</p>
                     </div>
                   </div>
-                  <div className="flex items-center gap-3 text-sm text-gray-500">
+                  <div className="flex items-center gap-3 text-sm text-black/45 dark:text-[#8A928F]">
                     <span>{post.date}</span>
-                    <span className="text-[#00ffd9]/20">|</span>
-                    <span className="text-[#00ffd9]/70 font-medium">{post.readTime}</span>
+                    <span className="text-[#00E6C4]/20">|</span>
+                    <span className="text-[#00E6C4]/70 font-medium">{post.readTime}</span>
                   </div>
                 </div>
               </header>
@@ -522,31 +490,31 @@ const BlogPage = () => {
                     dangerouslySetInnerHTML={{ __html: preparedArticle.html }}
                   />
 
-                  <div className="mt-12 bg-gradient-to-br from-[#00ffd9]/8 to-[#00aeff]/5 border border-[#00ffd9]/20 rounded-2xl p-6">
-                    <h3 className="text-[#00ffd9] font-bold text-base mb-4 flex items-center gap-2.5">
-                      <span className="w-1 h-5 bg-gradient-to-b from-[#00ffd9] to-[#00aeff] rounded-full inline-block" />
+                  <div className="mt-12 bg-[#0F6E56]/5 dark:bg-[#00E6C4]/8 border border-[#00E6C4]/20 rounded-2xl p-6">
+                    <h3 className="text-[#00E6C4] font-bold text-base mb-4 flex items-center gap-2.5">
+                      <span className="w-1 h-5 bg-[#0F6E56] dark:bg-[#00E6C4] rounded-full inline-block" />
                       Key Takeaways
                     </h3>
                     <ul className="space-y-3">
                       {post.keyTakeaways.map((item, index) => (
                         <li
                           key={index}
-                          className="flex items-start gap-3 text-gray-300 text-sm leading-relaxed"
+                          className="flex items-start gap-3 text-black/65 dark:text-[#EDEFEE]/75 text-sm leading-relaxed"
                         >
-                          <span className="text-[#00ffd9] mt-0.5 shrink-0 font-bold">✓</span>
+                          <span className="text-[#00E6C4] mt-0.5 shrink-0 font-bold">✓</span>
                           {item}
                         </li>
                       ))}
                     </ul>
                   </div>
 
-                  <div className="mt-8 pt-6 border-t border-white/[0.06]">
-                    <p className="text-[11px] text-gray-600 uppercase tracking-widest mb-3">Tagged</p>
+                  <div className="mt-8 pt-6 border-t border-black/8 dark:border-white/[0.06]">
+                    <p className="text-[11px] text-black/40 dark:text-[#8A928F] uppercase tracking-widest mb-3">Tagged</p>
                     <div className="flex flex-wrap gap-2">
                       {post.tags.map((tag) => (
                         <span
                           key={tag}
-                          className="text-xs border border-[#00ffd9]/15 text-[#00ffd9]/60 px-3 py-1 rounded-full hover:border-[#00ffd9]/40 hover:text-[#00ffd9] transition-colors cursor-default"
+                          className="text-xs border border-[#00E6C4]/15 text-[#00E6C4]/60 px-3 py-1 rounded-full hover:border-[#00E6C4]/40 hover:text-[#00E6C4] transition-colors cursor-default"
                         >
                           #{tag}
                         </span>
@@ -554,16 +522,16 @@ const BlogPage = () => {
                     </div>
                   </div>
 
-                  <div className="mt-8 flex items-start gap-4 bg-black/30 border border-white/[0.07] rounded-2xl p-6 hover:border-[#00ffd9]/20 transition-colors">
-                    <div className="w-14 h-14 bg-gradient-to-br from-[#00ffd9] to-[#00aeff] rounded-full flex items-center justify-center text-black font-bold text-xl shrink-0">
+                  <div className="mt-8 flex items-start gap-4 bg-white border border-black/8 dark:bg-black/30 dark:border-white/[0.07] rounded-2xl p-6 hover:border-[#00E6C4]/20 transition-colors">
+                    <div className="w-14 h-14 bg-[#0F6E56] dark:bg-[#00E6C4] rounded-full flex items-center justify-center text-white dark:text-black font-bold text-xl shrink-0">
                       {post.author.charAt(0)}
                     </div>
                     <div>
-                      <p className="text-white font-bold text-sm mb-0.5">{post.author}</p>
-                      <p className="text-[#00ffd9]/70 text-xs mb-2">
+                      <p className="text-black dark:text-[#EDEFEE] font-bold text-sm mb-0.5">{post.author}</p>
+                      <p className="text-[#00E6C4]/70 text-xs mb-2">
                         {post.authorRole} · Arevei
                       </p>
-                      <p className="text-gray-400 text-sm leading-relaxed">
+                      <p className="text-black/60 dark:text-[#8A928F] text-sm leading-relaxed">
                         Expert in {post.category.toLowerCase()} strategies and growth marketing at
                         Arevei. Helping modern brands scale with data-driven insights.
                       </p>
@@ -573,18 +541,18 @@ const BlogPage = () => {
 
                 <aside className="hidden lg:block ">
                   <div className="sticky top-6 ">
-                    <TableOfContents headings={preparedArticle.headings} contentRef={scrollContainerRef} />
+                    <TableOfContents headings={preparedArticle.headings} />
 
                     {post.tags.length > 0 && (
-                      <div className="mt-5 bg-black/40 border border-white/[0.07] rounded-2xl p-5">
-                        <p className="text-[11px] font-semibold text-gray-600 uppercase tracking-widest mb-3">
+                      <div className="mt-5 bg-white border border-black/8 dark:bg-black/40 dark:border-white/[0.07] rounded-2xl p-5">
+                        <p className="text-[11px] font-semibold text-black/40 dark:text-[#8A928F] uppercase tracking-widest mb-3">
                           Tags
                         </p>
                         <div className="flex flex-wrap gap-1.5">
                           {post.tags.map((tag) => (
                             <span
                               key={tag}
-                              className="text-[11px] border border-[#00ffd9]/15 text-[#00ffd9]/60 px-2.5 py-1 rounded-full hover:border-[#00ffd9]/35 hover:text-[#00ffd9] transition-colors cursor-default"
+                              className="text-[11px] border border-[#00E6C4]/15 text-[#00E6C4]/60 px-2.5 py-1 rounded-full hover:border-[#00E6C4]/35 hover:text-[#00E6C4] transition-colors cursor-default"
                             >
                               #{tag}
                             </span>
@@ -597,10 +565,10 @@ const BlogPage = () => {
               </div>
 
               {relatedPosts.length > 0 && (
-                <section className="mt-16 pt-10 border-t border-white/[0.06]">
+                <section className="mt-16 pt-10 border-t border-black/8 dark:border-white/[0.06]">
                   <div className="flex items-center gap-4 mb-7">
-                    <h2 className="text-base font-bold text-white shrink-0">Related Articles</h2>
-                    <div className="flex-1 h-px bg-white/[0.06]" />
+                    <h2 className="text-base font-bold text-black dark:text-[#EDEFEE] shrink-0">Related Articles</h2>
+                    <div className="flex-1 h-px bg-black/8 dark:bg-white/[0.06]" />
                   </div>
                   <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
                     {relatedPosts.map((relatedPost) => (
@@ -612,15 +580,15 @@ const BlogPage = () => {
 
               {nextPost && (
                 <div className="mt-14 text-center">
-                  <p className="text-gray-600 text-xs uppercase tracking-widest mb-3">
+                  <p className="text-black/40 dark:text-[#8A928F] text-xs uppercase tracking-widest mb-3">
                     Continue Reading
                   </p>
-                  <p className="text-white font-semibold text-lg mb-6 max-w-lg mx-auto leading-snug">
+                  <p className="text-black dark:text-[#EDEFEE] font-semibold text-lg mb-6 max-w-lg mx-auto leading-snug">
                     {nextPost.title}
                   </p>
                   <Link
                     to={`/blog/${nextPost.slug}`}
-                    className="inline-flex items-center justify-center bg-gradient-to-r from-[#00ffd9] to-[#00aeff] text-black font-semibold px-8 py-2.5 rounded-full hover:scale-105 transition-transform shadow-lg shadow-[#00ffd9]/25 text-sm"
+                    className="inline-flex items-center justify-center bg-[#0F6E56] text-white dark:bg-[#00E6C4] dark:text-black font-semibold px-8 py-2.5 rounded-full hover:scale-105 transition-transform shadow-lg shadow-[#00E6C4]/25 text-sm"
                   >
                     Read Next →
                   </Link>
@@ -628,7 +596,6 @@ const BlogPage = () => {
               )}
             </div>
           </div>
-          <Footer />
         </div>
       </div>
     </>
@@ -636,3 +603,7 @@ const BlogPage = () => {
 }
 
 export default BlogPage
+
+
+
+
