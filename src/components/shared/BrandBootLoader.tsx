@@ -12,12 +12,12 @@ const BrandBootLoader = ({ active }: BrandBootLoaderProps) => {
   return (
     <div
       className={`arevei-loader transition-all duration-700 ${
-        true ? "pointer-events-auto opacity-100" : "pointer-events-none opacity-0"
+        active ? "pointer-events-auto opacity-100" : "pointer-events-none opacity-0"
       }`}
       role="status"
       aria-label="Loading"
       aria-live="polite"
-      aria-hidden={active}
+      aria-hidden={!active}
     >
       <svg
         className="arevei-loader-svg"
