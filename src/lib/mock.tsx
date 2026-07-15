@@ -17,7 +17,7 @@ export const companyLogos: Array<{ name: string; src: string | null; initials?: 
     { name: 'SGT Make', src: '/assets/icons/sgtmake.webp' },
     { name: 'Jenii', src: "/assets/icons/jenii.png" },
     { name: 'Chandak', src: '/assets/icons/chandak-logo.png' },
-    { name: 'Niswarth', src: '/assets/icons/nisvrth-logo.png' },
+    { name: 'Nisvarth Jan Seva', src: '/assets/icons/nisvrth-logo.png' },
 ];
 
 export const pillars = [

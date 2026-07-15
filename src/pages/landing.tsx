@@ -4,7 +4,6 @@ import {
     ChevronLeft,
     ChevronRight,
     Check,
-    Play,
     Plus,
     Minus,
     X,
@@ -209,12 +208,12 @@ export function NewAreveiNavbar() {
                     <button
                         onClick={toggle}
                         aria-label="Toggle theme"
-                        className="h-9 w-9 rounded-full flex items-center justify-center border border-black/10 dark:border-white/15 bg-white/60 dark:bg-white/8 hover:bg-white dark:hover:bg-white/15 transition-colors"
+                        className="h-9 w-9 rounded-full flex items-center justify-center border border-black/10 dark:border-white/15 bg-white/60 dark:bg-black hover:bg-white dark:hover:bg-white/15 transition-colors"
                     >
                         {dark ? (
-                            <Sun className="h-4 w-4 text-[#C7F27A]" />
+                            <Sun className="h-4 w-4 text-[#00E6C4]" />
                         ) : (
-                            <Moon className="h-4 w-4 text-[#5B21B6]" />
+                            <Moon className="h-4 w-4 text-black" />
                         )}
                     </button>
                     <a href={actionHref} className="hidden sm:inline-flex px-4 md:px-5 py-2 rounded-full bg-white dark:bg-white/10 hover:bg-black/5 dark:hover:bg-white/15 text-[14px] font-medium transition-colors border border-black/10 dark:border-white/15 text-black dark:text-white">
@@ -386,19 +385,19 @@ function LogosMarquee() {
                     {list.map((l, i) => (
                         <div
                             key={i}
-                            className="flex min-w-[180px] items-center gap-3 rounded-xl border border-black/6 dark:border-white/10 bg-white/75 dark:bg-white/6 px-4 py-3 opacity-85 hover:opacity-100 transition-opacity duration-500"
+                            className="group flex min-w-[180px] items-center gap-3 rounded-xl border border-transparent bg-transparent px-4 py-3 opacity-80 transition-all duration-500 hover:opacity-100"
                         >
                             <img
                                 src={l.src || undefined}
                                 alt={l.name}
-                                className={`h-11 w-16  object-contain rounded-md ${l.src ? "" : "hidden"}`}
+                                className={`h-10 w-auto object-contain rounded-md grayscale saturate-0 opacity-65 transition-all duration-500 group-hover:grayscale-0 group-hover:saturate-100 group-hover:opacity-100 ${l.src ? "" : "hidden"}`}
                             />
                             {!l.src && (
                                 <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-lg bg-[#071312] text-[13px] font-bold text-[#00E6C4] dark:bg-[#00E6C4] dark:text-[#041411]">
                                     {l.initials || l.name[0]}
                                 </span>
                             )}
-                            <span className="text-[15px] text-black/72 dark:text-black font-semibold tracking-tight whitespace-nowrap">
+                            <span className="text-[17px] text-black/45 dark:text-white/45 font-semibold tracking-tight whitespace-nowrap transition-colors duration-500 group-hover:text-black dark:group-hover:text-white">
                                 {l.name}
                             </span>
                         </div>
@@ -499,13 +498,6 @@ function WhatArevei() {
     const inView = useInView(ref);
     const pillarIcons = [Hammer, Settings2, BarChart3, TrendingUp];
 
-    const pillarCardClasses = [
-        "bg-[#DCE7F6] dark:bg-[#0F1413]",
-        "bg-[#E7F5D9] dark:bg-[#0F1413]",
-        "bg-[#F8DAEE] dark:bg-[#0F1413]",
-        "bg-[#F5F142] dark:bg-[#0F1413]",
-    ];
-
     return (
         <section id="what-arevei-does" ref={ref} className="relative px-4 pb-20 scroll-mt-28">
             <div className="max-w-[1400px] mx-auto rounded-[28px] relative overflow-hidden
@@ -559,7 +551,7 @@ function WhatArevei() {
                             return (
                             <div
                                 key={p.title}
-                                className={`rounded-[22px] p-7 md:p-8 min-h-[280px] card-lift ${pillarCardClasses[i]}`}
+                                className="rounded-[22px] p-7 md:p-8 min-h-[280px] card-lift bg-white/82 border border-black/6 dark:bg-[#0F1413] dark:border-[#1E2523]"
                                 style={{ transitionDelay: `${i * 100}ms` }}
                             >
                                 <div className="w-12 h-12 rounded-xl flex items-center justify-center mb-6 bg-[#0F6E56]/10 dark:bg-[#00E6C4]/10 border border-[#0F6E56]/15 dark:border-[#00E6C4]/20">
@@ -598,9 +590,9 @@ function VideoSection() {
                 />
                 <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-black/40 to-black/70" />
                 <div className="relative z-10 text-center px-6 py-20 max-w-[820px]">
-                    <div className="text-[12px] uppercase tracking-[0.22em] text-white/60 mb-4">
+                    {/* <div className="text-[12px] uppercase tracking-[0.22em] text-white/60 mb-4">
                         Watch
-                    </div>
+                    </div> */}
                     <h2 className="display-hero text-white text-[9vw] md:text-[56px] leading-[0.98]">
                         What we do &<br />
                         how we do it.
@@ -609,14 +601,14 @@ function VideoSection() {
                         A 90-second look at the Arevei workflow — from audit to
                         launch to compounding growth.
                     </p>
-                    <button
+                    {/* <button
                         onClick={() => setOpen(true)}
                         className="group mt-8 inline-flex items-center gap-3 px-6 py-3 rounded-full bg-white text-black text-[14px] font-medium hover:scale-[1.03] transition-transform"
                     >
                         <Play className="h-4 w-4 fill-black" />
                         Play the video
                         <ArrowUpRight className="h-4 w-4 opacity-70 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
-                    </button>
+                    </button> */}
                 </div>
             </div>
 
@@ -1520,14 +1512,14 @@ function DemoBookingForm() {
     return (
         <div
             id="demo-form"
-            className="fixed inset-0 z-[120] flex items-center justify-center overflow-y-auto bg-black/70 p-3 sm:p-4 backdrop-blur-sm"
+            className="fixed inset-0 z-[120] flex items-center justify-center overflow-y-auto bg-[#071312]/82 p-3 sm:p-4 backdrop-blur-md"
             role="dialog"
             aria-modal="true"
             aria-labelledby="demo-form-title"
             onClick={() => setOpen(false)}
         >
             <div
-                className="my-8 w-full max-w-[980px] rounded-[22px] md:rounded-[28px] relative overflow-hidden border bg-[#F7F7F4] border-black/8 dark:bg-[#0A0D0C] dark:border-[#1E2523] px-4 sm:px-6 md:px-10 py-8 md:py-10"
+                className="my-8 w-full max-w-[980px] rounded-[22px] md:rounded-[28px] relative overflow-hidden border bg-[#FAFAF8] border-black/8 dark:bg-[#0A0D0C] dark:border-[#1E2523] px-4 sm:px-6 md:px-10 py-8 md:py-10 shadow-[0_28px_90px_rgba(0,0,0,0.28)]"
                 onClick={(event) => event.stopPropagation()}
             >
                 <button
@@ -1538,12 +1530,12 @@ function DemoBookingForm() {
                 >
                     <X className="h-4 w-4" />
                 </button>
-                <div
+                {/* <div
                     className="pointer-events-none absolute inset-0 opacity-[0.35] dark:opacity-[0.30]"
                     style={{ backgroundImage: "radial-gradient(circle,#C5EDE6 1.5px,transparent 1.5px)", backgroundSize: "28px 28px" }}
-                />
+                /> */}
                 <div className="pointer-events-none absolute -right-20 -top-20 h-80 w-80 rounded-full bg-[#00E6C4]/10 blur-3xl" />
-                <div className="pointer-events-none absolute -left-20 -bottom-20 h-80 w-80 rounded-full bg-[#C7F27A]/10 blur-3xl" />
+                <div className="pointer-events-none absolute -left-20 -bottom-20 h-80 w-80 rounded-full bg-[#00E6C4]/6 blur-3xl" />
 
                 <div className="relative grid gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:items-center">
                     <div>
