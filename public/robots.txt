@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://www.arevei.com/sitemap.xml
+Sitemap: https://ai.arevei.com/sitemap.xml
