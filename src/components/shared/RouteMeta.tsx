@@ -21,8 +21,8 @@ type MetaConfig = {
 
 const siteName = "Arevei Technologies"
 const siteUrl = SITE_URL
-const defaultImage = `${siteUrl}/assets/images/social.png`
-const twitterImage = `${siteUrl}/assets/images/social.png`
+const defaultImage = `${siteUrl}/assets/images/ai-native-website-manager.png`
+const twitterImage = `${siteUrl}/assets/images/ai-native-website-manager.png`
 
 const routeMeta: Record<string, MetaConfig> = {
     "/": {
